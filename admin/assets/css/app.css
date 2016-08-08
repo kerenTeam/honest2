@@ -1,0 +1,159 @@
+.am-topbar {
+    background: #3f8fd2;
+}
+
+.wx_type_img {
+    position: relative;
+    display: inline-block;
+}
+
+.wx_type_img input#imgUpload {
+    margin: 0;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+#preview img {
+    width: 200px;
+    max-width: 100%;
+}
+
+.am-topbar a {
+    color: white;
+}
+
+.am-topbar strong {
+    color: white;
+}
+
+#topbar-collapse {
+    padding: 10px;
+}
+
+.imgIcon {
+    max-width: 100%;
+    width: 120px;
+    height: 50px;
+}
+
+.minImg {
+    max-width: 300px;
+    max-height: 150px;
+}
+
+.imgSquare {
+    width: 50px;
+    height: 50px;
+}
+
+.am-topbar-nav>li.am-active>a,
+.am-topbar-nav>li.am-active>a:focus,
+.am-topbar-nav>li.am-active>a:hover {
+    color: #fff;
+}
+
+.am-nav>li>a:focus,
+.am-nav>li>a:hover {
+    background-color: transparent;
+}
+
+.amlogo {
+    padding: 10px;
+}
+
+.userimg2 {
+    width: 8rem;
+    height: 8rem;
+}
+
+.am-selected-content {
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+.am-g .am-form .am-g {
+    margin-left: -1rem !important;
+    margin-right: -1rem !important;
+}
+
+[class*=am-u-]+[class*=am-u-]:last-child {
+    float: left;
+}
+
+.mdImg {
+    width: 100%;
+}
+
+.am-thumbnail a>img.mdImg,
+.am-thumbnail>img.mdImg,
+img.am-thumbnail {
+    max-width: 100%;
+    height: 12em;
+}
+
+.minpan {
+    background-color: rgba(166, 166, 166, 0.21);
+    padding: 1em 0;
+}
+
+.massInput {
+    position: absolute;
+    top: 0;
+    left: 1.5rem;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+}
+
+.noblock input[type=text],
+.noblock select {
+    display: inline-block;
+    width: auto;
+}
+
+.mar-left {
+    margin-left: 5em;
+}
+
+.mar-left .form-control {
+    margin: .5em;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.am-popup {
+    height: auto;
+    max-height: 630px;
+}
+
+.am-table-centered .am-btn-toolbar {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.am-table-centered {
+    font-size: 1.4rem;
+}
+
+.modelHei {
+    max-height: 550px;
+    overflow-y: scroll;
+}
+
+.edui-container {
+    width: 100%;
+    margin-left: 0;
+}
