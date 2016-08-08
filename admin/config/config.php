@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://211.149.195.183:8066';
+$config['base_url'] = 'http://127.0.0.1:88/honest2/';
 
 /*
 |--------------------------------------------------------------------------

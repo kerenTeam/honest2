@@ -18,16 +18,34 @@
 							<img class="userimg2" src="../<?=$userinfo['headPicImg'];?>" alt="用户头像">
 						</div>
 						<div class="am-u-sm-6 am-u-md-4">
-							<p>昵称：<?=$userinfo['userName']?></p>
+							<p>姓名：<?=$userinfo['userName']?></p>
 							<p>性别：<?=$userinfo['gender']?></p>
+							<p>年龄：25</p>
 							<p>手机号：<?=$userinfo['phoneNumber']?></p>
+							<p>座机：</p>
+							<p>QQ号：123456788</p>
+							<p>微信号：adse</p>
+							<p>EMAIL：123456788@qq.com</p>
 						</div>
 						<div class="am-u-sm-6 am-u-md-4">
-							<p>所在地：<?=$userinfo['address']?></p>
+							<!-- <p>所在地：<?=$userinfo['address']?></p>
 							<p>简介：<?=$userinfo['summary']?></p>
-							<p>职业：<?=$userinfo['occupation']?></p>
+							<p>职业：<?=$userinfo['occupation']?></p> -->
+							<p>部门：采购</p>
+							<p>职称：注册安全工程师</p>
+							<p>学历：本科</p>
+							<p>专业：电子</p>
+							<p>行业：电子</p>
 						</div>
 						
+					</div>
+				</section>
+				<section class="am-panel am-panel-default">
+					<header class="am-panel-hd">
+						<h3 class="am-panel-title">个人简介</h3>
+					</header>
+					<div class="am-panel-bd">
+						<p>阿斯蒂芬</p>
 					</div>
 				</section>
 				<section class="am-panel am-panel-default">

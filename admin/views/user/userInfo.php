@@ -26,7 +26,7 @@
 				<table class="am-table am-table-striped am-table-hover am-main am-table-centered am-table-bordered">
 					<thead>
 						<tr>
-							<th>ID</th><th class="table-title">头像</th><th class="table-type">姓名</th><th class="table-type">性别</th><th class="table-type">手机号</th><th class="table-type">所在地</th><th class="table-date am-hide-sm-only">职业</th><th class="table-date am-hide-sm-only">更多</th><th class="table-set">操作</th>
+							<th>ID</th><th class="table-title">头像</th><th class="table-type">姓名</th><th class="table-type">性别</th><th class="table-type">手机号</th><th class="table-type">年龄</th><th class="table-date am-hide-sm-only">行业</th><th class="table-date am-hide-sm-only">更多</th><th class="table-set">操作</th>
 						</tr>
 					</thead>
 					<tbody id="movies">
@@ -38,8 +38,8 @@
 							<td><?=$val['userName'];?></td>
 							<td><?=$val['gender'];?></td>
 							<td><?=$val['phoneNumber'];?></td>
-							<td><?=$val['address']?></td>
-							<td><?=$val['occupation'];?></td>
+							<td><!-- <?=$val['address']?> -->25</td>
+							<td><!-- <?=$val['occupation'];?> -->电子</td>
 							<td>
 								<a href="<?=site_url('user/info?id=').$val['userId'];?>">查看个人信息</a>
 							</td>
