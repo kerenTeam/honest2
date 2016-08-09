@@ -149,7 +149,12 @@ ul {
 .am-table-centered {
     font-size: 1.4rem;
 }
-
+.am-table-centered form{
+    font-size: 1.6rem;
+}
+.modelHei{
+    font-size: 1.5rem;
+}
 .modelHei {
     max-height: 550px;
     overflow-y: scroll;

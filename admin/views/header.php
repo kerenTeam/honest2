@@ -84,6 +84,18 @@
           </ul>
         </li>
         <li class="admin-parent">
+          <a class="am-cf" data-am-collapse="{target: '#dataM'}"><span class="am-icon-industry"></span> 数据管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+          <ul class="am-list am-collapse admin-sidebar-sub" id="dataM">
+            <li><a href="<?=site_url('dataManage/staff');?>"><span class="am-icon-users"></span> 人员规模</a></li>
+            <li><a href="<?=site_url('dataManage/produce');?>"><span class="am-icon-cubes"></span> 生产规模</a></li>
+            <li><a href="<?=site_url('dataManage/branch');?>"><span class="am-icon-sitemap"></span> 部门</a></li>
+            <li><a href="<?=site_url('dataManage/workname');?>"><span class="am-icon-tags"></span> 职称</a></li>
+            <li><a href="<?=site_url('dataManage/specialty');?>"><span class="am-icon-columns"></span> 专业</a></li>
+            <li><a href="<?=site_url('dataManage/appraise');?>"><span class="am-icon-slideshare"></span> 安全评价师</a></li>
+            <li><a href="<?=site_url('dataManage/register');?>"><span class="am-icon-clipboard"></span> 注册安全工程师</a></li>
+          </ul>
+        </li>
+        <li class="admin-parent">
             <a class="am-cf" data-am-collapse="{target: '#user'}"><span class="am-icon-user"></span> 用户管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
            <ul class="am-list am-collapse admin-sidebar-sub" id="user">
        
