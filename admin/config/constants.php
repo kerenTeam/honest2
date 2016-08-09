@@ -85,7 +85,7 @@ defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 defined('randNms')             OR define('randNms', rand(100000,999999)); //长度为6位的随机数
-defined('IP')                  OR define('IP', 'http://211.149.195.183:8066/'); //长度为6位的随机数
+defined('IP')                  OR define('IP', 'http://192.168.199.181/honest2/'); //长度为6位的随机数
 
 
 /**********************************************

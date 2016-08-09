@@ -36,6 +36,7 @@ class Honestapi_model extends CI_Model
 	//根据用户喜好标签返回咨询信息
 	public function Consulting($page,$size,$tag){
 		$contion['commend'] = '1';	
+
 		$query = $this->db->where($contion)->where_in('tag',$tag)->order_by('publishData','desc')->limit($size,$page)->get(self::TBL_MYPUBLISH);
 		return $query->result_array();
 	}
