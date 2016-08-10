@@ -23,11 +23,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-<<<<<<< HEAD
+
 $config['base_url'] = '';
-=======
-$config['base_url'] = 'http://127.0.0.1:88/honest2/';
->>>>>>> b767d9abb421d06aba41be436bb7b5bf995e4ed3
+
 
 /*
 |--------------------------------------------------------------------------

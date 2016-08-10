@@ -211,7 +211,6 @@ class API_honest extends CI_Controller
 					}
 				}
 			}
-			
 			$json = json_encode($arr);
 			
 			if(empty($json)){
@@ -375,9 +374,6 @@ class API_honest extends CI_Controller
 		}
 	}
 
-
-	
-
 	// 聊天上传图片
 	public function chatImg()
 	{
@@ -416,9 +412,6 @@ class API_honest extends CI_Controller
 
     	}
 	}
-
-	
-	
 
 	// 微信绑定手机号
 	public function bindingWeixin()
@@ -490,7 +483,10 @@ class API_honest extends CI_Controller
 		}
 	}
 
-	
+	public function sendasdc()
+	{
+		var_dump($_POST);
+	}
 	
 
 

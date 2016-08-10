@@ -1,4 +1,5 @@
 <?php  
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
@@ -13,6 +14,7 @@ class API_personal extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('honestapi_model');
+
 	}
 
 	// 个人中心
@@ -46,6 +48,64 @@ class API_personal extends CI_Controller
 			}else{
 				$a = 0;
 				echo "$callback($a)";
+			}
+		}
+	}
+
+	// 返回所有专业
+	public function getMajorList()
+	{
+		if($_GET){
+			$callback = $_GET['callback'];
+			$get = json_decode($_GET['getMajorListData'],true);
+			if(!isset($get['id'])){
+				$user = $this->honestapi_model->Loginuser($get['phoneNumber']);
+				$major = $this->honestapi_model->GetMajor($user['faculty']);
+				if(empty($major)){
+					echo "$callback(0)";exit;
+				}else{
+					$json = json_encode($major);
+					echo "$callback($json)";exit;
+				}
+			}{
+				$major = $this->honestapi_model->GetMajor($get['id']);
+				if(empty($major)){
+					echo "$callback(0)";exit;
+				}else{
+					$json = json_encode($major);
+					echo "$callback($json)";exit;
+				}
+			}
+		}
+	}
+	// 返回所有院系
+	public function getFacultyList()
+	{
+		if($_GET){
+			$callback = $_GET['callback'];
+			// 所有院系
+			$faculty = $this->honestapi_model->GetFaculty();
+			if(empty($faculty)){
+				echo "$callback(0)";
+			}else{
+				$json = json_encode($faculty);
+				echo "$callback($json)";
+			}
+		}
+	}
+
+	// 返回注安师规则
+	public function SecurityDivision()
+	{
+		if($_GET){
+			$callback = $_GET['callback'];
+			//获取所有注安师
+			$secur = $this->honestapi_model->GetSecurity();
+			if(empty($secur)){
+				echo "$callback(0)";
+			}else{
+				$json = json_encode($secur);
+				echo "$callback($json)";
 			}
 		}
 	}
@@ -90,7 +150,7 @@ class API_personal extends CI_Controller
 		}
 	}
 
-		// 咨询记录
+	// 咨询记录
 	public function consultingRecords()
 	{
 		if($_GET){
@@ -146,7 +206,7 @@ class API_personal extends CI_Controller
 	}
 
 
-		// 返回个人公司信息
+	// 返回个人公司信息
 	public function companyInfo()
 	{
 		if($_GET){
@@ -195,7 +255,34 @@ class API_personal extends CI_Controller
 			}
 		}
 	}
+	// 返回用户tag
+	public function userTag()
+	{
+		if($_GET){
+			$callback = $_GET['callback'];
+			$phone = json_decode($_GET['userTagData'],true);
+			$user = $this->honestapi_model->Loginuser($phone['phoneNumber']);
+			$tag = explode(',',$user['myTag']);
+			// 所有标签
+			$tags = $this->honestapi_model->Channel();
 
+			foreach ($tags as $key => $value) {
+				$tags[$key]['checked'] = false;
+				foreach ($tag as $k => $v) {
+					if($value['tag'] == $v){
+						$tags[$key]['checked'] = true;
+					}
+				}
+			}
+			if(empty($tags)){
+				echo "$callback(0)";
+			}else{
+				$json = json_encode($tags);
+				echo "$callback($json)";
+			}
+
+		}
+	}
 	
 	//用户公司资料修改
 	public function sendCompany()
@@ -290,40 +377,20 @@ class API_personal extends CI_Controller
 	//  咨询师证书上传
 	public function ConsultantFile()
 	{
-		file_put_contents('test.log', var_export($_GET,true)."\r\n",FILE_APPEND);
-		$a = json_encode($_FILES);
-		file_put_contents('text.txt',$a);
-		echo "1";
-		exit;
-		// file_put_contents('test.log', $_POST,FILE_APPEND);
-		// file_put_contents('test.log', var_export($_FILES,true)."\r\n",FILE_APPEND);
-		  if(move_uploaded_file($_FILES['file']['tmp_name'], './upload/charimg/'.$_FILES["file"]["name"])){
-		  	echo "1";
-		  }else{
-		  	echo "0";
-		  }
+		$callback = $_GET['callback'];
+		file_put_contents('test.log', var_export($_FILES,true)."\r\n",FILE_APPEND);
+		file_put_contents('test.log', var_export($_GET,true)."\r\n",FILE_APPEND);	
+		file_put_contents('test.log', var_export($_POST,true)."\r\n",FILE_APPEND);
+
+	//	echo "$callback(1)";
+	
 	}
 	// 咨询师资料修改
 	public function sendConsultant()
 	{
-		if($_GET){
-			$callback = $_GET['callback'];
-			// 接收资料
-			$userData = json_decode($_GET['sendUserData'],true);
-			$id = $userData['userId'];
-			if(!empty($userData['myTag'])){
-				$userData['myTag'] = implode(',',$userData['myTag']);
-			}
-    		// 修改用户资料
-    		if($this->honestapi_model->EditUser($id,$userData)){
-    			echo "1";
-    		}else{
-    			echo "2";
-    		}
-		}
+		
+		
 	}
-
-
 
 
 

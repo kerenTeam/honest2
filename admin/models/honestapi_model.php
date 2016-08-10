@@ -24,6 +24,8 @@ class Honestapi_model extends CI_Model
 	const TBL_CHAT = "chatrecord";
 	//公司信息表
 	const TBL_COMPANY = "company";
+	// 联动表
+	const TBL_LINKAGE = "linkage";
 
 	// 返回banner 和网站 关键字
 	public function Banners()
@@ -216,6 +218,37 @@ class Honestapi_model extends CI_Model
 	{
 		$where['companyId'] = $id;
 		return $this->db->where($where)->update(self::TBL_COMPANY,$data);
+	}
+
+	// 返回所有专业
+	public function GetMajor($id)
+	{
+		$where =array(
+			'majorId' => $id,
+			'typeId' => '1',
+		);
+		// $sql = "SELECT * from honest_linkage where majorId != 0 and typeId = 1";
+		//$query = $this->db->query($sql);
+		$query = $this->db->where($where)->get(self::TBL_LINKAGE);
+		return $query->result_array();
+
+	}
+	// 返回所有院系
+	public function GetFaculty()
+	{
+		$where =array(
+			'majorId' => '0',
+			'typeId' => '1',
+		);
+		$query = $this->db->where($where)->get(self::TBL_LINKAGE);
+		return $query->result_array();
+	}
+	//返回注安师
+	public function GetSecurity()
+	{
+		$where['typeId'] = '2';
+		$query = $this->db->where($where)->get(self::TBL_LINKAGE);
+		return $query->result_array();
 	}
 
 

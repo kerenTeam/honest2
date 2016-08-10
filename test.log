@@ -1,56 +1,597 @@
-{"userId":"12","userName":"成的风格","enterpriseInfo":"关注成都的变化，大城小事。","checkboxTag":["1","3","5","7"],"address":["四川","成都","青羊区"],"device":"装置","technology":"工艺","safety":"发热我不够热哇吧","health":"个人微博突然想","scale":"500-1000人","production":"2000万－5000万","companyId":"1"}array (
+NULL
+NULL
+ {
+"params":{
+  "userData": {
+    "userId": "12",
+    "groupId": "5",
+    "openId": "123vdsvdfavagrwt524w45t5g3t53y65",
+    "userName": "Harris",
+    "passWord": "123455",
+    "headPicImg": "http://211.149.195.183:8066/upload/2016-07-05_181432.jpg",
+    "email": "3214351@qq.com",
+    "phoneNumber": "18180924082",
+    "gender": "女",
+    "address": "上海",
+    "summary": "诚实安全咨询师",
+    "occupation": "学生",
+    "myTag": "5,7,2,4",
+    "myCertificate": [
+      {
+        "certificateId": "1",
+        "certificateImg": "http://211.149.195.183:8066/upload/img/c1.jpg",
+        "certificateName": "ABC"
+      },
+      {
+        "certificateId": "2",
+        "certificateImg": "http://211.149.195.183:8066/upload/img/c2.jpg",
+        "certificateName": "ABC"
+      },
+      {
+        "certificateId": "3",
+        "certificateImg": "http://211.149.195.183:8066/upload/img/c3.jpg",
+        "certificateName": "ABC"
+      },
+      {
+        "certificateId": "4",
+        "certificateImg": "http://211.149.195.183:8066/upload/img/c4.jpg",
+        "certificateName": "ABC"
+      },
+      {
+        "certificateId": "5",
+        "certificateImg": "http://211.149.195.183:8066/upload/img/c2.jpg",
+        "certificateName": "ABC"
+      }
+    ],
+    "age": "30岁以下",
+    "department": "技术部",
+    "positionalTitle": "高级",
+    "education": "本科",
+    "faculty": "1",
+    "major": "财会",
+    "tel": "028-6529245",
+    "QQ": "1545785487",
+    "weiXin": "awdedr",
+    "evaluation": "三级",
+    "evaluationNumber": "1325468978",
+    "regSecurity": "金属冶炼",
+    "regSecurityNumber": "12546467",
+    "practitioners": "成都信息网",
+    "unitEvaluate": "一个非常好的公司",
+    "companyId": "1"
+  },
+  "phoneNumber": "18180924082",
+  "userTag": [
+    "2",
+    "4",
+    "5",
+    "7"
+  ]
+}} {
+"params":{
+  "userData": {
+    "userId": "12",
+    "groupId": "5",
+    "openId": "123vdsvdfavagrwt524w45t5g3t53y65",
+    "userName": "Harris",
+    "passWord": "123455",
+    "headPicImg": "http://211.149.195.183:8066/upload/2016-07-05_181432.jpg",
+    "email": "3214351@qq.com",
+    "phoneNumber": "18180924082",
+    "gender": "女",
+    "address": "上海",
+    "summary": "诚实安全咨询师",
+    "occupation": "学生",
+    "myTag": "5,7,2,4",
+    "myCertificate": [
+      {
+        "certificateId": "1",
+        "certificateImg": "http://211.149.195.183:8066/upload/img/c1.jpg",
+        "certificateName": "ABC"
+      },
+      {
+        "certificateId": "2",
+        "certificateImg": "http://211.149.195.183:8066/upload/img/c2.jpg",
+        "certificateName": "ABC"
+      },
+      {
+        "certificateId": "3",
+        "certificateImg": "http://211.149.195.183:8066/upload/img/c3.jpg",
+        "certificateName": "ABC"
+      },
+      {
+        "certificateId": "4",
+        "certificateImg": "http://211.149.195.183:8066/upload/img/c4.jpg",
+        "certificateName": "ABC"
+      },
+      {
+        "certificateId": "5",
+        "certificateImg": "http://211.149.195.183:8066/upload/img/c2.jpg",
+        "certificateName": "ABC"
+      }
+    ],
+    "age": "30岁以下",
+    "department": "技术部",
+    "positionalTitle": "高级",
+    "education": "本科",
+    "faculty": "1",
+    "major": "财会",
+    "tel": "028-6529245",
+    "QQ": "1545785487",
+    "weiXin": "awdedr",
+    "evaluation": "三级",
+    "evaluationNumber": "1325468978",
+    "regSecurity": "金属冶炼",
+    "regSecurityNumber": "12546467",
+    "practitioners": "成都信息网",
+    "unitEvaluate": "一个非常好的公司",
+    "companyId": "1"
+  },
+  "phoneNumber": "18180924082",
+  "userTag": [
+    "2",
+    "4",
+    "5",
+    "7"
+  ]
+}} {
+"params":{
+  "userData": {
+    "userId": "12",
+    "groupId": "5",
+    "openId": "123vdsvdfavagrwt524w45t5g3t53y65",
+    "userName": "Harris",
+    "passWord": "123455",
+    "headPicImg": "http://211.149.195.183:8066/upload/2016-07-05_181432.jpg",
+    "email": "3214351@qq.com",
+    "phoneNumber": "18180924082",
+    "gender": "女",
+    "address": "上海",
+    "summary": "诚实安全咨询师",
+    "occupation": "学生",
+    "myTag": "5,7,2,4",
+    "myCertificate": [
+      {
+        "certificateId": "1",
+        "certificateImg": "http://211.149.195.183:8066/upload/img/c1.jpg",
+        "certificateName": "ABC"
+      },
+      {
+        "certificateId": "2",
+        "certificateImg": "http://211.149.195.183:8066/upload/img/c2.jpg",
+        "certificateName": "ABC"
+      },
+      {
+        "certificateId": "3",
+        "certificateImg": "http://211.149.195.183:8066/upload/img/c3.jpg",
+        "certificateName": "ABC"
+      },
+      {
+        "certificateId": "4",
+        "certificateImg": "http://211.149.195.183:8066/upload/img/c4.jpg",
+        "certificateName": "ABC"
+      },
+      {
+        "certificateId": "5",
+        "certificateImg": "http://211.149.195.183:8066/upload/img/c2.jpg",
+        "certificateName": "ABC"
+      }
+    ],
+    "age": "30岁以下",
+    "department": "技术部",
+    "positionalTitle": "高级",
+    "education": "本科",
+    "faculty": "1",
+    "major": "财会",
+    "tel": "028-6529245",
+    "QQ": "1545785487",
+    "weiXin": "awdedr",
+    "evaluation": "三级",
+    "evaluationNumber": "1325468978",
+    "regSecurity": "金属冶炼",
+    "regSecurityNumber": "12546467",
+    "practitioners": "成都信息网",
+    "unitEvaluate": "一个非常好的公司",
+    "companyId": "1"
+  },
+  "phoneNumber": "18180924082",
+  "userTag": [
+    "2",
+    "4",
+    "5",
+    "7"
+  ]
+}}stdClass::__set_state(array(
+   'params' => 
+  stdClass::__set_state(array(
+     'userData' => 
+    stdClass::__set_state(array(
+       'userId' => '12',
+       'groupId' => '5',
+       'openId' => '123vdsvdfavagrwt524w45t5g3t53y65',
+       'userName' => 'Harris',
+       'passWord' => '123455',
+       'headPicImg' => 'http://211.149.195.183:8066/upload/2016-07-05_181432.jpg',
+       'email' => '3214351@qq.com',
+       'phoneNumber' => '18180924082',
+       'gender' => '女',
+       'address' => '上海',
+       'summary' => '诚实安全咨询师',
+       'occupation' => '学生',
+       'myTag' => '5,7,2,4',
+       'myCertificate' => 
+      array (
+        0 => 
+        stdClass::__set_state(array(
+           'certificateId' => '1',
+           'certificateImg' => 'http://211.149.195.183:8066/upload/img/c1.jpg',
+           'certificateName' => 'ABC',
+        )),
+        1 => 
+        stdClass::__set_state(array(
+           'certificateId' => '2',
+           'certificateImg' => 'http://211.149.195.183:8066/upload/img/c2.jpg',
+           'certificateName' => 'ABC',
+        )),
+        2 => 
+        stdClass::__set_state(array(
+           'certificateId' => '3',
+           'certificateImg' => 'http://211.149.195.183:8066/upload/img/c3.jpg',
+           'certificateName' => 'ABC',
+        )),
+        3 => 
+        stdClass::__set_state(array(
+           'certificateId' => '4',
+           'certificateImg' => 'http://211.149.195.183:8066/upload/img/c4.jpg',
+           'certificateName' => 'ABC',
+        )),
+        4 => 
+        stdClass::__set_state(array(
+           'certificateId' => '5',
+           'certificateImg' => 'http://211.149.195.183:8066/upload/img/c2.jpg',
+           'certificateName' => 'ABC',
+        )),
+      ),
+       'age' => '30岁以下',
+       'department' => '技术部',
+       'positionalTitle' => '高级',
+       'education' => '本科',
+       'faculty' => '1',
+       'major' => '财会',
+       'tel' => '028-6529245',
+       'QQ' => '1545785487',
+       'weiXin' => 'awdedr',
+       'evaluation' => '三级',
+       'evaluationNumber' => '1325468978',
+       'regSecurity' => '金属冶炼',
+       'regSecurityNumber' => '12546467',
+       'practitioners' => '成都信息网',
+       'unitEvaluate' => '一个非常好的公司',
+       'companyId' => '1',
+    )),
+     'phoneNumber' => '18180924082',
+     'userTag' => 
+    array (
+      0 => '2',
+      1 => '4',
+      2 => '5',
+      3 => '7',
+    ),
+  )),
+))
+array (
+  'params' => 
+  array (
+    'userData' => 
+    array (
+      'userId' => '12',
+      'groupId' => '5',
+      'openId' => '123vdsvdfavagrwt524w45t5g3t53y65',
+      'userName' => 'Harris',
+      'passWord' => '123455',
+      'headPicImg' => 'http://211.149.195.183:8066/upload/2016-07-05_181432.jpg',
+      'email' => '3214351@qq.com',
+      'phoneNumber' => '18180924082',
+      'gender' => '女',
+      'address' => '上海',
+      'summary' => '诚实安全咨询师',
+      'occupation' => '学生',
+      'myTag' => '5,7,2,4',
+      'myCertificate' => 
+      array (
+        0 => 
+        array (
+          'certificateId' => '1',
+          'certificateImg' => 'http://211.149.195.183:8066/upload/img/c1.jpg',
+          'certificateName' => 'ABC',
+        ),
+        1 => 
+        array (
+          'certificateId' => '2',
+          'certificateImg' => 'http://211.149.195.183:8066/upload/img/c2.jpg',
+          'certificateName' => 'ABC',
+        ),
+        2 => 
+        array (
+          'certificateId' => '3',
+          'certificateImg' => 'http://211.149.195.183:8066/upload/img/c3.jpg',
+          'certificateName' => 'ABC',
+        ),
+        3 => 
+        array (
+          'certificateId' => '4',
+          'certificateImg' => 'http://211.149.195.183:8066/upload/img/c4.jpg',
+          'certificateName' => 'ABC',
+        ),
+        4 => 
+        array (
+          'certificateId' => '5',
+          'certificateImg' => 'http://211.149.195.183:8066/upload/img/c2.jpg',
+          'certificateName' => 'ABC',
+        ),
+      ),
+      'age' => '30岁以下',
+      'department' => '技术部',
+      'positionalTitle' => '高级',
+      'education' => '本科',
+      'faculty' => '1',
+      'major' => '财会',
+      'tel' => '028-6529245',
+      'QQ' => '1545785487',
+      'weiXin' => 'awdedr',
+      'evaluation' => '三级',
+      'evaluationNumber' => '1325468978',
+      'regSecurity' => '金属冶炼',
+      'regSecurityNumber' => '12546467',
+      'practitioners' => '成都信息网',
+      'unitEvaluate' => '一个非常好的公司',
+      'companyId' => '1',
+    ),
+    'phoneNumber' => '18180924082',
+    'userTag' => 
+    array (
+      0 => '2',
+      1 => '4',
+      2 => '5',
+      3 => '7',
+    ),
+  ),
+)
+array (
+  'params' => 
+  array (
+    'userData' => 
+    array (
+      'userId' => '12',
+      'groupId' => '5',
+      'openId' => '123vdsvdfavagrwt524w45t5g3t53y65',
+      'userName' => 'Harris',
+      'passWord' => '123455',
+      'headPicImg' => 'http://211.149.195.183:8066/upload/2016-07-05_181432.jpg',
+      'email' => '3214351@qq.com',
+      'phoneNumber' => '18180924082',
+      'gender' => '女',
+      'address' => '上海',
+      'summary' => '诚实安全咨询师',
+      'occupation' => '学生',
+      'myTag' => '5,7,2,4',
+      'myCertificate' => 
+      array (
+        0 => 
+        array (
+          'certificateId' => '1',
+          'certificateImg' => 'http://211.149.195.183:8066/upload/img/c1.jpg',
+          'certificateName' => 'ABC',
+        ),
+        1 => 
+        array (
+          'certificateId' => '2',
+          'certificateImg' => 'http://211.149.195.183:8066/upload/img/c2.jpg',
+          'certificateName' => 'ABC',
+        ),
+        2 => 
+        array (
+          'certificateId' => '3',
+          'certificateImg' => 'http://211.149.195.183:8066/upload/img/c3.jpg',
+          'certificateName' => 'ABC',
+        ),
+        3 => 
+        array (
+          'certificateId' => '4',
+          'certificateImg' => 'http://211.149.195.183:8066/upload/img/c4.jpg',
+          'certificateName' => 'ABC',
+        ),
+        4 => 
+        array (
+          'certificateId' => '5',
+          'certificateImg' => 'http://211.149.195.183:8066/upload/img/c2.jpg',
+          'certificateName' => 'ABC',
+        ),
+      ),
+      'age' => '30岁以下',
+      'department' => '技术部',
+      'positionalTitle' => '高级',
+      'education' => '本科',
+      'faculty' => '1',
+      'major' => '财会',
+      'tel' => '028-6529245',
+      'QQ' => '1545785487',
+      'weiXin' => 'awdedr',
+      'evaluation' => '三级',
+      'evaluationNumber' => '1325468978',
+      'regSecurity' => '金属冶炼',
+      'regSecurityNumber' => '12546467',
+      'practitioners' => '成都信息网',
+      'unitEvaluate' => '一个非常好的公司',
+      'companyId' => '1',
+    ),
+    'phoneNumber' => '18180924082',
+    'userTag' => 
+    array (
+      0 => '2',
+      1 => '4',
+      2 => '5',
+      3 => '7',
+    ),
+  ),
+)
+array (
+  'params' => 
+  array (
+    'userData' => 
+    array (
+      'userId' => '12',
+      'groupId' => '5',
+      'openId' => '123vdsvdfavagrwt524w45t5g3t53y65',
+      'userName' => 'Harris',
+      'passWord' => '123455',
+      'headPicImg' => 'http://211.149.195.183:8066/upload/2016-07-05_181432.jpg',
+      'email' => '3214351@qq.com',
+      'phoneNumber' => '18180924082',
+      'gender' => '女',
+      'address' => '上海',
+      'summary' => '诚实安全咨询师',
+      'occupation' => '学生',
+      'myTag' => '5,7,2,4',
+      'myCertificate' => 
+      array (
+        0 => 
+        array (
+          'certificateId' => '1',
+          'certificateImg' => 'http://211.149.195.183:8066/upload/img/c1.jpg',
+          'certificateName' => 'ABC',
+        ),
+        1 => 
+        array (
+          'certificateId' => '2',
+          'certificateImg' => 'http://211.149.195.183:8066/upload/img/c2.jpg',
+          'certificateName' => 'ABC',
+        ),
+        2 => 
+        array (
+          'certificateId' => '3',
+          'certificateImg' => 'http://211.149.195.183:8066/upload/img/c3.jpg',
+          'certificateName' => 'ABC',
+        ),
+        3 => 
+        array (
+          'certificateId' => '4',
+          'certificateImg' => 'http://211.149.195.183:8066/upload/img/c4.jpg',
+          'certificateName' => 'ABC',
+        ),
+        4 => 
+        array (
+          'certificateId' => '5',
+          'certificateImg' => 'http://211.149.195.183:8066/upload/img/c2.jpg',
+          'certificateName' => 'ABC',
+        ),
+      ),
+      'age' => '30岁以下',
+      'department' => '技术部',
+      'positionalTitle' => '高级',
+      'education' => '本科',
+      'faculty' => '1',
+      'major' => '财会',
+      'tel' => '028-6529245',
+      'QQ' => '1545785487',
+      'weiXin' => 'awdedr',
+      'evaluation' => '三级',
+      'evaluationNumber' => '1325468978',
+      'regSecurity' => '金属冶炼',
+      'regSecurityNumber' => '12546467',
+      'practitioners' => '成都信息网',
+      'unitEvaluate' => '一个非常好的公司',
+      'companyId' => '1',
+    ),
+    'phoneNumber' => '18180924082',
+    'userTag' => 
+    array (
+      0 => '2',
+      1 => '4',
+      2 => '5',
+      3 => '7',
+    ),
+  ),
+)
+array (
+  'params' => 
+  array (
+    'userData' => 
+    array (
+      'userId' => '12',
+      'groupId' => '5',
+      'openId' => '123vdsvdfavagrwt524w45t5g3t53y65',
+      'userName' => 'Harris',
+      'passWord' => '123455',
+      'headPicImg' => 'http://211.149.195.183:8066/upload/2016-07-05_181432.jpg',
+      'email' => '3214351@qq.com',
+      'phoneNumber' => '18180924082',
+      'gender' => '女',
+      'address' => '上海',
+      'summary' => '诚实安全咨询师',
+      'occupation' => '学生',
+      'myTag' => '5,7,2,4',
+      'myCertificate' => 
+      array (
+        0 => 
+        array (
+          'certificateId' => '1',
+          'certificateImg' => 'http://211.149.195.183:8066/upload/img/c1.jpg',
+          'certificateName' => 'ABC',
+        ),
+        1 => 
+        array (
+          'certificateId' => '2',
+          'certificateImg' => 'http://211.149.195.183:8066/upload/img/c2.jpg',
+          'certificateName' => 'ABC',
+        ),
+        2 => 
+        array (
+          'certificateId' => '3',
+          'certificateImg' => 'http://211.149.195.183:8066/upload/img/c3.jpg',
+          'certificateName' => 'ABC',
+        ),
+        3 => 
+        array (
+          'certificateId' => '4',
+          'certificateImg' => 'http://211.149.195.183:8066/upload/img/c4.jpg',
+          'certificateName' => 'ABC',
+        ),
+        4 => 
+        array (
+          'certificateId' => '5',
+          'certificateImg' => 'http://211.149.195.183:8066/upload/img/c2.jpg',
+          'certificateName' => 'ABC',
+        ),
+      ),
+      'age' => '30岁以下',
+      'department' => '技术部',
+      'positionalTitle' => '高级',
+      'education' => '本科',
+      'faculty' => '1',
+      'major' => '财会',
+      'tel' => '028-6529245',
+      'QQ' => '1545785487',
+      'weiXin' => 'awdedr',
+      'evaluation' => '三级',
+      'evaluationNumber' => '1325468978',
+      'regSecurity' => '金属冶炼',
+      'regSecurityNumber' => '12546467',
+      'practitioners' => '成都信息网',
+      'unitEvaluate' => '一个非常好的公司',
+      'companyId' => '1',
+    ),
+    'phoneNumber' => '18180924082',
+    'userTag' => 
+    array (
+      0 => '2',
+      1 => '4',
+      2 => '5',
+      3 => '7',
+    ),
+  ),
+)
+array (
   'callback' => 'angular.callbacks._3',
   'informationData' => '{"phoneNumber":"18180924082","pageSize":4,"currentPage":2}',
-)
-array (
-  'callback' => 'angular.callbacks._4',
-  'informationData' => '{"phoneNumber":"18180924082","pageSize":4,"currentPage":3}',
-)
-array (
-  'callback' => 'angular.callbacks._5',
-  'informationData' => '{"phoneNumber":"18180924082","pageSize":4,"currentPage":4}',
-)
-array (
-  'callback' => 'angular.callbacks._5',
-  'informationData' => '{"phoneNumber":"18180924082","pageSize":4,"currentPage":3}',
-)
-array (
-  'callback' => 'angular.callbacks._2i',
-  'informationData' => '{"phoneNumber":"18180924082","pageSize":4,"currentPage":6}',
-)
-array (
-  'callback' => 'angular.callbacks._5',
-  'informationData' => '{"phoneNumber":"18180924082","pageSize":4,"currentPage":3}',
-)
-array (
-  'callback' => 'angular.callbacks._4',
-  'informationData' => '{"phoneNumber":"18180924082","pageSize":4,"currentPage":3}',
-)
-array (
-  'callback' => 'angular.callbacks._5',
-  'informationData' => '{"phoneNumber":"18180924082","pageSize":4,"currentPage":4}',
-)
-array (
-  'callback' => 'angular.callbacks._8',
-  'informationData' => '{"phoneNumber":"18180924082","pageSize":4,"currentPage":3}',
-)
-array (
-  'callback' => 'angular.callbacks._9',
-  'informationData' => '{"phoneNumber":"18180924082","pageSize":4,"currentPage":4}',
-)
-array (
-  'callback' => 'angular.callbacks._3',
-  'informationData' => '{"phoneNumber":"18180924082","pageSize":4,"currentPage":1}',
-)
-array (
-  'callback' => 'angular.callbacks._4',
-  'informationData' => '{"phoneNumber":"18180924082","pageSize":4,"currentPage":2}',
-)
-array (
-  'callback' => 'angular.callbacks._5',
-  'informationData' => '{"phoneNumber":"18180924082","pageSize":4,"currentPage":3}',
-)
-array (
-  'callback' => 'angular.callbacks._6',
-  'informationData' => '{"phoneNumber":"18180924082","pageSize":4,"currentPage":4}',
 )
