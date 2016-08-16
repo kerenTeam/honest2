@@ -84,7 +84,7 @@
 						<?php if($v['majorId'] == $val['id']):?>
 						<li class="inlineDiv" >
 							<input type="text" placeholder="" value="<?=$v['majorName'];?>">
-							<a onclick="upmajor(this);" class="am-btn am-btn-primary">保存修改</a>
+							<a onclick="upmajor(this);" id="<?=$v['id'];?>" class="am-btn am-btn-primary">保存修改</a>
 							<a href="<?=site_url('DataManage/Delspecialy?id='.$v['id']);?>" class="am-btn am-btn-danger">删除选项</a>
 						</li>
 						<?php endif;?>
@@ -139,22 +139,22 @@
 	function upmajor(obj){
 		
 		var name = $(obj).prev().val();
-		var parents = $(obj).parentsUntil('.am-tabs-bd');
-		var id = parents.eq(parents.length - 1).attr('id');
-		$.ajax({
-			url:'<?php echo site_url('DataManage/UpSpeecialy');?>',
-			type:"POST",
-			data: 'name='+name+'&id='+id,
-			success: function(result) {
-				// 成功后
-					$(obj).html('保存修改');
-					$(obj).next('a').html('删除选项');
-					$(obj).parent().find('a').removeAttr('disabled');
-					$(obj).removeAttr('onclick');
+		var id = $(obj).attr('id');
+		console.log(id)
+		// $.ajax({
+		// 	url:'<?php echo site_url('DataManage/UpSpeecialy');?>',
+		// 	type:"POST",
+		// 	data: 'name='+name+'&id='+id,
+		// 	success: function(result) {
+		// 		// 成功后
+		// 			$(obj).html('保存修改');
+		// 			$(obj).next('a').html('删除选项');
+		// 			$(obj).parent().find('a').removeAttr('disabled');
+		// 			$(obj).removeAttr('onclick');
 				
-			}
+		// 	}
 			
-		});
+		// });
 	
 		// 成功后
 	
