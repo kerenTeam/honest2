@@ -26,7 +26,7 @@
 				<table class="am-table am-table-striped am-table-hover am-main am-table-centered am-table-bordered">
 					<thead>
 						<tr>
-							<th>ID</th><th class="table-title">头像</th><th class="table-type">姓名</th><th class="table-type">手机号</th><th class="table-type">所在地</th><th class="table-date am-hide-sm-only">职业</th><th class="table-date am-hide-sm-only">更多</th><th class="table-set">操作</th>
+							<th>ID</th><th class="table-type">姓名</th><th class="table-type">性别</th><th class="table-type">邮箱</th><th class="table-date am-hide-sm-only">所在地址</th><th class="table-date am-hide-sm-only">更多</th><th class="table-set">操作</th>
 						</tr>
 					</thead>
 					<tbody id="movies">
@@ -34,20 +34,25 @@
 					<?php foreach($users as $val):?>
 						<tr>
 							<td><?=$val['id'];?></td>
-							<td><img class="imgSquare" src="../<?=$val['headPicImg'];?>"></td>
+							
 							<td><?=$val['userName'];?></td>
-							<td><?=$val['phoneNumber'];?></td>
-							<td><?=$val['address']?></td>
-							<td><?=$val['occupation'];?></td>
+							<td><?=$val['gender'];?></td>
+							<td><?=$val['email']?></td>
+							<td><?=$val['address'];?></td>
 							<td>
-								<a href="">查看个人信息</a>
+								<a href="<?=site_url('User/AudingInfo?id='.$val['id']);?>">查看个人信息</a>
 							</td>
 							<td>
 								<div class="am-btn-toolbar">
 									<div class="am-btn-group am-btn-group-xs">
-									
-										<a href="" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 通过审核</a>
-										<a href="" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 拒绝修改</a>
+										<?php if($val['state'] == 0): ?>
+										<a href="<?=site_url("User/OkAuding?id=".$val['id']);?>" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 通过审核</a>
+										<a href="<?=site_url("User/NoAuding?id=".$val['id']);?>" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 拒绝修改</a>
+										<?php elseif($val['state'] == 1):?>
+											<a href="javascript:;" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 已通过</a>
+										<?php else:?>
+											<a href="javascript:;" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 已拒绝</a>
+										<?php endif;?>
 									</div>
 								</div>
 							</td>
@@ -56,7 +61,7 @@
 					</tbody>
 				</table>
         <div class="am-cf">
-            共 2条记录
+            共 <?=count($users);?>条记录
             <div class="am-fr">
               <div class="holder"><a class="jp-previous jp-disabled">上一页</a><a class="jp-current">1</a><span class="jp-hidden">...</span><a href="#" class="">2</a><a href="#" class="">3</a><a href="#" class="">4</a><a href="#" class="">5</a><a href="#" class="jp-hidden">6</a><span>...</span><a>7</a><a class="jp-next">下一页</a></div>
             </div>

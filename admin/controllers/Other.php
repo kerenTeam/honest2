@@ -12,6 +12,7 @@ class Other extends CI_Controller
 		parent::__construct();
 		$this->load->model('interaction_model');
 		$this->load->model('consulting_model');
+		$this->load->model('dataMange_model');
 	}
 
 	// 访问数据详情
@@ -64,7 +65,23 @@ class Other extends CI_Controller
 			echo $json;
 		}
 	}
+	
 
+	//新增专业
+	public function Addspecialy(){
+		if($_POST){
+			$arr = array(
+				'majorId' => $_POST['id'],
+				'majorName' => $_POST['name'],
+				'typeId' => 1
+			);
+			if($this->dataMange_model->SpecialyAdd($arr)){
+				echo "1";
+			}else{
+				echo "0";
+			}
+		}
+	}
 
 }
 

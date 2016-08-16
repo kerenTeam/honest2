@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
-*   APIæŽ¥å£
+*   API½Ó¿Ú
 *   
 */
 class API_honest extends CI_Controller
@@ -20,43 +20,46 @@ class API_honest extends CI_Controller
 		if($_GET){
 			$callback = $_GET['callback'];
 			$banners = $this->honestapi_model->Banners();
+
+
 			$data = json_decode($banners['value'],true);
 			foreach ($data as $key => $value) {
 				$data[$key]['bannerImg'] = IP.$value['bannerImg'];
 			}
-			$json = json_encode($data);
-			if(empty($banners)){		
+			
+			if(empty($data)){		
 				echo "$callback(0)";
 			}else{
+				$json = json_encode($data);
 				echo "$callback($json)";
 			}
 		}
 	}
-	// èµ„è®¯ä¿¡æ¯
+	// ×ÊÑ¶ÐÅÏ¢
 	public function findAllByInformation()
 	{	
 			
 		if($_GET){
-			file_put_contents('test.log',var_export($_GET,true)."\r\n",FILE_APPEND);
+		
 			$callback = $_GET['callback'];
 			$limit = json_decode($_GET['informationData'],true);
-			//åˆ†é¡µ
+			//·ÖÒ³
 			$size = $limit['pageSize'];
 			if($limit['currentPage'] != 1){
 				$page =$limit['currentPage']*$size-$size;
 			}else{
 				$page = $limit['currentPage'] -1;
 			}
-			// èŽ·å–ç”¨æˆ·å–œçˆ±æ ‡ç­¾
+			// »ñÈ¡ÓÃ»§Ï²°®±êÇ©
 			$user = $this->honestapi_model->Loginuser($limit['phoneNumber']);
 			$tag = explode(',',$user['myTag']);
-			//æµ®ç‚¹åž‹è½¬intåž‹
+			//¸¡µãÐÍ×ªintÐÍ
 			foreach ($tag as $key => $v) {
 				$tag[$key] = intval($v);
 			}
 			$list = $this->honestapi_model->Consulting($page,$size,$tag);
 		
-			//ç»™å›¾ç‰‡åŠ ä¸Šip
+			//¸øÍ¼Æ¬¼ÓÉÏip
 			foreach ($list as $key => $value) {
 				$list[$key]['picImg'] = IP.$value['picImg'];
 			}
@@ -71,7 +74,7 @@ class API_honest extends CI_Controller
 		}
 	}
 
-	//äº¤æµäº’åŠ¨
+	//½»Á÷»¥¶¯
 	public function findAll()
 	{		
 
@@ -84,20 +87,20 @@ class API_honest extends CI_Controller
 				$page =$page*$size-$size;
 			}else{
 				$page = $page -1;
-				//èŽ·å–ç”¨æˆ·æ‰€åœ¨åŒºåŸŸ
+				//»ñÈ¡ÓÃ»§ËùÔÚÇøÓò
 				$user = $this->honestapi_model->Loginuser($limit['phoneNumber']);
 				$ip = $user['address'];
-				//èŽ·å–ç½®é¡¶æ¶ˆæ¯
+				//»ñÈ¡ÖÃ¶¥ÏûÏ¢
 				$abc =  $this->honestapi_model->Government($ip);
 				$size = $size - count($abc);
 			}
-			//èŽ·å–äº¤æµäº’åŠ¨
+			//»ñÈ¡½»Á÷»¥¶¯
 			$interacting = $this->honestapi_model->Interacting($page,$size);
-			//ç¬¬ä¸€æ¬¡æœ‰ç½®é¡¶æ¶ˆæ¯
+			//µÚÒ»´ÎÓÐÖÃ¶¥ÏûÏ¢
 			if($page == 0){
 				$interacting = array_merge($abc,$interacting);
 			}
-			//ç»™åˆ—è¡¨å›¾åŠ ä¸ŠIPåœ°å€
+			//¸øÁÐ±íÍ¼¼ÓÉÏIPµØÖ·
 			foreach ($interacting as $key => $value) {
 					$interacting[$key]['picImg'] = IP.$value['picImg'];
 			}
@@ -110,7 +113,7 @@ class API_honest extends CI_Controller
 			}
 		}
 	}
-	// äº¤æµäº’åŠ¨è¯¦æƒ…  + å’¨è¯¢ä¿¡æ¯è¯¦æƒ…
+	// ½»Á÷»¥¶¯ÏêÇé  + ×ÉÑ¯ÐÅÏ¢ÏêÇé
 	public function InformationDeatil()
 	{
 		if($_GET){
@@ -119,7 +122,7 @@ class API_honest extends CI_Controller
 			$get = json_decode($_GET['InformationDeatilData'],true);
 			$id = $get['homeId'];
 			// $id = $_GET['id'];
-			// æŸ¥å‡ºè¯¥æ–‡ç« å†…å®¹åŠä½œè€…
+			// ²é³ö¸ÃÎÄÕÂÄÚÈÝ¼°×÷Õß
 			$sql1 = "SELECT a.publishId, a.title, a.content, a.picImg, a.publishData, a.comments, b.userName, b.headPicImg FROM honest_member as b, honest_mypublish as a where a.userId = b.userId and a.publishId = $id";
 			$query1 = $this->db->query($sql1);
 			$interinfo = $query1->row_array();
@@ -127,7 +130,7 @@ class API_honest extends CI_Controller
 			$interinfo['headPicImg'] = IP.$interinfo['headPicImg'];
 
 			//$interinfo = $this->honestapi_model->InterInfo($id);
-			// æŸ¥å‡ºæ˜¯å¦æœ‰è¯„è®º
+			// ²é³öÊÇ·ñÓÐÆÀÂÛ
 			$pinid = json_decode($interinfo['comments'],true);
 			if(!empty($pinid)){
 				foreach ($pinid as $key => $value) {
@@ -154,11 +157,10 @@ class API_honest extends CI_Controller
 		}
 	}
 
-	// é—®é¢˜è§£ç­”
+	// ÎÊÌâ½â´ð
 	public function problem()
 	{
 		if($_GET){
-			//file_put_contents('test.log', var_export($_GET,true)."\r\n",FILE_APPEND);
 			$callback = $_GET['callback'];
 			$phone = json_decode($_GET['problemData'],true);
 			$user = $this->honestapi_model->Loginuser($phone['phoneNumber']);
@@ -181,7 +183,51 @@ class API_honest extends CI_Controller
 		}
 	}
 
-	// æ‰€æœ‰é¢‘é“ç®¡ç†
+	// ÐÂÔöÎÊÌâ
+	public function sendProblem()
+	{
+		if($_GET){
+			$callback = $_GET['callback'];
+			$data = json_decode($_GET['sendProblemData'],true);
+			$user = $this->honestapi_model->Loginuser($data['phoneNumber']);
+			$tags = implode(',',$data['tags']);
+			$consultant = $this->honestapi_model->RandConsult($tags);
+			$arr = array(
+				'fromId'=>$user['userId'],
+				'toId'=>$consultant['userId'],
+				'tag'=>$tags,
+				'exchangeTitle'=>$data['Problem']['Title'],
+				'exchangeContent'=>$data['Problem']['Content']
+			);
+			// ÐÂÔöÎÊÌâ
+			if($this->honestapi_model->QuestionData($arr)){
+				echo "$callback(1)";
+			}else{
+				echo "$callback(0)";
+			}
+		}
+	}
+
+	// É¾³ýÎÊÌâ
+	public function delProblem()
+	{
+		if($_GET){
+			$callback = $_GET['callback'];
+			$data = json_decode($_GET['delProblemData'],true);
+			$arr['state'] = '2'; 
+			if($this->honestapi_model->sendQublish($data['tags'],$arr)){
+				echo "$callback(1)";
+			}else{
+				echo "$callback(0)";
+			}
+
+			//echo "$callback(1)";
+
+
+		}
+	}
+
+	// ËùÓÐÆµµÀ¹ÜÀí
 	public function channelTag()
 	{
 		$callback = $_GET['callback'];
@@ -193,7 +239,7 @@ class API_honest extends CI_Controller
 			echo "$callback($json)";
 		}
 	}
-	// æˆ‘çš„é¢‘é“
+	// ÎÒµÄÆµµÀ
 	public function mychannels()
 	{
 		if($_GET){
@@ -223,34 +269,47 @@ class API_honest extends CI_Controller
 	}
 
 
-	// æ³¨å†Œç”¨æˆ·
+	// ×¢²áÓÃ»§
 	public function register(){
 
 		if($_GET){
 			$callback = $_GET['callback'];
 			$arr = json_decode($_GET['registerData'],true);
+			//ËùÓÐtag
+			$channel = $this->honestapi_model->Channel();
+			foreach($channel as $val){
+				$tags[] = $val['tag'];
+			}
+			$key = array_rand($tags, 4);
+			foreach($key as $v){
+				$tag[$v] = $tags[$v];
+			}
+			$mytag = implode(',',$tag);
 			$data = array(
+				'groupId' => '5',
 				'phoneNumber' => $arr['phoneNumber'],
-				'passWord' => $arr['passWord'],
+				'passWord' => md5($arr['passWord']),
+				'myTag' => $mytag,
+				'headPicImg' => 'upload/headPicImg/2016-08-12_171725.png',
 			);
 			$phone = $arr['phoneNumber'];
-			// echo "$callback($phone)";
+			 //echo "$callback($phone)";
 			$user = $this->honestapi_model->Loginuser($phone);
 			if($user != ''){
-				// è¯¥ç”¨æˆ·å·²æ³¨å†Œ
+				 //¸ÃÓÃ»§ÒÑ×¢²á
 				echo "$callback(2)";
 			}else{
-				if($this->honestapi_model->Register($data )){
-					// æ³¨å†ŒæˆåŠŸ
+				if($this->honestapi_model->Register($data)){
+					 //×¢²á³É¹¦
 					echo "$callback(1)";
 				}else{
-					// æ³¨å†Œå¤±è´¥
+					// ×¢²áÊ§°Ü
 					echo "$callback(0)";
 				}
 			}
 		}
 	} 
-	// å¿˜è®°å¯†ç 
+	// Íü¼ÇÃÜÂë
 	public function forgetpwd()
 	{
 		if($_GET){
@@ -258,25 +317,25 @@ class API_honest extends CI_Controller
 			$arr = json_decode($_GET['modifyPasswordData'],true);
 			$phone = $arr['phoneNumber'];
 			$data = array(
-					'passWord'=> $arr['newPassWord'],
+					'passWord'=> md5($arr['newPassWord']),
 				);
 			$user = $this->honestapi_model->Loginuser($phone);
 			if(!empty($user)){
 				if($this->honestapi_model->NewPassword($data,$phone)){
-					// ä¿®æ”¹æˆåŠŸ
+					// ÐÞ¸Ä³É¹¦
 					echo "$callback(1)"; 
 				}else{
-					// ä¿®æ”¹å¤±è´¥
+					// ÐÞ¸ÄÊ§°Ü
 					echo "$callback(2)";
 				}
 			}else{
-				// æ²¡æœ‰è¯¥ç”¨æˆ·
+				// Ã»ÓÐ¸ÃÓÃ»§
 				echo "$callback(0)";
 			}
 		}
 	}
 
-	// ç™»é™†ç”¨æˆ·
+	// µÇÂ½ÓÃ»§
 	public function login()
 	{
 		if($_GET){
@@ -284,21 +343,21 @@ class API_honest extends CI_Controller
 			$data = json_decode($_GET['loginData'],true);
 			$user = $this->honestapi_model->Loginuser($data['phoneNumber']);
 			if(!empty($user)){
-				if($data['passWord'] != $user['passWord']){
-					// å¯†ç é”™è¯¯
+				if(md5($data['passWord']) != $user['passWord']){
+					// ÃÜÂë´íÎó
 					echo "$callback(2)"; 
 				}else{
-					// ç™»é™†æˆåŠŸ
+					// µÇÂ½³É¹¦
 					echo "$callback(1)";
 				}
 			}else{
-				// æ²¡æœ‰è¯¥ç”¨æˆ·
+				// Ã»ÓÐ¸ÃÓÃ»§
 				echo "$callback(0)";
 			}
 		}
 	}
 
-	//èŽ·å–éªŒè¯ç 
+	//»ñÈ¡ÑéÖ¤Âë
 	public function send()
 	{
 		if($_GET){
@@ -320,7 +379,7 @@ class API_honest extends CI_Controller
 		}
 	}
 
-	// è¯„è®º
+	// ÆÀÂÛ
 	public function goComment()
 	{	
 		if($_GET){
@@ -374,11 +433,11 @@ class API_honest extends CI_Controller
 		}
 	}
 
-	// èŠå¤©ä¸Šä¼ å›¾ç‰‡
+	// ÁÄÌìÉÏ´«Í¼Æ¬
 	public function chatImg()
 	{
 		if($_GET){
-			// æŸ¥è¯¢å‡ºè¯¢é—®è¯é¢˜
+			// ²éÑ¯³öÑ¯ÎÊ»°Ìâ
 			$id = $_GET['informationId'];
 			$user = $this->honestapi_model->Loginuser($_GET['fromId']);
 			$data = array(
@@ -389,7 +448,7 @@ class API_honest extends CI_Controller
 			);
 			if (!empty($_FILES['file']['tmp_name'])) {
 				$config['upload_path']      = './upload/charimg/';
-	        	$config['allowed_types']    = 'gif|jpg|png';
+	        	$config['allowed_types']    = 'gif|jpg|png|jpeg';
 				$config['file_name']     =date("Y-m-d_His");
 	        	$this->load->library('upload', $config);
 		        if ( ! $this->upload->do_upload('file'))
@@ -413,7 +472,7 @@ class API_honest extends CI_Controller
     	}
 	}
 
-	// å¾®ä¿¡ç»‘å®šæ‰‹æœºå·
+	// Î¢ÐÅ°ó¶¨ÊÖ»úºÅ
 	public function bindingWeixin()
 	{
 		if($_POST){
@@ -428,16 +487,16 @@ class API_honest extends CI_Controller
 			);
 
 			if($this->honestapi_model->Register($data)){
-				//æˆåŠŸ
+				//³É¹¦
 				echo "1";
 			}else{
-				// å¤±è´¥
+				// Ê§°Ü
 				echo "0";
 			}
 		}
 	}
 
-	// ç”¨æˆ·é€‰æ‹©è‡ªå·±çš„tag
+	// ÓÃ»§Ñ¡Ôñ×Ô¼ºµÄtag
 	public function choiceTag()
 	{
 		if($_POST){
@@ -460,7 +519,7 @@ class API_honest extends CI_Controller
 	}
 
 
-	// èŠå¤©å­˜å‚¨æ•°æ®
+	// ÁÄÌì´æ´¢Êý¾Ý
 	public function sendMessage()
 	{
 		// header('content-type:text/html;charset=utf-8');
@@ -483,10 +542,36 @@ class API_honest extends CI_Controller
 		}
 	}
 
-	public function sendasdc()
-	{
-		var_dump($_POST);
-	}
+	//·µ»Ø×ÉÑ¯Ê¦ÁÐ±í
+	public function consultantList()
+	 {
+	 	if($_GET){
+	 		$callback = $_GET['callback'];
+	 		$data = json_decode($_GET['consultantListData'],true);
+	 		$size = $data['pageSize'];
+			if($data['currentPage'] != 1){
+				$page =$data['currentPage']*$size-$size;
+			}else{
+				$page = $data['currentPage'] -1;
+			}
+			$tag = explode(',', $data['tag']);
+			//¸¡µãÐÍ×ªintÐÍ
+			foreach ($tag as $key => $v) {
+				$tag[$key] = intval($v);
+			}
+			// 
+			$listData = $this->honestapi_model->GetConsultant($page,$size,$tag);
+			if(empty($listData)){
+				echo "$callback(0)";
+			}else{
+				$json = json_encode($listData);
+				echo "$callback($json)";
+			}
+
+	 		
+
+	 	}
+	 } 
 	
 
 

@@ -1,3 +1,4 @@
+
 <!-- content start -->
 <div class="admin-content">
 	<div class="am-cf am-padding">
@@ -15,17 +16,17 @@
 					</header>
 					<div class="am-panel-bd am-cf">
 						<div class="am-u-sm-6 am-u-md-4">
-							<img class="userimg2" src="assets/img/Home_01_02.png" alt="用户头像">
+							<img class="userimg2" src="../<?=$company['logo'];?>" alt="用户头像">
 						</div>
 						<div class="am-u-sm-6 am-u-md-4">
-							<p>公司名称：asdf</p>
+							<p>公司名称：<?=$company['companyName'];?></p>
 							<p>行业：电子</p>
-							<p>人员规模：100人以下</p>
+							<p>人员规模：<?=$company['scale'];?></p>
 						</div>
 						<div class="am-u-sm-6 am-u-md-4">
-							<p>行政区域：成都</p>
-							<p>地址：新希望国际</p>
-							<p>生产规模：500万以下</p>
+							<p>行政区域：<?=$company['region'];?></p>
+							<p>地址：<?=$company['address'];?></p>
+							<p>生产规模：<?=$company['production'];?></p>
 						</div>
 						
 					</div>
@@ -37,7 +38,7 @@
 					<div class="am-panel-bd">
 						
 					<p>
-						<span>阿萨德法师打发</span>
+						<span><?=$company['enterpriseInfo'];?></span>
 					</p>
 					</div>
 				</section>
@@ -47,12 +48,12 @@
 					</header>
 					<div class="am-panel-bd am-cf">
 						<div class="am-u-sm-6 am-u-md-4">
-							<p>主要装置：asdf</p>
-							<p>主要工艺：半干旱地区</p>
+							<p>主要装置：<?=$company['technology'];?></p>
+							<p>主要工艺：<?=$company['device'];?></p>
 						</div>
 						<div class="am-u-sm-6 am-u-md-4">
-							<p>安全风险：阿斯蒂芬</p>
-							<p>职业卫生风险：问爱迪生</p>
+							<p>安全风险：<?=$company['safety'];?></p>
+							<p>职业卫生风险：<?=$company['health'];?></p>
 						</div>
 					</div>
 				</section>

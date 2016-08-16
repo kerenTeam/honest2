@@ -31,7 +31,18 @@ class API_personal extends CI_Controller
 			$sql = "SELECT companyId from honest_company where userId = $userId";
 			$query = $this->db->query($sql);
 			$companyid= $query->row_array();
-			$user['companyId'] = $companyid['companyId'];
+			if(!empty($companyid)){
+				$user['companyId'] = $companyid['companyId'];
+			}else{
+				$data = array('userId' => $userId,'logo'=> 'upload/companylogo/2016-08-15_111231.jpg','tag'=>'4,3,2');
+				if($this->honestapi_model->AddCompany($data)){
+					$sql = "SELECT companyId from honest_company where userId = $userId";
+					$query = $this->db->query($sql);
+					$companyid= $query->row_array();
+					$user['companyId'] = $companyid['companyId'];
+				}
+			}
+			
 			//个人证书
 			if(!empty($user['myCertificate'])){
 				$myCertifi= json_decode($user['myCertificate'],true);
@@ -217,6 +228,7 @@ class API_personal extends CI_Controller
 			$company['logo'] = IP.$company['logo'];
 			// $company['region'] = explode('|',$company['region']);
 			//var_dump($company);
+			
 			if(empty($company)){
 				echo "$callback(0)";
 			}else{
@@ -312,25 +324,25 @@ class API_personal extends CI_Controller
 	 		if(!empty($data['region'])){
 	 			$arr['region'] = implode('-',$data['region']);
 	 		}
+			
+				$a = array_filter($arr);
 	    	//修改
-    		if($this->honestapi_model->EditCompany($id,$arr)){
-    			echo "$callback(1)";
-    		}else{
-    			echo "$callback(0)";
-    		}
+			if($this->honestapi_model->EditCompany($id,$a)){
+				echo "$callback(1)";
+			}else{
+				echo "$callback(0)";
+			}
 	 	}
 	 } 
 	 // 修改公司logo
 	 public function sendCompanyLogo()
-	 {
-	 	
-	 	if($_GET){
-	 		$data = array();
+	 { 
+	 	if($_FILES){
 	 		$id = $_GET['companyId'];
 	 		// 公司logo
 	 		if (!empty($_FILES['file']['tmp_name'])){
 				$config['upload_path']      = './upload/companylogo/';
-	        	$config['allowed_types']    = 'gif|jpg|png';
+	        	$config['allowed_types']    = 'gif|jpg|png|jpge';
 	        	$config['max_size']     = 3072;
 				$config['file_name']     =date("Y-m-d_His");
 	        	$this->load->library('upload', $config);
@@ -347,10 +359,12 @@ class API_personal extends CI_Controller
     		if(!empty($data)){
     			//修改
 	    		if($this->honestapi_model->EditCompany($id,$data)){
-	    			echo "$callback(1)";
+	    			echo "1";
 	    		}else{
-	    			echo "$callback(0)";
+	    			echo "0";
 	    		}
+			}else{
+				echo "$callback(0)";
 			}
 	 	}
 	 }
@@ -362,6 +376,7 @@ class API_personal extends CI_Controller
 			$callback = $_GET['callback'];
 			// 接收资料
 			$userData = json_decode($_GET['sendUserData'],true);
+			file_put_contents('test.log', var_export($userData,true)."\r\n",FILE_APPEND);
 			$id = $userData['userId'];
 			if(!empty($userData['myTag'])){
 				$userData['myTag'] = implode(',',$userData['myTag']);
@@ -370,27 +385,121 @@ class API_personal extends CI_Controller
     		if($this->honestapi_model->EditUser($id,$userData)){
     			echo "1";
     		}else{
-    			echo "2";
+    			echo "0";
     		}
 		}
 	}
+
+
 	//  咨询师证书上传
 	public function ConsultantFile()
 	{
-		$callback = $_GET['callback'];
-		file_put_contents('test.log', var_export($_FILES,true)."\r\n",FILE_APPEND);
-		file_put_contents('test.log', var_export($_GET,true)."\r\n",FILE_APPEND);	
-		file_put_contents('test.log', var_export($_POST,true)."\r\n",FILE_APPEND);
+		
+		// 上传图片
+		if (!empty($_FILES['file']['tmp_name'])){
+			$config['upload_path']      = './upload/certificate/';
+        	$config['allowed_types']    = 'gif|jpg|png|jpeg';
+        	$config['max_size']     = 3072;
+			$config['file_name']     =date("Y-m-d_His");
+        	$this->load->library('upload', $config);
+	        if ( ! $this->upload->do_upload('file'))
+	        {
+	            echo 0;exit;
+	        }
+	        else
+	        { 
+	         	$fileinfo = $this->upload->data();
+	         	$url= 'upload/certificate/'.$fileinfo['file_name'];
+	        }
+		}
 
-	//	echo "$callback(1)";
-	
+		$phone = $_GET['page'];
+		$user = $this->honestapi_model->Loginuser($phone);
+		$myCertificate = json_decode($user['myCertificate'],true);
+
+		$myCertificate[] = array(
+			'certificateId' => count($myCertificate)+1,
+			'certificateImg' => $url,
+			'certificateName' => '咨询师证书',
+			); 
+
+		
+		$arr['myCertificate'] = json_encode($myCertificate);
+		$this->honestapi_model->sendCertificate($user['userId'],$arr);
 	}
+	// 修改头像
+	public function sendUserImg()
+	{
+		if($_FILES){
+			$user = $this->honestapi_model->Loginuser($_POST['phoneNumber']);
+			$id = $user['userId'];
+			
+			if (!empty($_FILES['ffile']['tmp_name'])){
+				$config['upload_path']      = './upload/headPicImg/';
+	        	$config['allowed_types']    = 'gif|jpg|png|jpeg';
+	        	$config['max_size']     = 3072;
+				$config['file_name']     =date("Y-m-d_His");
+	        	$this->load->library('upload', $config);
+		        if ( ! $this->upload->do_upload('ffile'))
+		        {
+		            echo 0;exit;
+		        }
+		        else
+		        {
+		         	$fileinfo = $this->upload->data();
+		         	$data['headPicImg'] = 'upload/headPicImg/'.$fileinfo['file_name'];
+		        }
+    		}
+    		$this->honestapi_model->EditUser($id,$data);
+		}
+	}
+
 	// 咨询师资料修改
 	public function sendConsultant()
 	{
 		
+		header('Content-type:application/json;charset=UTF-8');
+		$a = file_get_contents('php://input');
+		if(!empty($a)){
+			$postData = json_decode($a,true);
+			$data = json_decode($postData['params']['sendConsultantData'],true);
 		
+			$arr = $data['userData'];
+			// 删除不需要改的字段
+			unset(
+				$arr['groupId'],
+				$arr['openId'],
+				$arr['headPicImg'],
+				$arr['passWord'],
+				$arr['phoneNumber'],
+				$arr['companyId']
+			);
+			
+			//我的标签
+			if(!empty($data['userTag'])){
+				$arr['myTag'] = implode(',',$data['userTag']);
+			}else{
+				$arr['myTag'] = '';
+			}
+			//咨询师证书
+			if(!empty($data['myCertificate'])){
+			$arr['myCertificate'] = json_encode($arr['myCertificate']);
+			
+			}else{
+				$arr['myCertificate'] ='';
+			}
+			// // 修改资料
+			$a = array_filter($arr);
+			if($this->honestapi_model->UserInfo($a)){
+				$a = 1;
+				echo $a;
+			}else{
+				echo 0;
+			}
+		}
 	}
+
+
 
 
 

@@ -30,6 +30,7 @@ class Login extends CI_Controller
 					echo "<script>alert('密码输入错误！');history.go(-1);location.reload();</script>";exit;
 				}else{
 					$_SESSION['users'] = $user;
+					$_SESSION['groupId'] = $user['groupId'];
 					echo "<script>alert('登录成功！');window.location.href='".site_url('admin/index')."'</script>";exit;
 				}
 			}else{
@@ -40,7 +41,7 @@ class Login extends CI_Controller
 
 	public function loginOut()
 	{
-		unset($_SESSION['users']);
+		unset($_SESSION['users'],$_SESSION['groupId']);
 		redirect('login/index');
 	}
 

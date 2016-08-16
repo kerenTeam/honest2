@@ -1,7 +1,7 @@
   <!-- content start -->
   <div class="admin-content">
   	<div class="am-cf am-padding">
-      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">用户管理</strong> / <small>安监局</small></div>
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">信息审核</strong> / <small>咨询师发布信息审核</small></div>
     </div>
 
 <!-- 	<div class="am-g am-padding-bottom-lg">
@@ -25,28 +25,29 @@
 				<table class="am-table am-table-striped am-table-hover am-main am-table-centered am-table-bordered">
 					<thead>
 						<tr>
-							<th>ID</th><th class="table-title">用户名</th><th class="table-date am-hide-sm-only">申请内容</th><th class="table-title">审核</th>
+							<th>ID</th><th class="table-title">用户名</th><th class="table-title">标题</th><th class="table-date am-hide-sm-only">内容</th><th class="table-title">审核</th>
 						</tr>
 					</thead>
 					<tbody id="movies">
 					<?php foreach($userpost as $val):?>
 						<tr>
-							<td><?=$val['id']?></td>
-							<td><?=get_username($val['userId']);?></td>
+							<td>123213</td>
+							<td>123123213</td>
 							<td>
-								<?=$val['content'];?>
+								12312321321321312312321321
+							</td><td>
+								12312321321321312312321321
 							</td>
 							<td>
 								<div class="am-btn-toolbar">
 									<div class="am-btn-group am-btn-group-xs">
-									<?php if($val['state'] == 0): ?>
-										<a href="<?=site_url('auditing/adoptuser?id=').$val['id'].'&state=1&userid='.$val['userId'];?>" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-check"></span> 通过</a>
-										<a href="<?=site_url('auditing/adoptuser?id=').$val['id'].'&state=2&';?>" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-close"></span> 不通过</a>
-									<?php elseif($val['state'] == 1):?>
+										<a href="" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-check"></span> 通过</a>
+										<a href="" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-close"></span> 不通过</a>
+
 										<a href="javascript:;" ><span class="am-icon-check"></span> 已通过</a>
-									<?php else:?>
+								
 										<a href="javascript:;" class="am-text-danger"><span class="am-icon-close"></span> 已拒绝</a>
-									<?php endif;?>
+									
 									</div>
 								</div>
 							</td>

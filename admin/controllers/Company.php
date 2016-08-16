@@ -11,13 +11,15 @@ class Company extends MY_Controller
 	{
 		parent::__construct();
 		$this->load->view('header');
+		$this->load->model('dataMange_model');
 	}
 
 	// 公司信息
 	public function index()
 	{
-
-		$this->load->view('company/index');
+		//获取公司信息
+		$data['company'] = $this->dataMange_model->CompanyList();
+		$this->load->view('company/index',$data);
 		$this->load->view('footer');
 	}
 
@@ -40,10 +42,41 @@ class Company extends MY_Controller
 	// 公司信息详情
 	public function info()
 	{
-
-		$this->load->view('company/info');
-		$this->load->view('footer');
+		if($_GET){
+			$id = $_GET['id'];
+			//公司详细信息
+			$data['company'] = $this->dataMange_model->CompanyInfo($id);
+			$this->load->view('company/info',$data);
+			$this->load->view('footer');
+			
+		}
+		
 	}
+	//删除公司信息
+	public function delcompany(){
+		if($_GET){
+			$id = $_GET['id'];
+			if($this->dataMange_model->DeleteCompany($id)){
+				echo "<script>alert('删除成功！');history.go(-1);location.reload();</script>";
+			}else{
+				echo "<script>alert('删除失败！');history.go(-1);location.reload();</script>";
+			}
+		}
+	}
+	
+	//搜索公司信息
+	public function SeacheCompany(){
+		if($_POST){
+			$search = $_POST['search'];
+			$data['company'] = $this->dataMange_model->SearCompany($search);
+			
+			$this->load->view('company/index',$data);
+			$this->load->view('footer');
+			
+			
+		}
+	}
+	
 
 }
 

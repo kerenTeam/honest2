@@ -54,45 +54,39 @@
   <!-- sidebar start -->
   <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
     <div class="am-offcanvas-bar admin-offcanvas-bar">
+	<?php if($_SESSION['groupId'] == '6'):?>
+		<ul class="am-list admin-sidebar-list">
+			<li><a href="<?=site_url('interaction/iList');?>"><span class="am-icon-commenting-o"></span> 交流互动</a></li>
+     <li><a href="<?=site_url('login/loginOut');?>"><span class="am-icon-sign-out"></span> 注销</a></li>
+		</ul>
+	<?php else:?>
       <ul class="am-list admin-sidebar-list">
         <li><a href="<?=site_url('admin/index');?>"><span class="am-icon-home"></span> 管理中心</a></li>
-        <!-- <li><a href="<?=site_url('admin/banner');?>"><span class="am-icon-home"></span> 首页Banner</a></li> -->
         <li><a href="<?=site_url('interaction/iList');?>"><span class="am-icon-commenting-o"></span> 交流互动</a></li>
         <li><a href="<?=site_url('problem/problem');?>"><span class="am-icon-info-circle"></span> 问题解答</a></li>
         <li><a href="<?=site_url('information/lists');?>"><span class="am-icon-newspaper-o"></span> 资讯列表</a></li>
         <li><a href="<?=site_url('information/channel');?>"><span class="am-icon-navicon"></span> 频道管理</a></li>
         <li><a href="<?=site_url('company/index');?>"><span class="am-icon-institution"></span> 公司信息</a></li>
-     <!--    <li><a href="<?=site_url('safe/index');?>"><span class="am-icon-fax"></span> 安全查询</a></li>
-        <li><a href="<?=site_url('consult/index');?>"><span class="am-icon-file-text-o"></span> 咨询管理</a></li> -->
+  
         <li class="admin-parent">
           <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-edit"></span> 信息审核 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
           <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-nav">
-            <!-- <li><a href="admin-user.html" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
-            <li><a href="admin-help.html"><span class="am-icon-puzzle-piece"></span> 帮助页</a></li>
-            <li><a href="admin-gallery.html"><span class="am-icon-th"></span> 相册页面<span class="am-badge am-badge-secondary am-margin-right am-fr">24</span></a></li> -->
-            <li><a href="<?=site_url('auditing/weixin');?>"><span class="am-icon-weixin"></span> 微信提交</a></li>
-            <li><a href="<?=site_url('auditing/safety');?>"><span class="am-icon-gavel"></span> 安监局发布</a></li>
+          
+           <!-- <li><a href="<?=site_url('auditing/weixin');?>"><span class="am-icon-weixin"></span> 微信提交</a></li>-->
+		    <li><a href="<?=site_url('user/Auditing');?>"><span class="am-icon-weixin"></span> 用户资料审核</a></li>
           </ul>
-        </li>
-        <li class="admin-parent">
-          <a class="am-cf" data-am-collapse="{target: '#operating'}"><span class="am-icon-server"></span> 运营工具 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
-          <ul class="am-list am-collapse admin-sidebar-sub" id="operating">
-            <li><a href="<?=site_url('operating/material');?>"><span class="am-icon-pencil-square"></span> 素材管理</a></li>
-            <li><a href="<?=site_url('operating/mass');?>"><span class="am-icon-external-link"></span> 消息群发</a></li>
-            <li><a href="<?=site_url('operating/autoReply');?>"><span class="am-icon-slideshare"></span> 自动回复</a></li>
-            <li><a href="<?=site_url('operating/menu');?>"><span class="am-icon-reorder"></span> 自定义菜单</a></li>
-          </ul>
+          
         </li>
         <li class="admin-parent">
           <a class="am-cf" data-am-collapse="{target: '#dataM'}"><span class="am-icon-industry"></span> 数据管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
           <ul class="am-list am-collapse admin-sidebar-sub" id="dataM">
-            <li><a href="<?=site_url('dataManage/staff');?>"><span class="am-icon-users"></span> 人员规模</a></li>
+           <!-- <li><a href="<?=site_url('dataManage/staff');?>"><span class="am-icon-users"></span> 人员规模</a></li>
             <li><a href="<?=site_url('dataManage/produce');?>"><span class="am-icon-cubes"></span> 生产规模</a></li>
             <li><a href="<?=site_url('dataManage/branch');?>"><span class="am-icon-sitemap"></span> 部门</a></li>
-            <li><a href="<?=site_url('dataManage/workname');?>"><span class="am-icon-tags"></span> 职称</a></li>
+            <li><a href="<?=site_url('dataManage/workname');?>"><span class="am-icon-tags"></span> 职称</a></li>-->
             <li><a href="<?=site_url('dataManage/specialty');?>"><span class="am-icon-columns"></span> 专业</a></li>
-            <li><a href="<?=site_url('dataManage/appraise');?>"><span class="am-icon-slideshare"></span> 安全评价师</a></li>
-            <li><a href="<?=site_url('dataManage/register');?>"><span class="am-icon-clipboard"></span> 注册安全工程师</a></li>
+           <!-- <li><a href="<?=site_url('dataManage/appraise');?>"><span class="am-icon-slideshare"></span> 安全评价师</a></li>
+            <li><a href="<?=site_url('dataManage/register');?>"><span class="am-icon-clipboard"></span> 注册安全工程师</a></li>-->
           </ul>
         </li>
         <li class="admin-parent">
@@ -100,19 +94,19 @@
            <ul class="am-list am-collapse admin-sidebar-sub" id="user">
        
             <li><a href="<?=site_url('user/userInfo');?>"><span class="am-icon-weixin"></span> 微信用户</a></li>
-            <li><a href="<?=site_url('user/Auditing');?>"><span class="am-icon-weixin"></span> 用户资料审核</a></li>
+        
             <li><a href="<?=site_url('user/counselor');?>"><span class="am-icon-tablet"></span> 咨询师</a></li>
             <li><a href="<?=site_url('user/safety');?>"><span class="am-icon-gavel"></span> 安监局</a></li>
           </ul>
         </li>
-        <li class="admin-parent">
+        <!--<li class="admin-parent">
           <a class="am-cf" data-am-collapse="{target: '#statistics1'}"><span class="am-icon-line-chart"></span> 统计管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
           <ul class="am-list am-collapse admin-sidebar-sub" id="statistics1">
             <li><a href="<?=site_url('statistics/visit');?>"><span class="am-icon-bar-chart"></span> 访问数据</a></li>
             <li><a href="<?=site_url('statistics/action');?>"><span class="am-icon-pie-chart"></span> 用户行为</a></li>
             <li><a href="<?=site_url('statistics/zixun');?>"><span class="am-icon-area-chart"></span> 资讯数据</a></li>
           </ul>
-        </li>
+        </li>-->
         <li class="admin-parent">
           <a class="am-cf" data-am-collapse="{target: '#system'}"><span class="am-icon-cog"></span> 系统管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
           <ul class="am-list am-collapse admin-sidebar-sub" id="system">
@@ -126,6 +120,7 @@
       
         <li><a href="<?=site_url('login/loginOut');?>"><span class="am-icon-sign-out"></span> 注销</a></li>
       </ul>
+	  <?php endif;?>
 
       <div class="am-panel am-panel-default admin-sidebar-panel">
         <div class="am-panel-bd">

@@ -85,7 +85,7 @@ defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 defined('randNms')             OR define('randNms', rand(100000,999999)); //长度为6位的随机数
-defined('IP')                  OR define('IP', 'http://192.168.199.181/honest2/'); //长度为6位的随机数
+defined('IP')                  OR define('IP', 'http://211.149.195.183:8066/'); //长度为6位的随机数
 
 
 /**********************************************
@@ -94,19 +94,20 @@ defined('IP')                  OR define('IP', 'http://192.168.199.181/honest2/'
 * 
  ***********************************************/
  
-defined('APPID')               OR define('APPID', '热任务二'); 
-defined('APPSECRET')           OR define('APPSECRET', '而威尔'); 
-defined('MCHID')               OR define('MCHID', '1348057201'); //商户号
-defined('PRIVATEKEY')          OR define('PRIVATEKEY', 'e10adc3949ba59abbe56e057f20f883e'); //私钥
+defined('APPID')               OR define('APPID', 'wxb9db6fbd65404906'); 
+defined('APPSECRET')           OR define('APPSECRET', '769cdab1952d8e6f9b75a15b54d1e134'); 
+// defined('MCHID')               OR define('MCHID', '1348057201'); //商户号
+// defined('PRIVATEKEY')          OR define('PRIVATEKEY', 'e10adc3949ba59abbe56e057f20f883e'); //私钥
 
 
 defined('TOKEN')               OR define('TOKEN', 'honest'); //TOKEN
-// defined('MENU')                OR define('MENU', '{
-//     "button": [
-//         {
-//             "type": "view",
-//             "name": "大厨点菜",
-//             "url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8655702929a5ad7d&redirect_uri=http://www.krfer.com/dachu/index&response_type=code&scope=snsapi_userinfo&state=1&connect_redirect=1#wechat_redirect"
-//         }
-//     ]
-// }'); //自定义菜单
+
+defined('MENU')                OR define('MENU', '{
+    "button": [
+        {
+            "type": "view",
+            "name": "城市安全",
+            "url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxb9db6fbd65404906&redirect_uri=http://chengshi.zlzmm.com/index.php/WXindex/userOpenid&response_type=code&scope=snsapi_userinfo&state=1&connect_redirect=1#wechat_redirect"
+        }
+    ]
+}');

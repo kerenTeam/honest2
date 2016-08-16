@@ -23,12 +23,25 @@ class User_model extends CI_Model
 		$where['phoneNumber'] = $data;
 		// $where['groupId'] = '1';
 		$array = array(
-			'1','2'
+			'1','2','6'
 		);
 		$query = $this->db->where($where)->where_in('groupId',$array)->get(self::TBL_MEMBER);
 		return $query->row_array();
 	}
+	
+	//根据openid查询出用户
+	public function OpenidUser($id){
+		$where['openid'] = $id;
+		$query = $this->db->where($where)->get(self::TBL_MEMBER);
+		return $query->row_array();
 
+	}
+	//根据电话号码返回用户信息
+	public function GetUser($phone){
+		$where['phoneNumber'] = $phone;
+		$query = $this->db->where($where)->get(self::TBL_MEMBER);
+		return $query->row_array();
+	} 
 
 	// 微信用户
 	public function Users($id){
@@ -104,7 +117,21 @@ class User_model extends CI_Model
 		$query = $this->db->get(self::TBL_USERINFO);
 		return $query->result_array();
 	}
-
+	
+	//审核资料详情
+	public function AuditingInfo($id){
+		$where['id'] = $id;
+		$query = $this->db->where($where)->get(self::TBL_USERINFO);
+		return $query->row_array();
+	}
+	
+	//修改审核信息状态
+	public function AudState($id,$data)
+	{
+		$where['id'] = $id;
+		return $this->db->where($where)->update(self::TBL_USERINFO,$data);
+	}
+	
 	// 安监局发布信息
 	public function SafetyList()
 	{

@@ -287,7 +287,7 @@
 							<td><!-- <?=$val['phoneNumber'];?> -->25</td>
 							<td><?=$val['address']?></td>
 							<td><?=$val['summary']?></td>
-							<td><?=$val['occupation'];?></td>
+							<td><?=$val['major'];?></td>
 				
 							<td><a href="<?=site_url('user/counselorinfo?id=').$val['userId'];?>">查看资料</a></td>
 							<td>

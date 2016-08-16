@@ -43,13 +43,13 @@
           class="am-close">&times;</span>
         </div>
         <div class="am-popup-bd modelHei">
-          <form class="am-form am-padding-top am-padding-bottom" method="post" action="" enctype="multipart/form-data">
+          <form class="am-form am-padding-top am-padding-bottom" method="post" action="<?=site_url('DataManage/Addfaculty')?>" enctype="multipart/form-data">
 			<div class="am-g am-margin-top-sm">
 				<div class="am-u-sm-2 am-text-right">
 					一级选项
 				</div>
 				<div class="am-u-sm-8 am-u-end">
-					<input type="text" class="am-input-sm" name="title" required>
+					<input type="text" class="am-input-sm" name="majorName" required>
 				</div>
 			</div>
 			<div class="am-g am-margin-top-sm">
@@ -61,13 +61,16 @@
         </div>
       </div>
     </div>
+	
     <div class="am-tabs am-padding" data-am-tabs>
-    	<ul class="am-tabs-nav am-nav am-nav-tabs">
-			<li class="am-active"><a href="#tab1">理工类</a></li>
-			<li><a href="#tab2">管理类</a></li>
+    	<ul class="am-tabs-nav am-nav am-nav-tabs tabLi">
+			<?php foreach($faculty as $val):?>
+			<li><a href="#<?=$val['id'];?>"><?=$val['majorName'];?></a></li>
+			<?php endforeach;?>
 		</ul>
 		<div class="am-tabs-bd">
-			<div class="am-tab-panel am-fade am-in am-active" id="tab1">
+			<?php foreach($faculty as $val):?>
+			<div class="am-tab-panel am-fade am-in am-active" id="<?=$val['id'];?>">
 				<div class="am-u-sm-12 am-u-md-6 am-margin-top">
 					<div class="am-btn-toolbar">
 						<div class="am-btn-group am-btn-group-xs am-margin-right-lg">
@@ -77,69 +80,87 @@
 				</div>
 				<div class="am-u-sm-12 am-margin-top am-form">
 					<ul>
-						<li class="inlineDiv">
-							<input type="text" placeholder="" value="化工">
-							<a onclick="" class="am-btn am-btn-primary">保存修改</a>
-							<a onclick="" class="am-btn am-btn-danger">删除选项</a>
+					<?php foreach($specialy as $v):?>
+						<?php if($v['majorId'] == $val['id']):?>
+						<li class="inlineDiv" >
+							<input type="text" placeholder="" value="<?=$v['majorName'];?>">
+							<a onclick="upmajor(this);" class="am-btn am-btn-primary">保存修改</a>
+							<a href="<?=site_url('DataManage/Delspecialy?id='.$v['id']);?>" class="am-btn am-btn-danger">删除选项</a>
 						</li>
-						<li class="inlineDiv">
-							<input type="text" placeholder="" value="机械">
-							<a onclick="" class="am-btn am-btn-primary">保存修改</a>
-							<a onclick="" class="am-btn am-btn-danger">删除选项</a>
-						</li>
+						<?php endif;?>
+					<?php endforeach;?>
+						
 					</ul>
 					<a onclick="addX(this);" class="am-btn am-btn-success">添加选项</a>
 				</div>
 			</div>
-			<div class="am-tab-panel am-fade" id="tab2">
-				<div class="am-u-sm-12 am-margin-top">
-					<div class="am-btn-toolbar">
-						<div class="am-btn-group am-btn-group-xs am-margin-right-lg">
-							<span class="am-text-primary">二级选项</span>
-						</div>
-					</div>
-				</div>
-				<div class="am-u-sm-12 am-margin-top am-form">
-					<ul>
-						<li class="inlineDiv">
-							<input type="text" placeholder="" value="文秘">
-							<a onclick="" class="am-btn am-btn-primary">保存修改</a>
-							<a onclick="" class="am-btn am-btn-danger">删除选项</a>
-						</li>
-						<li class="inlineDiv"
-							<input type="text" placeholder="" value="财会">
-							<a onclick="" class="am-btn am-btn-primary">保存修改</a>
-							<a onclick="" class="am-btn am-btn-danger">删除选项</a>
-						</li>
-					</ul>
-					<a onclick="addX(this);" class="am-btn am-btn-success">添加选项</a>
-				</div>
-			</div>
+			<?php endforeach;?>
 		</div>
     </div>
+ 
 
-
-
-
+ 
+	
 
 
 
 <script type="text/javascript">
+	 $('.tabLi li:first-child').addClass('am-active'); 
 	function addX(obj){
-		$(obj).prev('ul').append('<li class="inlineDiv"> <input type="text" placeholder="请输入要添加的选项名" style=""> <a onclick="addOk(this);" class="am-btn am-btn-primary">确认添加</a> <a onclick="#" class="am-btn am-btn-danger">取消添加</a></li>')
+		$(obj).prev('ul').append('<li class="inlineDiv"> <input type="text" placeholder="请输入要添加的选项名" style="" > <a onclick="addOk(this);" class="am-btn am-btn-primary">确认添加</a> <a onclick="#" class="am-btn am-btn-danger">取消添加</a></li>')
 	}
 	// 添加事件
 	function addOk(obj){
 		$(obj).parent().find('a').attr('disabled','disabled');
 		$(obj).html('<i class="am-icon-spinner am-icon-pulse"></i>');
 		// ajax
-
-		console.log(132)
+		var name = $(obj).prev().val();
+		var parents = $(obj).parentsUntil('.am-tabs-bd');
+		var id = parents.eq(parents.length - 1).attr('id');
+		//console.log(id);
+		$.ajax({
+			url:'<?php echo site_url('Other/Addspecialy');?>',
+			type:"POST",
+			data: 'name='+name+'&id='+id,
+			success: function(result) {
+				// 成功后
+					$(obj).html('保存修改');
+					$(obj).next('a').html('删除选项');
+					$(obj).parent().find('a').removeAttr('disabled');
+					$(obj).removeAttr('onclick');
+				
+			}
+			
+		});
+	
 		// 成功后
-		$(obj).html('保存修改');
-		$(obj).next('a').html('删除选项');
-		$(obj).parent().find('a').removeAttr('disabled');
-		$(obj).removeAttr('onclick');
+	
 	}
+	function upmajor(obj){
+		
+		var name = $(obj).prev().val();
+		var parents = $(obj).parentsUntil('.am-tabs-bd');
+		var id = parents.eq(parents.length - 1).attr('id');
+		$.ajax({
+			url:'<?php echo site_url('DataManage/UpSpeecialy');?>',
+			type:"POST",
+			data: 'name='+name+'&id='+id,
+			success: function(result) {
+				// 成功后
+					$(obj).html('保存修改');
+					$(obj).next('a').html('删除选项');
+					$(obj).parent().find('a').removeAttr('disabled');
+					$(obj).removeAttr('onclick');
+				
+			}
+			
+		});
+	
+		// 成功后
+	
+	}
+
+
+
 </script>
 </div>

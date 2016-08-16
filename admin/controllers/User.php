@@ -82,11 +82,47 @@ class User extends MY_Controller
 	public function Auditing()
 	{
 		$data['users'] = $this->user_model->AuditingUser();
-
 		$this->load->view('user/auditing',$data);
 		$this->load->view('footer');
 	}
-
+	//审核信息详情
+	public function AudingInfo(){
+			if($_GET){
+				$id = $_GET['id'];
+				$data['userinfo'] = $this->user_model->AuditingInfo($id);
+				$this->load->view('user/audingInfo',$data);
+				$this->load->view('footer');
+			}
+	}
+	//审核通过
+	public function OkAuding(){
+		if($_GET){
+			$id = $_GET['id'];
+			$data = $this->user_model->AuditingInfo($id);
+			unset($data['id']);
+			$userid = $data['userId'];
+			$arr = array_filter($data);
+			if($this->user_model->uploaduser($userid,$arr)){
+				$a = array('state'=>'1');
+				$this->user_model->AudState($id,$a);
+				echo "<script>alert('成功！');history.go(-1);location.reload();</script>";
+			}else{
+				echo "<script>alert('失败！');history.go(-1);location.reload();</script>";
+			}
+		}
+	}
+	//审核失败
+	public function NoAuding(){
+		if($_GET){
+			$id = $_GET['id'];
+			$a = array('state'=>'2');
+			if($this->user_model->AudState($id,$a)){
+				echo "<script>alert('拒绝成功！');history.go(-1);location.reload();</script>";
+			}else{
+				echo "<script>alert('失败！');history.go(-1);location.reload();</script>";
+			}
+		}
+	}
 	// 删除用户
 	public function deluser()
 	{

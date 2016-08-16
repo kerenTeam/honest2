@@ -1,8 +1,8 @@
-<?php  
+﻿<?php  
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
-*   数据管理
+*   ??ݹ??
 */
 class DataManage extends MY_Controller
 {
@@ -12,17 +12,19 @@ class DataManage extends MY_Controller
 		
 		parent::__construct();
 		$this->load->view('header');
+		$this->load->model('dataMange_model');
 	}
 
-	// 人员规模
+	// ?Ա???
 	public function staff()
 	{
-
+		//?Ա????б?
+		//$stafflist = $this->dataManage_model->getStaff();
 		$this->load->view('dataManage/staff');
 		$this->load->view('footer');
 	}
 
-	// 生产规模
+	// ??????
 	public function produce()
 	{
 
@@ -30,7 +32,7 @@ class DataManage extends MY_Controller
 		$this->load->view('footer');
 	}
 
-	// 部门
+	// ???
 	public function branch()
 	{
 
@@ -38,7 +40,7 @@ class DataManage extends MY_Controller
 		$this->load->view('footer');
 	}
 
-	// 职称
+	// ְ??
 	public function workname()
 	{
 
@@ -46,15 +48,58 @@ class DataManage extends MY_Controller
 		$this->load->view('footer');
 	}
 
-	// 专业
+	//专业列表
 	public function specialty()
 	{
-
-		$this->load->view('dataManage/specialty');
+		//??Ժϵ
+		$data['faculty'] = $this->dataMange_model->FacultyList('0');
+		//??Ժϵ??רҵ
+		$data['specialy'] = $this->dataMange_model->SpecialyList();
+	
+		$this->load->view('dataManage/specialty',$data);
 		$this->load->view('footer');
 	}
-
-	// 安全评价师
+	//新增专业
+	public function Addfaculty(){
+		if($_POST){
+			$arr = array(
+				'majorName'=> $_POST['majorName'],
+				'typeId'=> 1,
+				'majorId'=> 0,
+			);
+			if($this->dataMange_model->sendFaculty($arr)){
+				echo "<script>alert('???ɹ?');history.go(-1);location.reload();</script>";
+			}else{
+				echo "<script>alert('??ʧ??);history.go(-1);location.reload();</script>";
+			}
+		}
+	}
+	
+	//修改专业
+	public function UpSpeecialy(){
+		if($_POST){
+			$id = $_POST['id'];
+			$where = array('majorName'=>$_POST['name']);
+			if($this->dataMange_model->SpecialyUp($id,$where)){
+				echo "<script>alert('成功');history.go(-1);location.reload();</script>";
+			}else{
+				echo "<script>alert('失败');history.go(-1);location.reload();</script>";
+			}
+		}
+	}
+	//删除专业
+	public function Delspecialy(){
+		if($_GET){
+			$id = $_GET['id'];
+			if($this->dataMange_model->deleteSpecialy($id)){
+				echo "<script>alert('成功');history.go(-1);location.reload();</script>";
+			}else{
+				echo "<script>alert('失败');history.go(-1);location.reload();</script>";
+			}
+		}
+	}
+	
+	// ??ȫ????
 	public function appraise()
 	{
 
@@ -62,7 +107,7 @@ class DataManage extends MY_Controller
 		$this->load->view('footer');
 	}
 
-	// 注册安全工程师
+	// ע?ᰲȫ?????
 	public function register()
 	{
 

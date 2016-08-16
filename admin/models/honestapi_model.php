@@ -67,13 +67,13 @@ class Honestapi_model extends CI_Model
 	// 微信用户问题解答
 	public function Problem($id)
 	{
-		$sql = "SELECT a.questionId, a.fromId, a.toId, a.exchangeTitle,a.exchangeTime, b.userId,b.userName, b.headPicImg FROM honest_myquestion as a, honest_member as b where a.fromId = b.userId and a.fromId = $id order by a.exchangeTime desc";
+		$sql = "SELECT a.questionId, a.fromId, a.toId, a.exchangeTitle,a.exchangeTime, b.userId,b.userName, b.headPicImg FROM honest_myquestion as a, honest_member as b where a.fromId = b.userId and a.fromId = $id and state = 1 order by a.exchangeTime desc";
 		$query = $this->db->query($sql);
 		return $query->result_array();
 	}
 	//咨询师问题解答
 	public function ConsultationWen($id){
-		$sql = "SELECT a.questionId, a.fromId, a.toId, a.exchangeTitle,a.exchangeTime, b.userId,b.userName, b.headPicImg FROM honest_myquestion as a, honest_member as b where a.fromId = b.userId and a.toId = $id order by a.exchangeTime desc";
+		$sql = "SELECT a.questionId, a.fromId, a.toId, a.exchangeTitle,a.exchangeTime, b.userId,b.userName, b.headPicImg FROM honest_myquestion as a, honest_member as b where a.fromId = b.userId and a.toId = $id and state = 1 order by a.exchangeTime desc";
 		$query = $this->db->query($sql);
 		return $query->result_array();
 	
@@ -170,17 +170,16 @@ class Honestapi_model extends CI_Model
   	 	return $this->db->where($where)->update(self::TBL_MEMBER,$data);
   	 }
 
-  	 //提交用户资料
+  	//提交用户资料
   	public function UserInfo($data)
   	{
   		return $this->db->insert(self::TBL_USERINFO,$data);
   	}
 
-  	// 问题咨询插入
- 	public function QuestionData($id,$data)
+  	// 问题新增插入
+ 	public function QuestionData($data)
  	{
- 		$where['questionId'] = $id;
- 		return $this->db->where($where)->update(self::TBL_MYQYESTION,$data);
+ 		return $this->db->insert(self::TBL_MYQYESTION,$data);
  	}
  	
  	// 新增聊天记录
@@ -249,6 +248,42 @@ class Honestapi_model extends CI_Model
 		$where['typeId'] = '2';
 		$query = $this->db->where($where)->get(self::TBL_LINKAGE);
 		return $query->result_array();
+	}
+
+	// 咨询师证书修改
+	public function sendCertificate($id,$data)
+	{
+		$where['userId'] = $id;
+		return $this->db->where($where)->update(self::TBL_USERINFO,$data);
+	}
+
+	//返回咨询师列表
+	public function GetConsultant($tag)
+	{
+		$where['groupId'] = '5';
+		$query = $this->db->where($where)->where_in('myTag',$tag)->limit($size,$page)->get(self::TBL_MEMBER);
+		return $query->result_array();
+	}
+
+	// 根据tag随机返回一位咨询师
+	public function RandConsult($tag)
+	{
+		$sql = "SELECT userId FROM `honest_member` WHERE groupId = '5' and myTag IN ($tag) ORDER BY rand() LIMIT 1";
+		$query = $this->db->query($sql);
+		return $query->row_array();
+	}
+
+	// 修改问题状态
+	public function sendQublish($id,$data)
+	{
+		$where['questionId'] = $id; 
+		return $this->db->where($where)->update(self::TBL_MYQYESTION,$data);
+
+	}
+	
+	//新增公司信息
+	public function AddCompany($data){
+		return $this->db->insert(self::TBL_COMPANY,$data);
 	}
 
 
