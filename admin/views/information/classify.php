@@ -78,7 +78,7 @@
 								<div class="am-btn-toolbar">
 									<div class="am-btn-group am-btn-group-xs">
                     					<a  data-am-modal="{target: '#edit1'}" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</a>
-										<a href="#" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</a>
+										<a onclick="delet('#')" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</a>
 									</div>
 								</div>
 							</td>
@@ -97,7 +97,15 @@
 		</div>
 	</form>
 
-
+<script type="text/javascript">
+	function delet(href){
+		var flag = confirm("确定要删除吗？");
+		if (flag) {
+			window.location.href = href;
+		}
+		return false;
+	}
+</script>
 
 
 </div>
