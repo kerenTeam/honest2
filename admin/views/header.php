@@ -66,6 +66,7 @@
         <li><a href="<?=site_url('problem/problem');?>"><span class="am-icon-info-circle"></span> 问题解答</a></li>
         <li><a href="<?=site_url('information/lists');?>"><span class="am-icon-newspaper-o"></span> 资讯列表</a></li>
         <li><a href="<?=site_url('information/channel');?>"><span class="am-icon-navicon"></span> 频道管理</a></li>
+        <li><a href="<?=site_url('information/classify');?>"><span class="am-icon-list"></span> 分类管理</a></li>
         <li><a href="<?=site_url('company/index');?>"><span class="am-icon-institution"></span> 公司信息</a></li>
   
         <li class="admin-parent">

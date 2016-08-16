@@ -176,6 +176,13 @@ class Information extends MY_Controller
 			$this->load->view('footer');
 	 	}
 	 }
+
+	 // 分类管理
+	 public function classify()
+	 {
+	 	$this->load->view('information/classify');
+	 	$this->load->view('footer');
+	 }
 }
 
 

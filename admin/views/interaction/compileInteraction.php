@@ -28,6 +28,20 @@
 		</div>
 		<div class="am-g am-margin-top-sm">
 			<div class="am-u-sm-4 am-u-md-2 am-text-right">
+				分类
+			</div>
+			<?php $tag = json_decode($inters['tag'],true); ?>
+			<div class="am-u-sm-8 am-u-md-4 am-u-end">
+				<select multiple data-am-selected="{btnSize: 'sm'}" name="tag[]">
+				<?php foreach($tags as $val):?>
+					<option value="<?=$val['tag']?>"<?php foreach($tag as $v):?> <?php if($v['tagid'] == $val['tag']){echo "selected";}?><?php endforeach;?>><?=$val['tagName']?></option>
+				<?php endforeach;?>
+					
+				</select>
+			</div>
+		</div>
+		<div class="am-g am-margin-top-sm">
+			<div class="am-u-sm-4 am-u-md-2 am-text-right">
 				缩略图
 			</div>
 			<div class="am-u-sm-8 am-u-md-4 am-u-end">

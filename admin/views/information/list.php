@@ -22,7 +22,7 @@
 					<a data-am-modal="{target: '#add'}" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</a>
 				</div>
 	          <select id="tag" data-am-selected="{btnSize: 'sm'}">
-	            <option value="option1">所有类别</option>
+	            <option value="option1">所有频道</option>
 	          	<?php foreach($tags as $val):?>
 					<option value="<?=$val['tag']?>"><?=$val['tagName']?></option>
 				<?php endforeach;?>
@@ -53,6 +53,7 @@
             str += '<td>'+objLi.title+'</td>';
             str += '<td>'+(objLi.content).substr(0,11)+'...</td>';
             str += '<td>'+objLi.userName+'</td>';
+            str += '<td class="am-hide-sm-only">'+objLi.publishData+'</td>';
             str += '<td class="am-hide-sm-only">'+objLi.publishData+'</td>';
             str += '<td class="am-hide-sm-only">'+objLi.publishData+'</td>';
             str += '<td>';
@@ -118,6 +119,18 @@
 			</div>
 			<div class="am-g am-margin-top-sm">
 				<div class="am-u-sm-2 am-text-right">
+					分类
+				</div>
+				<div class="am-u-sm-8 am-u-end">
+					<select multiple data-am-selected="{btnSize: 'sm'}" name="tag[]">
+					<?php foreach($tags as $val):?>
+						<option value="<?=$val['tag']?>"><?=$val['tagName']?></option>
+					<?php endforeach;?>
+					</select>
+				</div>
+			</div>
+			<div class="am-g am-margin-top-sm">
+				<div class="am-u-sm-2 am-text-right">
 					缩略图
 				</div>
 				<div class="am-u-sm-8 am-u-end">
@@ -165,7 +178,7 @@
 				<table class="am-table am-table-striped am-table-hover am-main am-table-centered am-table-bordered">
 					<thead>
 						<tr>
-							<th><input type="checkbox" class="allcheck"></th><th>ID</th><th>缩略图</th><th class="table-title">标题</th><th class="table-title">作者</th><th class="table-date am-hide-sm-only">简介</th><th class="table-type">发布时间</th><th>频道</th><th class="table-set">操作</th>
+							<th><input type="checkbox" class="allcheck"></th><th>ID</th><th>缩略图</th><th class="table-title">标题</th><th class="table-title">作者</th><th class="table-date am-hide-sm-only">简介</th><th class="table-type">发布时间</th><th>频道</th><th>分类</th><th class="table-set">操作</th>
 						</tr>
 					</thead>
 					<tbody id="movies">
@@ -180,6 +193,7 @@
 							 <td><?=mb_strcut(strip_tags($val['content']),0,30,'UTF-8');?>...</td>
 							<td><?=$val['publishData']?></td>
 							<td>科技</td>
+							<td>教育</td>
 							<td>
 								<div class="am-btn-toolbar">
 									<div class="am-btn-group am-btn-group-xs">
