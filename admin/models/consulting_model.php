@@ -9,6 +9,8 @@ class consulting_model extends CI_Model
 	const TBL_MYPUB = 'mypublish';
 	// p频到
 	const TBL_TAG = 'mytag';
+	// 分类
+	const TBL_CATE = 'cate';
 
 	// 返回咨询信息列表
 	public function consulting()
@@ -66,6 +68,35 @@ class consulting_model extends CI_Model
 		$query = $this->db->where($where)->like('title', $sear, 'both')->order_by('publishData','desc')->get(self::TBL_MYPUB);
 		return $query->result_array();
 	}
+
+	//分类列表
+	public function listCate()
+	{
+		$query = $this->db->order_by('sole asc')->get(self::TBL_CATE);
+		return $query->result_array();
+	}
+
+	//新增分类
+	public function AddCate($data)
+	{
+		return $this->db->insert(self::TBL_CATE,$data);
+	}
+
+	//修改分类
+	public function UpdataCate($id,$data)
+	{
+		$where['cateId'] = $id;
+		return $this->db->where($where)->update(self::TBL_CATE,$data); 
+	}
+
+	//删除分类
+	public function DeleteCate($id)
+	{
+		$where['cateId'] = $id;
+		return $this->db->where($where)->delete(self::TBL_CATE);
+	}
+
+
 }
 
  ?>

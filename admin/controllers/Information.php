@@ -180,9 +180,51 @@ class Information extends MY_Controller
 	 // 分类管理
 	 public function classify()
 	 {
-	 	$this->load->view('information/classify');
+	 	$data['cates'] = $this->consulting_model->listCate();
+	 	$this->load->view('information/classify',$data);
 	 	$this->load->view('footer');
 	 }
+
+	 //新增频道
+	 public function addCate(){
+	 	if($_POST){
+	 		$arr = $_POST;
+	 		if($this->consulting_model->AddCate($arr)){
+	 			echo "<script>alert('新增成功！');window.location.href='classify';</script>";exit;
+	 		}else{
+	 			echo "<script>alert('新增失败！');window.location.href='classify';</script>";exit;
+	 		}
+	 	}
+	}
+
+	//修改分类
+	public function editCate(){
+		if($_POST){
+			$arr = array(
+				'cateName' => $_POST['cateName'],
+				'sole' => $_POST['sole'],
+			);
+			$id = $_POST['cateId'];
+			if($this->consulting_model->UpdataCate($id,$arr)){
+				echo "<script>alert('修改成功！');window.location.href='classify';</script>";exit;
+	 		}else{
+	 			echo "<script>alert('修改失败！');window.location.href='classify';</script>";exit;
+	 		}
+		}
+	}
+
+	//删除分类
+	public function delCate(){
+		if($_GET){
+			$id = $_GET['id'];
+			if($this->consulting_model->DeleteCate($id)){
+				echo "<script>alert('删除成功！');window.location.href='classify';</script>";exit;
+	 		}else{
+	 			echo "<script>alert('删除失败！');window.location.href='classify';</script>";exit;
+	 		}
+		}
+	}
+
 }
 
 

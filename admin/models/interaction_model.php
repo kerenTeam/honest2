@@ -14,6 +14,8 @@ class Interaction_model extends CI_Model
 	const TBL_COMMENT = 'comment';
 	// 频道表
 	const TBL_MYTAG = 'mytag';
+	// 分类
+	const TBL_CATE = 'cate';
 
 	// 查询交流互动
 	public function listinter()

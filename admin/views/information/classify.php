@@ -34,13 +34,13 @@
 	      class="am-close">&times;</span>
 	    </div>
 	    <div class="am-popup-bd modelHei">
-	      <form class="am-form am-padding-top am-padding-bottom" method="post" action="" enctype="multipart/form-data">
+	      <form class="am-form am-padding-top am-padding-bottom" method="post" action="<?=site_url('information/addCate');?>" enctype="multipart/form-data">
 	        <div class="am-g am-margin-top-sm">
 	          <div class="am-u-sm-2 am-text-right">
 	            分类名
 	          </div>
 	          <div class="am-u-sm-8 am-u-end">
-	            <input type="text" class="am-input-sm" name="title" required>
+	            <input type="text" class="am-input-sm" name="cateName"  required>
 	          </div>
 	        </div>
 	        <div class="am-g am-margin-top-sm">
@@ -48,7 +48,7 @@
 	            排序
 	          </div>
 	          <div class="am-u-sm-8 am-u-end">
-	            <input type="number" class="am-input-sm" name="title" required>
+	            <input type="number" class="am-input-sm" name="sole" value="30" required>
 	          </div>
 	        </div>
 	        <div class="am-g am-margin-top-sm">
@@ -61,9 +61,9 @@
 	  </div>
 	</div>
 	
-
+<?php foreach($cates as $cate):?>
 	<!-- 编辑弹出框 -->
-	<div class="am-popup" id="edit1">
+	<div class="am-popup" id="edit<?=$cate['cateId']?>">
 	  <div class="am-popup-inner">
 	    <div class="am-popup-hd">
 	      <h4 class="am-popup-title">编辑</h4>
@@ -71,13 +71,14 @@
 	      class="am-close">&times;</span>
 	    </div>
 	    <div class="am-popup-bd modelHei">
-	      <form class="am-form am-padding-top am-padding-bottom" method="post" action="" enctype="multipart/form-data">
+
+	      <form class="am-form am-padding-top am-padding-bottom" method="post" action="<?=site_url('information/editCate');?>" enctype="multipart/form-data">
 	        <div class="am-g am-margin-top-sm">
 	          <div class="am-u-sm-2 am-text-right">
 	            分类名
 	          </div>
 	          <div class="am-u-sm-8 am-u-end">
-	            <input type="text" class="am-input-sm" name="title" value="教育" required>
+	            <input type="text" class="am-input-sm" name="cateName" value="<?=$cate['cateName']?>" required>
 	          </div>
 	        </div>
 	        <div class="am-g am-margin-top-sm">
@@ -85,11 +86,12 @@
 	            排序
 	          </div>
 	          <div class="am-u-sm-8 am-u-end">
-	            <input type="number" class="am-input-sm" name="title" value="1" required>
+	            <input type="number" class="am-input-sm" name="sole" value="<?=$cate['sole']?>" required>
 	          </div>
 	        </div>
 	        <div class="am-g am-margin-top-sm">
 	          <div class="am-u-sm-offset-2 am-u-sm-8 am-u-end">
+	          	<input type="hidden" name="cateId" value="<?=$cate['cateId']?>">
 	            <button type="submit" class="am-btn am-btn-primary">确定</button>
 	          </div>
 	        </div>
@@ -97,6 +99,7 @@
 	    </div>
 	  </div>
 	</div>
+	<?php endforeach;?>
 	<!-- 频道列表 -->
 	<form>
 		<div class="am-g">
@@ -108,25 +111,26 @@
 						</tr>
 					</thead>
 					<tbody id="movies">
-						<tr>
-							<td>1</td>
-	              			<td>教育</td>
-	              			<td>1</td>
-							<td>
-								<div class="am-btn-toolbar">
-									<div class="am-btn-group am-btn-group-xs">
-                    					<a  data-am-modal="{target: '#edit1'}" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</a>
-										<a onclick="delet('#')" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</a>
+						<?php foreach($cates as $cate):?>
+							<tr>
+								<td><?=$cate['cateId'];?></td>
+		              			<td><?=$cate['cateName'];?></td>
+		              			<td><?=$cate['sole'];?></td>
+								<td>
+									<div class="am-btn-toolbar">
+										<div class="am-btn-group am-btn-group-xs">
+	                    					<a  data-am-modal="{target: '#edit<?=$cate['cateId']?>'}" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</a>
+											<a href='<?=site_url('information/delCate?id='.$cate['cateId']);?>' onclick="return confirm('删除会把该分类下所有文章删除,你是否确定删除?');" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</a>
+										</div>
 									</div>
-								</div>
-							</td>
-						</tr>
-					
+								</td>
+							</tr>
+						<?php endforeach;?>
 					<!-- <th colspan="3">没有任何记录!</th> -->
 					</tbody>
 				</table>
         <div class="am-cf">
-            共 1 条记录
+            共 <?=count($cates);?> 条记录
             <div class="am-fr">
               <div class="holder"><a class="jp-previous jp-disabled">上一页</a><a class="jp-current">1</a><span class="jp-hidden">...</span><a href="#" class="">2</a><a href="#" class="">3</a><a href="#" class="">4</a><a href="#" class="">5</a><a href="#" class="jp-hidden">6</a><span>...</span><a>7</a><a class="jp-next">下一页</a></div>
             </div>
@@ -134,16 +138,5 @@
 			</div>
 		</div>
 	</form>
-
-<script type="text/javascript">
-	function delet(href){
-		var flag = confirm("确定要删除吗？");
-		if (flag) {
-			window.location.href = href;
-		}
-		return false;
-	}
-</script>
-
 
 </div>

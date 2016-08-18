@@ -194,7 +194,7 @@
               <td><?=mb_strcut(strip_tags($val['content']),0,50,'UTF-8');?>...</td>
               <td><?=get_username($val['userId']);?></td>
               <td class="am-hide-sm-only"><?=$val['publishData']?></td>
-              <td class="am-hide-sm-only">教育</td>
+              <td class="am-hide-sm-only"><?=get_cateName($val['cateId']);?></td>
               <td>
                 <div class="am-btn-toolbar">
                   <div class="am-btn-group am-btn-group-xs">
