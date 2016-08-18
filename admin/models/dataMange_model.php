@@ -73,6 +73,21 @@ class dataMange_model extends CI_Model
 		
 	}
 
+	//删除院系
+	public function DelFaculty($id)
+	{
+		$where['id'] = $id;
+		return $this->db->where($where)->delete(self::TBL_LINKAGE);
+	}
+
+	//删除院系下所有专业
+	public function DelCompanys($id)
+	{
+		$where['majorId'] = $id;
+		return $this->db->where($where)->delete(self::TBL_LINKAGE);
+
+	}
+
 }
 
 ?>

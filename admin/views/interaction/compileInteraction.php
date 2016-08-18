@@ -57,7 +57,7 @@
 				
 			    <!-- 加载编辑器的容器 -->
 			    <script id="container" name="content" type="text/plain">
-			        
+			        <?=$inters['content'];?>
 			    </script>
 			    <!-- 配置文件 -->
 			    <script type="text/javascript" src="assets/ue/ueditor.config.js"></script>

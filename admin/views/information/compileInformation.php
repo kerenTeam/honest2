@@ -16,11 +16,11 @@
 			<div class="am-u-sm-4 am-u-md-2 am-text-right">
 				频道
 			</div>
-			<?php $tag = json_decode($cons['tag'],true); ?>
+			<?php $tag = explode(',', $cons['tag']); ?>
 			<div class="am-u-sm-8 am-u-md-4 am-u-end">
 				<select multiple data-am-selected="{btnSize: 'sm'}" name="tag[]">
 				<?php foreach($tags as $val):?>
-					<option value="<?=$val['tag']?>"<?php foreach($tag as $v):?> <?php if($v['tagid'] == $val['tag']){echo "selected";}?><?php endforeach;?>><?=$val['tagName']?></option>
+					<option value="<?=$val['tag']?>" <?php foreach($tag as $v):?> <?php if($v['tagid'] == $val['tag']){echo "selected";}?><?php endforeach;?>><?=$val['tagName']?></option>
 				<?php endforeach;?>
 				</select>
 			</div>
@@ -29,11 +29,11 @@
 			<div class="am-u-sm-4 am-u-md-2 am-text-right">
 				分类
 			</div>
-			<?php $tag = json_decode($cons['tag'],true); ?>
+			
 			<div class="am-u-sm-8 am-u-md-4 am-u-end">
-				<select multiple data-am-selected="{btnSize: 'sm'}" name="tag[]">
-				<?php foreach($tags as $val):?>
-					<option value="<?=$val['tag']?>"<?php foreach($tag as $v):?> <?php if($v['tagid'] == $val['tag']){echo "selected";}?><?php endforeach;?>><?=$val['tagName']?></option>
+				<select multiple data-am-selected="{btnSize: 'sm'}" name="cateId">
+				<?php foreach($cates as $val):?>
+					<option value="<?=$val['cateId']?>" <?php if($val['cateId'] == $cons['cateId']){echo "selected";}?>><?=$val['cateName']?></option>
 				<?php endforeach;?>
 				</select>
 			</div>
@@ -55,7 +55,7 @@
 			<div class="am-u-sm-8 am-u-md-6 am-u-end">
 			    <!-- 加载编辑器的容器 -->
 			    <script id="container" name="content" type="text/plain">
-			        
+			        <?=$cons['content'];?>
 			    </script>
 			    <!-- 配置文件 -->
 			    <script type="text/javascript" src="assets/ue/ueditor.config.js"></script>

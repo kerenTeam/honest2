@@ -28,10 +28,7 @@ class Interaction extends MY_Controller
 	public function iList()
 	{	
 		$data['interaction'] = $this->interaction_model->listinter();
-		// 获取所有频道
-		$data['tags'] = $this->interaction_model->listTag();
-		//所有分类
-		$data['cates'] = $this->interaction_model->listCate();
+		
 
 		$this->load->view('interaction/interactionList',$data);
 		$this->load->view('footer');
@@ -58,7 +55,9 @@ class Interaction extends MY_Controller
 				'title' => $_POST['title'],
 				'userId' => $_SESSION['users']['userId'],
 				'content'=>$_POST['content'],
-				'cateId' =>$_POST['cateId']
+				'cateId' =>$_POST['cateId'],
+				'publishData' => date('y-m-d H:i',time()),
+				'state' => '2',
 			);
 			foreach ($_POST['tag'] as $key => $value) {
 				$tag[$key] = $value;
@@ -77,11 +76,20 @@ class Interaction extends MY_Controller
                 $data['picImg']='';
             }
 			if($this->interaction_model->addinter($data)){
-				echo "<script>alert('新增成功！');history.go(-1);location.reload();</script>";exit;
+				$arr = array('upData'=>'true');
+				$this->interaction_model->SendCateData($_POST['cateId'],$arr);
+				echo "<script>alert('新增成功！');window.location.href='iList';</script>";exit;
 			}else{
 				echo "<script>alert('新增失败！');history.go(-1);location.reload();</script>";exit;
 			}
 
+		}else{
+			// 获取所有频道
+			$data['tags'] = $this->interaction_model->listTag();
+			//所有分类
+			$data['cates'] = $this->interaction_model->listCate();
+			$this->load->view('interaction/addInteraction',$data);
+			$this->load->view('footer');
 		}
 	}
 
@@ -94,13 +102,12 @@ class Interaction extends MY_Controller
 				'title' =>$_POST['title'],
 				'content' =>$_POST['content'],
 				'cateId' => $_POST['cateId'],
+				'publishData' => date('y-m-d H:i',time()),
 			);
 			foreach ($_POST['tag'] as $key => $value) {
 				$tag[$key] = $value;
 			}
 			$data['tag'] = implode(',',$tag);
-			var_dump($data);
-			exit;
 			if (!empty($_FILES['picImg']['tmp_name'])) {
                 if ($this->upload->do_upload('picImg')) {
                     //上传成功

@@ -83,6 +83,21 @@ class Other extends CI_Controller
 		}
 	}
 
+
+	//修改专业
+	public function UpSpeecialy(){
+		if($_POST){
+			$id = $_POST['id'];
+			$where = array('majorName'=>$_POST['name']);
+			if($this->dataMange_model->SpecialyUp($id,$where)){
+				echo "1";
+			}else{
+				echo "0";
+			}
+		}
+	}
+
+
 }
 
 

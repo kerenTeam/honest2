@@ -111,7 +111,6 @@ class Honestapi_model extends CI_Model
  	public function LogUser($data)
  	{
  		$where['phoneNumber'] = $data;
-		// $where['groupId'] = '1';
 		$array = array(
 			'5','6'
 		);

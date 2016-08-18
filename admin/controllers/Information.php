@@ -13,7 +13,6 @@ class Information extends MY_Controller
 		$this->load->view('header');
 		$this->load->model('tag_model');
 		$this->load->model('consulting_model');
-		$this->load->library('upload');
 	}
 
 	// 列表
@@ -22,7 +21,7 @@ class Information extends MY_Controller
 		// 咨询
 		$data['consulting'] = $this->consulting_model->consulting();
 		// 频道
-		$data['tags'] = $this->consulting_model->tags();
+			$data['tags'] = $this->consulting_model->tags();
 		// var_dump($data);
 		$this->load->view('information/list',$data);
 		$this->load->view('footer');
@@ -35,13 +34,18 @@ class Information extends MY_Controller
 			$data = $_POST;
 			$data['commend'] = 1;
 			$data['userId'] = $_SESSION['users']['userId'];
+			$data['publishData'] = date('y-m-d H:i',time());
 			
 			$data['tag'] = implode(',',$_POST['tag']);
 			if (!empty($_FILES['picImg']['tmp_name'])) {
+				$config['upload_path']      = './upload/imgs/';
+	        	$config['allowed_types']    = 'gif|jpg|png|jpeg';
+				$config['file_name']     =date("Y-m-d_His");
+				$this->load->library('upload', $config);
                 if ($this->upload->do_upload('picImg')) {
                     //上传成功
                     $fileinfo = $this->upload->data();
-                    $data['picImg'] = 'upload/' . $fileinfo['file_name'];
+                    $data['picImg'] = 'upload/imgs/' . $fileinfo['file_name'];
                   } else {
                     //上传失败
                    echo "<script>alert('上传失败！');history.go(-1);location.reload();</script>";exit;
@@ -50,10 +54,19 @@ class Information extends MY_Controller
                 $data['picImg']='';
             }
 			if($this->consulting_model->addconsulting($data)){
-				echo "<script>alert('新增成功！');history.go(-1);location.reload();</script>";exit;
+				$arr = array('upData'=>'true');
+				$this->consulting_model->SendCateData($_POST['cateId'],$arr);
+				echo "<script>alert('新增成功！');window.location.href='lists';</script>";exit;
 			}else{
 				echo "<script>alert('新增失败！');history.go(-1);location.reload();</script>";exit;
 			}
+		}else{
+			// 频道
+			$data['tags'] = $this->consulting_model->tags();
+			//分类
+			$data['cates'] = $this->consulting_model->listCate();
+			$this->load->view('information/addInformation',$data);
+			$this->load->view('footer');
 		}
 		
 	}
@@ -66,6 +79,8 @@ class Information extends MY_Controller
 			$data['cons'] = $this->consulting_model->setconsult($id);
 			// 频道
 			$data['tags'] = $this->consulting_model->tags();
+				//分类
+			$data['cates'] = $this->consulting_model->listCate();
 			$this->load->view('information/compileInformation',$data);
 			$this->load->view('footer');
 		}
@@ -78,16 +93,18 @@ class Information extends MY_Controller
 			$data = $_POST;
 			$data['userId'] = $_SESSION['users']['userId'];
 			$id = $_POST['publishId'];
-			foreach ($_POST['tag'] as $key => $value) {
-				$tag[$key]['tagid'] = $value;
-			}
-			$data['tag'] = json_encode($tag);
+			$data['publishData'] = date('y-m-d H:i',time());
+			$data['tag'] = implode(',',$_POST['tag']);
 		
 			if (!empty($_FILES['picImg']['tmp_name'])) {
+				$config['upload_path']      = './upload/imgs/';
+	        	$config['allowed_types']    = 'gif|jpg|png|jpeg';
+				$config['file_name']     =date("Y-m-d_His");
+				$this->load->library('upload', $config);
                 if ($this->upload->do_upload('picImg')) {
                     //上传成功
                     $fileinfo = $this->upload->data();
-                    $data['picImg'] = 'upload/' . $fileinfo['file_name'];
+                    $data['picImg'] = 'upload/imgs/' . $fileinfo['file_name'];
                   } else {
                     //上传失败
                    echo "<script>alert('上传失败！');history.go(-1);location.reload();</script>";exit;
@@ -100,7 +117,6 @@ class Information extends MY_Controller
 			}else{
 				echo "<script>alert('编辑失败！');history.go(-1);location.reload();</script>";exit;
 			}
-
 		}
 	}
 	// 删除咨询
@@ -217,6 +233,8 @@ class Information extends MY_Controller
 	public function delCate(){
 		if($_GET){
 			$id = $_GET['id'];
+			//删除分类下所有文章
+			$this->consulting_model->delContent($id);
 			if($this->consulting_model->DeleteCate($id)){
 				echo "<script>alert('删除成功！');window.location.href='classify';</script>";exit;
 	 		}else{
@@ -224,6 +242,15 @@ class Information extends MY_Controller
 	 		}
 		}
 	}
+
+	//定时刷新分类更新
+	public function UpCateData()
+	{
+		$data['upData'] = 'false';
+		$this->consulting_model->UpdataCate($data);
+	}
+
+
 
 }
 

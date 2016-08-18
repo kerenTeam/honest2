@@ -15,13 +15,13 @@
       </div>
     </form>
   </div>
-      <div class="am-u-sm-12 am-u-md-12 am-margin-top">
+  <!--     <div class="am-u-sm-12 am-u-md-12 am-margin-top">
         <div class="am-btn-toolbar">
           <div class="am-btn-group am-btn-group-xs">
             <a class="am-btn am-btn-default" data-am-modal="{target: '#add'}"><span class="am-icon-plus"></span> 新增</a>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
 
     <!-- 新增弹出框 -->

@@ -3,29 +3,40 @@
       <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">交流互动</strong> / <small>新增</small></div>
     </div>
     <hr>
-	<form class="am-form am-padding-top am-padding-bottom" method="" action="">
+	<form class="am-form am-padding-top am-padding-bottom" method="post" action="<?=site_url('interaction/add');?>" enctype="multipart/form-data">
 		<div class="am-g am-margin-top-sm">
 			<div class="am-u-sm-4 am-u-md-2 am-text-right">
 				标题
 			</div>
 			<div class="am-u-sm-8 am-u-md-4 am-u-end">
-				<input type="text" class="am-input-sm" required>
+				<input type="text" class="am-input-sm" name="title" required>
 			</div>
 		</div>
 		<div class="am-g am-margin-top-sm">
 			<div class="am-u-sm-4 am-u-md-2 am-text-right">
-				发布人
+				频道
 			</div>
+			
 			<div class="am-u-sm-8 am-u-md-4 am-u-end">
-				<input type="text" class="am-input-sm" required>
+				<select multiple data-am-selected="{btnSize: 'sm'}" name="tag[]">
+				<?php foreach($tags as $val):?>
+					<option value="<?=$val['tag']?>" ><?=$val['tagName']?></option>
+				<?php endforeach;?>
+					
+				</select>
 			</div>
 		</div>
 		<div class="am-g am-margin-top-sm">
 			<div class="am-u-sm-4 am-u-md-2 am-text-right">
-				简介
+				分类
 			</div>
 			<div class="am-u-sm-8 am-u-md-4 am-u-end">
-				<textarea rows="4" required></textarea>
+				<select data-am-selected="{btnSize: 'sm'}" name="cateId">
+				<?php foreach($cates as $val):?>
+					<option value="<?=$val['cateId']?>"><?=$val['cateName'];?></option>
+				<?php endforeach;?>
+					
+				</select>
 			</div>
 		</div>
 		<div class="am-g am-margin-top-sm">
@@ -33,14 +44,39 @@
 				缩略图
 			</div>
 			<div class="am-u-sm-8 am-u-md-4 am-u-end">
-				<input type="file" id="imgUpload" name="fileimg" onchange="previewImage(this)" class="upload-add" required>
+				<input type="file" id="imgUpload" name="picImg" onchange="previewImage(this)" class="upload-add">
 	            <br>
-	            <div id="preview"> <img class="minImg" src="assets/img/Home_01_02.png"> </div>
+	            <div id="preview"><img class="minImg" src=""> </div>
+			</div>
+		</div>
+		<div class="am-g am-margin-top-sm">
+			<div class="am-u-sm-4 am-u-md-2 am-text-right">
+				图文
+			</div>
+			<div class="am-u-sm-8 am-u-md-6 am-u-end">
+				
+			    <!-- 加载编辑器的容器 -->
+			    <script id="container" name="content" type="text/plain">
+			 
+			    </script>
+			    <!-- 配置文件 -->
+			    <script type="text/javascript" src="assets/ue/ueditor.config.js"></script>
+			    <!-- 编辑器源码文件 -->
+			    <script type="text/javascript" src="assets/ue/ueditor.all.js"></script>
+			    <!-- 实例化编辑器 -->
+			    <script type="text/javascript">
+			        var ue = UE.getEditor('container');
+			    </script>
+			    <style type="text/css">
+			    	#edui1_iframeholder{
+			    		height: 500px !important;
+			    	}
+			    </style>
 			</div>
 		</div>
 		<div class="am-g am-margin-top-sm">
 			<div class="am-u-sm-offset-2 am-u-sm-4 am-u-end">
-				<button type="button" class="am-btn am-btn-primary">确定</button>
+				<button type="submit" class="am-btn am-btn-primary">确定</button>
 			</div>
 		</div>
 	</form>

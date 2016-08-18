@@ -96,6 +96,19 @@ class consulting_model extends CI_Model
 		return $this->db->where($where)->delete(self::TBL_CATE);
 	}
 
+	//更新分类
+	public function SendCateData($id,$data)
+	{
+		$where['cateId'] = $id;
+		return $this->db->where($where)->update(self::TBL_CATE,$data);
+	}
+
+	//删除分类下所有文章
+	public function delContent($id)
+	{
+		$where['cateId'] = $id;
+		return $this->db->where($where)->delete(self::TBL_MYPUB);
+	}
 
 }
 

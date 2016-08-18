@@ -74,19 +74,6 @@ class DataManage extends MY_Controller
 			}
 		}
 	}
-	
-	//修改专业
-	public function UpSpeecialy(){
-		if($_POST){
-			$id = $_POST['id'];
-			$where = array('majorName'=>$_POST['name']);
-			if($this->dataMange_model->SpecialyUp($id,$where)){
-				echo "<script>alert('成功');history.go(-1);location.reload();</script>";
-			}else{
-				echo "<script>alert('失败');history.go(-1);location.reload();</script>";
-			}
-		}
-	}
 	//删除专业
 	public function Delspecialy(){
 		if($_GET){
@@ -114,6 +101,20 @@ class DataManage extends MY_Controller
 		$this->load->view('dataManage/register');
 		$this->load->view('footer');
 	}
+
+	public function delfaculty()
+	{
+		if($_GET){
+			$id = $_GET['id'];
+			if($this->dataMange_model->DelFaculty($id)){
+				$this->dataMange_model->DelCompanys($id);
+				echo "<script>alert('成功');history.go(-1);location.reload();</script>";
+			}else{
+				echo "<script>alert('失败');history.go(-1);location.reload();</script>";
+			}
+		}
+	}
+
 
 
 }

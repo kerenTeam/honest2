@@ -19,7 +19,7 @@
 		<div class="am-u-sm-12 am-u-md-6 am-margin-top">
 			<div class="am-btn-toolbar">
 				<div class="am-btn-group am-btn-group-xs am-margin-right-lg">
-					<a data-am-modal="{target: '#add'}" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</a>
+					<a href="<?=site_url('information/add');?>" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</a>
 				</div>
 	          <select id="tag" data-am-selected="{btnSize: 'sm'}">
 	            <option value="option1">所有频道</option>
@@ -47,7 +47,6 @@
           for(var i = 0;i < obj.length;i++){
             var objLi = obj[i];
             str += '<tr>';
-            str += '<td><input type="checkbox" class="checkList"></td>';
             str += '<td>'+objLi.publishId+'</td>';
             str += '<td><img class="imgSquare" src="../'+objLi.picImg+'"></td>';
             str += '<td>'+objLi.title+'</td>';
@@ -87,93 +86,6 @@
 
 </script>
 
-	<!-- 新增弹出框 -->
-    <div class="am-popup" id="add">
-      <div class="am-popup-inner">
-        <div class="am-popup-hd">
-          <h4 class="am-popup-title">新增</h4>
-          <span data-am-modal-close
-          class="am-close">&times;</span>
-        </div>
-        <div class="am-popup-bd modelHei">
-          <form class="am-form am-padding-top am-padding-bottom" method="post" action="<?=site_url('information/add');?>" enctype="multipart/form-data">
-			<div class="am-g am-margin-top-sm">
-				<div class="am-u-sm-2 am-text-right">
-					标题
-				</div>
-				<div class="am-u-sm-8 am-u-end">
-					<input type="text" class="am-input-sm" name="title" required>
-				</div>
-			</div>
-			<div class="am-g am-margin-top-sm">
-				<div class="am-u-sm-2 am-text-right">
-					频道
-				</div>
-				<div class="am-u-sm-8 am-u-end">
-					<select multiple data-am-selected="{btnSize: 'sm'}" name="tag[]">
-					<?php foreach($tags as $val):?>
-						<option value="<?=$val['tag']?>"><?=$val['tagName']?></option>
-					<?php endforeach;?>
-					</select>
-				</div>
-			</div>
-			<div class="am-g am-margin-top-sm">
-				<div class="am-u-sm-2 am-text-right">
-					分类
-				</div>
-				<div class="am-u-sm-8 am-u-end">
-					<select multiple data-am-selected="{btnSize: 'sm'}" name="tag[]">
-					<?php foreach($tags as $val):?>
-						<option value="<?=$val['tag']?>"><?=$val['tagName']?></option>
-					<?php endforeach;?>
-					</select>
-				</div>
-			</div>
-			<div class="am-g am-margin-top-sm">
-				<div class="am-u-sm-2 am-text-right">
-					缩略图
-				</div>
-				<div class="am-u-sm-8 am-u-end">
-					<input type="file" id="imgUpload" name="picImg" onchange="previewImage(this)" class="upload-add" >
-		            <br>
-		            <div id="preview"> <img class="minImg" src="assets/img/Home_01_02.png"> </div>
-				</div>
-			</div>
-			<div class="am-g am-margin-top-sm">
-				<div class="am-u-sm-2 am-text-right">
-					图文
-				</div>
-				<div class="am-u-sm-10 am-u-end">
-					
-				    <!-- 加载编辑器的容器 -->
-				    <script id="container" name="content" type="text/plain">
-				        
-				    </script>
-				    <!-- 配置文件 -->
-				    <script type="text/javascript" src="assets/ue/ueditor.config.js"></script>
-				    <!-- 编辑器源码文件 -->
-				    <script type="text/javascript" src="assets/ue/ueditor.all.js"></script>
-				    <!-- 实例化编辑器 -->
-				    <script type="text/javascript">
-				        var ue = UE.getEditor('container');
-				    </script>
-				    <style type="text/css">
-				    	#edui1_iframeholder{
-				    		height: 500px !important;
-				    	}
-				    </style>
-				</div>
-			</div>
-			<div class="am-g am-margin-top-sm">
-				<div class="am-u-sm-offset-2 am-u-sm-8 am-u-end">
-					<button type="submit" class="am-btn am-btn-primary">确定</button>
-				</div>
-			</div>
-		</form>
-        </div>
-      </div>
-    </div>
-
 
     <!-- 发布列表 -->
 
@@ -182,22 +94,20 @@
 				<table class="am-table am-table-striped am-table-hover am-main am-table-centered am-table-bordered">
 					<thead>
 						<tr>
-							<th><input type="checkbox" class="allcheck"></th><th>ID</th><th>缩略图</th><th class="table-title">标题</th><th class="table-title">作者</th><th class="table-date am-hide-sm-only">简介</th><th class="table-type">发布时间</th><th>频道</th><th>分类</th><th class="table-set">操作</th>
+							<th>ID</th><th>缩略图</th><th class="table-title">标题</th><th class="table-title">作者</th><th class="table-date am-hide-sm-only">简介</th><th class="table-type">发布时间</th><th>分类</th><th class="table-set">操作</th>
 						</tr>
 					</thead>
 					<tbody id="movies">
 					<?php if(!empty($consulting)): ?>
 					<?php foreach($consulting as $val):?>
 						<tr>
-							<td><input type="checkbox" class="checkList"></td>
 							<td><?=$val['publishId']?></td>
 	              			<td><img class="imgSquare" src="<?='../'.$val['picImg']?>"></td>
 							<td><?=$val['title']?></td>
 							<td><?=get_username($val['userId']);?></td>
 							 <td><?=mb_strcut(strip_tags($val['content']),0,30,'UTF-8');?>...</td>
 							<td><?=$val['publishData']?></td>
-							<td>科技</td>
-							<td>教育</td>
+							<td><?=get_cateName($val['cateId']);?></td>
 							<td>
 								<div class="am-btn-toolbar">
 									<div class="am-btn-group am-btn-group-xs">

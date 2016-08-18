@@ -74,7 +74,10 @@
 				<div class="am-u-sm-12 am-u-md-6 am-margin-top">
 					<div class="am-btn-toolbar">
 						<div class="am-btn-group am-btn-group-xs am-margin-right-lg">
-							<span class="am-text-primary">二级选项</span>
+							<a href="<?=site_url('DataManage/delfaculty?id='.$val['id']);?>" class="am-btn am-btn-default am-btn-xs am-text-danger"><span class="am-icon-trash-o"></span> 删除院系</a>
+							<br/>
+							<br/>
+							<span class="am-text-primary">专业</span>
 						</div>
 					</div>
 				</div>
@@ -140,21 +143,20 @@
 		
 		var name = $(obj).prev().val();
 		var id = $(obj).attr('id');
-		console.log(id)
-		// $.ajax({
-		// 	url:'<?php echo site_url('DataManage/UpSpeecialy');?>',
-		// 	type:"POST",
-		// 	data: 'name='+name+'&id='+id,
-		// 	success: function(result) {
-		// 		// 成功后
-		// 			$(obj).html('保存修改');
-		// 			$(obj).next('a').html('删除选项');
-		// 			$(obj).parent().find('a').removeAttr('disabled');
-		// 			$(obj).removeAttr('onclick');
-				
-		// 	}
+		$.ajax({
+			url:'<?php echo site_url('Other/UpSpeecialy');?>',
+			type:"POST",
+			data: 'name='+name+'&id='+id,
+			success: function(result) {
+				// 成功后
+				if(result == 1){
+					alert('成功');
+				}else{
+					alert('失败');
+				}
+			}
 			
-		// });
+		});
 	
 		// 成功后
 	

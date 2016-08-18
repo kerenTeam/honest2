@@ -100,7 +100,12 @@ class Interaction_model extends CI_Model
 		return $query->result_array();
 	}
 	
-
+	//更新分类
+	public function SendCateData($id,$data)
+	{
+		$where['cateId'] = $id;
+		return $this->db->where($where)->update(self::TBL_CATE,$data);
+	}
 }
 
 ?>

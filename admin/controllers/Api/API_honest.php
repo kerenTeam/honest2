@@ -365,7 +365,6 @@ class API_honest extends CI_Controller
 			$callback = $_GET['callback'];
 			$data = json_decode($_GET['loginData'],true);
 			$user = $this->honestapi_model->LogUser($data['phoneNumber']);
-			var_dump($user);
 			if(!empty($user)){
 				if(md5($data['passWord']) != $user['passWord']){
 					// 密码错误
@@ -383,7 +382,6 @@ class API_honest extends CI_Controller
 					}else{
 						echo "$callback(0)";
 					}
-					
 				}
 			}else{
 				// 没有该用户
@@ -724,10 +722,6 @@ class API_honest extends CI_Controller
 			}
 		}
 	}
-
-
-	//政府发布内容
-	
 
 
 }
