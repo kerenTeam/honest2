@@ -143,21 +143,25 @@
 				<div class="am-u-sm-2 am-text-right">
 					图文
 				</div>
-				<div class="am-u-sm-8 am-u-end">
-					<!-- 编辑器 -->
-					<link href="assets/uediter/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
-					<script type="text/javascript" src="assets//uediter/third-party/jquery.min.js"></script>
-					<script type="text/javascript" charset="utf-8" src="assets/uediter/umeditor.config.js"></script>
-					<script type="text/javascript" charset="utf-8" src="assets/uediter/umeditor.js"></script>
-					<script type="text/javascript" src="assets/uediter/lang/zh-cn/zh-cn.js"></script>
-					<style>.edui-container{margin-left: 0;}.edui-modal{width: 100% !important;}</style>
-					<div style="width:100%">
-					  <script id="myEditor" type="text/plain" style="width:450px;height:500px;" name='content'></script>
-					  <!-- <textarea name="content" style="width:450px;height:500px;"></textarea> -->
-					</div>
-					<script type="text/javascript">
-					var um = UM.getEditor('myEditor'); //实例化编辑器
-					</script>
+				<div class="am-u-sm-10 am-u-end">
+					
+				    <!-- 加载编辑器的容器 -->
+				    <script id="container" name="content" type="text/plain">
+				        
+				    </script>
+				    <!-- 配置文件 -->
+				    <script type="text/javascript" src="assets/ue/ueditor.config.js"></script>
+				    <!-- 编辑器源码文件 -->
+				    <script type="text/javascript" src="assets/ue/ueditor.all.js"></script>
+				    <!-- 实例化编辑器 -->
+				    <script type="text/javascript">
+				        var ue = UE.getEditor('container');
+				    </script>
+				    <style type="text/css">
+				    	#edui1_iframeholder{
+				    		height: 500px !important;
+				    	}
+				    </style>
 				</div>
 			</div>
 			<div class="am-g am-margin-top-sm">
