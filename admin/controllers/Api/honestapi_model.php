@@ -7,6 +7,8 @@ class Honestapi_model extends CI_Model
 {
 
 	// 信息表
+
+	
 	const TBL_MYPUBLISH = 'mypublish';
 	// 用户表
 	const TBL_MEMBER = 'member';
@@ -104,18 +106,6 @@ class Honestapi_model extends CI_Model
 	{
 		$where['phoneNumber'] = $data;
 		$query = $this->db->where($where)->get(self::TBL_MEMBER);
-		return $query->row_array();
- 	}
-
- 	//咨询师和安监局登陆
- 	public function LogUser($data)
- 	{
- 		$where['phoneNumber'] = $data;
-		// $where['groupId'] = '1';
-		$array = array(
-			'5','6'
-		);
-		$query = $this->db->where($where)->where_in('groupId',$array)->get(self::TBL_MEMBER);
 		return $query->row_array();
  	}
 
@@ -307,43 +297,17 @@ class Honestapi_model extends CI_Model
 		return $query->result_array();
 	}
 	//根据分类返回数据
-	public function GetCateContent($id,$nub)
+	public function GetCateContent($id,$page,$size)
 	{
 		$where = array(
 			'cateId' => $id,
 			'state' => '2'
 		);
-		$query = $this->db->where($where)->order_by('publishData','desc')->limit($nub)->get(self::TBL_MYPUBLISH);
+		$query = $this->db->where($where)->order_by('publishData','desc')->limit($size,$page)->get(self::TBL_MYPUBLISH);
 		return $query->result_array();
 	}
-	//首页返回数据
-	public function HomeContent($nub){
-		$query = $this->db->order_by('publishData','desc')->limit($nub)->get(self::TBL_MYPUBLISH);
-		return $query->result_array();
-	}
-	
-	//搜索tag
-	public function SearchTag($data){
-		$query = $this->db->like('tagName',$data,'both')->get(self::TBL_TAG);
-		return $query->result_array();
-	}
-	
-	//搜索文章
-	public function SearchCont($data){
-		  $sql = "SELECT * FROM honest_mypublish where CONCAT(title,content) like '%$data%'";
-		  $query = $this->db->query($sql);
-		  return $query->result_array();
-	}
-		//根据tagid 返回文章
-	public function SendTagContent($tag)
-	{
-		$where['state'] = '2'; 
-		$sql = "SELECT * FROM honest_mypublish where state = 2 and tag in($tag) order by('publishData desc')";
-		$query = $this->db->query($sql);
-		return $query->result_array();
-	}
-	
-	
+
+
 }	
 
 ?>
