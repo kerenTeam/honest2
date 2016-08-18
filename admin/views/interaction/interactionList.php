@@ -121,9 +121,9 @@
               分类
             </div>
             <div class="am-u-sm-8 am-u-end">
-              <select multiple data-am-selected="{btnSize: 'sm'}" name="tag[]">
-              <?php foreach($tags as $val):?>
-                <option value="<?=$val['tag']?>"><?=$val['tagName']?></option>
+              <select  data-am-selected="{btnSize: 'sm'}" name="cateId">
+              <?php foreach($cates as $val):?>
+                <option value="<?=$val['cateId']?>"><?=$val['cateName']?></option>
               <?php endforeach;?>
               </select>
             </div>

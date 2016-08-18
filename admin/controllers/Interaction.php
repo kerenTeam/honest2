@@ -22,7 +22,6 @@ class Interaction extends MY_Controller
 		$sql ="SELECT a.userName,b.publishId, b.picImg, b.tag, b.title, b.content, b.publishData from honest_member as a, honest_mypublish as b where a.userId = b.userId and b.commend = '0' and b.tag like '%$tag%'  order by b.publishData desc";
 		$query = $this->db->query($sql);
 		$list = $query->result_array();
-		echo "<pre>";
 		var_dump($list); 
 	}
 	// 交流互动列表
@@ -31,6 +30,9 @@ class Interaction extends MY_Controller
 		$data['interaction'] = $this->interaction_model->listinter();
 		// 获取所有频道
 		$data['tags'] = $this->interaction_model->listTag();
+		//所有分类
+		$data['cates'] = $this->interaction_model->listCate();
+
 		$this->load->view('interaction/interactionList',$data);
 		$this->load->view('footer');
 	}
@@ -56,12 +58,12 @@ class Interaction extends MY_Controller
 				'title' => $_POST['title'],
 				'userId' => $_SESSION['users']['userId'],
 				'content'=>$_POST['content'],
-				
+				'cateId' =>$_POST['cateId']
 			);
 			foreach ($_POST['tag'] as $key => $value) {
-				$tag[$key]['tagid'] = $value;
+				$tag[$key] = $value;
 			}
-			$data['tag'] = json_encode($tag);
+			$data['tag'] = implode(',', $tag);
 			if (!empty($_FILES['picImg']['tmp_name'])) {
                 if ($this->upload->do_upload('picImg')) {
                     //上传成功
@@ -91,13 +93,14 @@ class Interaction extends MY_Controller
 			$data = array(
 				'title' =>$_POST['title'],
 				'content' =>$_POST['content'],
-				// 'userId' => $_SESSION['users']['userId'],
+				'cateId' => $_POST['cateId'],
 			);
 			foreach ($_POST['tag'] as $key => $value) {
-				$tag[$key]['tagid'] = $value;
+				$tag[$key] = $value;
 			}
-			$data['tag'] = json_encode($tag);
-
+			$data['tag'] = implode(',',$tag);
+			var_dump($data);
+			exit;
 			if (!empty($_FILES['picImg']['tmp_name'])) {
                 if ($this->upload->do_upload('picImg')) {
                     //上传成功
@@ -121,6 +124,8 @@ class Interaction extends MY_Controller
 			$data['inters'] = $this->interaction_model->setinter($id);
 			// 获取所有频道
 			$data['tags'] = $this->interaction_model->listTag();
+			//所有分类
+			$data['cates'] = $this->interaction_model->listCate();
 			$this->load->view('interaction/compileInteraction',$data);
 			$this->load->view('footer');
 		}

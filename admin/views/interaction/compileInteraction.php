@@ -16,7 +16,7 @@
 			<div class="am-u-sm-4 am-u-md-2 am-text-right">
 				频道
 			</div>
-			<?php $tag = json_decode($inters['tag'],true); ?>
+			<?php $tag = explode(',', $inters['tag']); ?>
 			<div class="am-u-sm-8 am-u-md-4 am-u-end">
 				<select multiple data-am-selected="{btnSize: 'sm'}" name="tag[]">
 				<?php foreach($tags as $val):?>
@@ -30,11 +30,10 @@
 			<div class="am-u-sm-4 am-u-md-2 am-text-right">
 				分类
 			</div>
-			<?php $tag = json_decode($inters['tag'],true); ?>
 			<div class="am-u-sm-8 am-u-md-4 am-u-end">
-				<select multiple data-am-selected="{btnSize: 'sm'}" name="tag[]">
-				<?php foreach($tags as $val):?>
-					<option value="<?=$val['tag']?>"<?php foreach($tag as $v):?> <?php if($v['tagid'] == $val['tag']){echo "selected";}?><?php endforeach;?>><?=$val['tagName']?></option>
+				<select data-am-selected="{btnSize: 'sm'}" name="cateId">
+				<?php foreach($cates as $val):?>
+					<option value="<?=$val['cateId']?>" <?php if($val['cateId'] == $inters['cateId']){echo "selected";}?>><?=$val['cateName'];?></option>
 				<?php endforeach;?>
 					
 				</select>

@@ -37,7 +37,12 @@ class Interaction_model extends CI_Model
 		$query = $this->db->get(self::TBL_MYTAG);
 		return $query->result_array();
 	}
-
+	//所有分类
+	public function listCate()
+	{
+		$query = $this->db->order_by('sole','asc')->get(self::TBL_CATE);
+		return $query->result_array();
+	}
 	// 新增交流互动
 	public function addinter($data){
 		return $this->db->insert(self::TBL_MYPUB,$data);
