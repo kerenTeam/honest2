@@ -144,19 +144,19 @@
               </div>
               <div class="am-u-sm-8 am-u-end">
                 <!-- 编辑器 -->
-                <!-- <link href="assets/uediter/themes/default/css/umeditor.css" type="text/css" rel="stylesheet"> -->
-                <!-- <script type="text/javascript" src="assets//uediter/third-party/jquery.min.js"></script> -->
-            <!--     <script type="text/javascript" charset="utf-8" src="assets/uediter/umeditor.config.js"></script>
+                <link href="assets/uediter/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+                <script type="text/javascript" src="assets//uediter/third-party/jquery.min.js"></script>
+                <script type="text/javascript" charset="utf-8" src="assets/uediter/umeditor.config.js"></script>
                 <script type="text/javascript" charset="utf-8" src="assets/uediter/umeditor.js"></script>
                 <script type="text/javascript" src="assets/uediter/lang/zh-cn/zh-cn.js"></script>
-                <style>.edui-container{margin-left: 0;}.edui-modal{width: 100% !important;}</style> -->
+                <style>.edui-container{margin-left: 0;}.edui-modal{width: 100% !important;}</style>
                 <div style="width:100%">
-                  <!-- <script id="myEditor" type="text/plain" style="width:450px;height:500px;" name='content'></script> -->
-                  <textarea name="content" style="width:450px;height:500px;" ></textarea>
+                  <script id="myEditor" type="text/plain" style="width:450px;height:500px;" name='content'></script>
+                  <!-- <textarea name="content" style="width:450px;height:500px;" ></textarea> -->
                 </div>
-               <!--  <script type="text/javascript">
+                <script type="text/javascript">
                 var um = UM.getEditor('myEditor'); //实例化编辑器
-                </script> -->
+                </script>
               </div>
             </div>
             <div class="am-g am-margin-top-sm">
