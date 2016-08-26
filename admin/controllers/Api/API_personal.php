@@ -343,7 +343,7 @@ class API_personal extends CI_Controller
 	 			$arr['region'] = implode('-',$data['region']);
 	 		}
 			
-				$a = array_filter($arr);
+			$a = array_filter($arr);
 	    	//修改
 			if($this->honestapi_model->EditCompany($id,$a)){
 				echo "$callback(1)";
@@ -517,7 +517,31 @@ class API_personal extends CI_Controller
 		}
 	}
 
+	//信息附件上传
+	public function sendFrom()
+	{
 
+		if($_GET){
+			$id = $_GET['exchangId'];
+			if (!empty($_FILES['myfile'])){
+				$fileArray = $_FILES['myfile'];//获取多个文件的信息，注意：这里的键名不包含[]
+
+				$upload_dir = './upload/file/'; //保存上传文件的目录
+				foreach ( $fileArray['error'] as $key => $error) {
+				    if ( $error == UPLOAD_ERR_OK ) { //PHP常量UPLOAD_ERR_OK=0，表示上传没有出错
+				        $temp_name = $fileArray['tmp_name'][$key];
+				        $type = @end(explode('.', $fileArray['name'][$key]));
+				        $file_name = date('Y-m-d_His').'.'.$type;
+				        @move_uploaded_file($temp_name, $upload_dir.$file_name);
+				        echo '上传[文件'.$key.']成功!<br/>';
+				    }else {
+				        echo '上传[文件'.$key.']失败!<br/>';
+				    }
+				}
+			}
+
+		}
+	}
 
 
 

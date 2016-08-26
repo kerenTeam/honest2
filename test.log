@@ -147,3 +147,155 @@ array (
     ),
   ),
 )
+array (
+)
+''
+array (
+  'myfile' => 
+  array (
+    'name' => 
+    array (
+      0 => '72adf54e34c6cd2e254a383b0853e33fc873e86167c64-sQp17U_fw658.jpeg',
+      1 => 'cfab0e2507daf8a5dd236e3c591818290bfbcb9a1b270-MWZw6G_fw658.jpeg',
+      2 => '',
+    ),
+    'type' => 
+    array (
+      0 => 'image/jpeg',
+      1 => 'image/jpeg',
+      2 => '',
+    ),
+    'tmp_name' => 
+    array (
+      0 => 'D:\\SOFT_PHP_PACKAGE\\phptmp\\phpED6D.tmp',
+      1 => 'D:\\SOFT_PHP_PACKAGE\\phptmp\\phpED7E.tmp',
+      2 => '',
+    ),
+    'error' => 
+    array (
+      0 => 0,
+      1 => 0,
+      2 => 4,
+    ),
+    'size' => 
+    array (
+      0 => 86788,
+      1 => 66834,
+      2 => 0,
+    ),
+  ),
+)
+array (
+)
+''
+array (
+  'myfile' => 
+  array (
+    'name' => 
+    array (
+      0 => '72adf54e34c6cd2e254a383b0853e33fc873e86167c64-sQp17U_fw658.jpeg',
+      1 => '',
+      2 => '',
+    ),
+    'type' => 
+    array (
+      0 => 'image/jpeg',
+      1 => '',
+      2 => '',
+    ),
+    'tmp_name' => 
+    array (
+      0 => 'D:\\SOFT_PHP_PACKAGE\\phptmp\\php40DB.tmp',
+      1 => '',
+      2 => '',
+    ),
+    'error' => 
+    array (
+      0 => 0,
+      1 => 4,
+      2 => 4,
+    ),
+    'size' => 
+    array (
+      0 => 86788,
+      1 => 0,
+      2 => 0,
+    ),
+  ),
+)
+array (
+)
+''
+array (
+  'myfile' => 
+  array (
+    'name' => 
+    array (
+      0 => '72adf54e34c6cd2e254a383b0853e33fc873e86167c64-sQp17U_fw658.jpeg',
+      1 => 'cfab0e2507daf8a5dd236e3c591818290bfbcb9a1b270-MWZw6G_fw658.jpeg',
+      2 => '',
+    ),
+    'type' => 
+    array (
+      0 => 'image/jpeg',
+      1 => 'image/jpeg',
+      2 => '',
+    ),
+    'tmp_name' => 
+    array (
+      0 => 'D:\\SOFT_PHP_PACKAGE\\phptmp\\php59EC.tmp',
+      1 => 'D:\\SOFT_PHP_PACKAGE\\phptmp\\php59FC.tmp',
+      2 => '',
+    ),
+    'error' => 
+    array (
+      0 => 0,
+      1 => 0,
+      2 => 4,
+    ),
+    'size' => 
+    array (
+      0 => 86788,
+      1 => 66834,
+      2 => 0,
+    ),
+  ),
+)
+array (
+)
+''
+array (
+  'myfile' => 
+  array (
+    'name' => 
+    array (
+      0 => 'cfab0e2507daf8a5dd236e3c591818290bfbcb9a1b270-MWZw6G_fw658.jpeg',
+      1 => '',
+      2 => '',
+    ),
+    'type' => 
+    array (
+      0 => 'image/jpeg',
+      1 => '',
+      2 => '',
+    ),
+    'tmp_name' => 
+    array (
+      0 => 'D:\\SOFT_PHP_PACKAGE\\phptmp\\php2EA4.tmp',
+      1 => '',
+      2 => '',
+    ),
+    'error' => 
+    array (
+      0 => 0,
+      1 => 4,
+      2 => 4,
+    ),
+    'size' => 
+    array (
+      0 => 66834,
+      1 => 0,
+      2 => 0,
+    ),
+  ),
+)

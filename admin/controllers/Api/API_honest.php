@@ -44,6 +44,7 @@ class API_honest extends CI_Controller
 		
 			$callback = $_GET['callback'];
 			$limit = json_decode($_GET['informationData'],true);
+
 			//分页
 			$size = $limit['pageSize'];
 			if($limit['currentPage'] != 1){
@@ -51,17 +52,18 @@ class API_honest extends CI_Controller
 			}else{
 				$page = $limit['currentPage'] -1;
 			}
+
 			// 获取用户喜爱标签
 			$user = $this->honestapi_model->Loginuser($limit['phoneNumber']);
+
 			$tag = explode(',',$user['myTag']);
 			//浮点型转int型
 			foreach ($tag as $key => $v) {
 				$tag[$key] = intval($v);
 			}
+
 			$list = $this->honestapi_model->Consulting($page,$size,$tag);
-		
-			
-			
+
 			if(empty($list)){
 				//var_dump(NULL);
 				$a = 0;
@@ -83,6 +85,13 @@ class API_honest extends CI_Controller
 				foreach ($tagname as $key => $value) {
 					$list[$key]['tag'] = $value; 
 				}
+				//删除没有数据的数组
+				foreach ($list as $k => $v) {
+					if(!isset($v['publishId'])){
+						unset($list[$k]);
+					}
+				}
+		
 				$json = json_encode($list);
 				echo "$callback($json)";
 			}
