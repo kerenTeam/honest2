@@ -11,6 +11,7 @@ class API_honest extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('honestapi_model');
+			$this->load->library('Jpush');
 
 		 // $this->load->library('upload');
 	}
@@ -197,7 +198,7 @@ class API_honest extends CI_Controller
 			}else if($user['groupId'] == 5){
 				$problem = $this->honestapi_model->ConsultationWen($id);
 			}
-		
+			
 			foreach ($problem as $key => $value) {
 				$problem[$key]['headPicImg'] = IP.$value['headPicImg'];
 			}
@@ -228,6 +229,8 @@ class API_honest extends CI_Controller
 			);
 			// 新增问题
 			if($this->honestapi_model->QuestionData($arr)){
+				$receive = array('alias'=>array($consultant["phoneNumber"]));$content = $arr['exchangeContent'];$m_type = 'http';$m_txt ='tab/chats';$m_time = '1000';$title = $arr['exchangeTitle'];
+				$result = $this->jpush->push($receive,$content,$title,$m_type,$m_txt,$m_time);
 				echo "$callback(1)";
 			}else{
 				echo "$callback(0)";
@@ -373,11 +376,11 @@ class API_honest extends CI_Controller
 					// 登陆成功
 					if($user['groupId'] == '5'){
 						//咨询是
-						$json = '{"groupId":"A","state":1}';
+						$json = '{"groupId":false,"state":1}';
 						echo "$callback($json)";
 					}elseif($user['groupId'] == '6'){
 						//政府
-						$json = '{"groupId":"B","state":1}';
+						$json = '{"groupId":true,"state":1}';
 						echo "$callback($json)";
 					}else{
 						echo "$callback(0)";
@@ -496,6 +499,12 @@ class API_honest extends CI_Controller
 	 	        }
 	    	}
 	    	if($this->honestapi_model->SendChat($data)){
+				 $a = $this->honestapi_model->GetUserInfo($data['toId']);
+				 if($a['state'] != 1){
+					 $receive = array('alias'=>array($a["phoneNumber"]));$content = $data['Message'];$m_type = 'http';$m_txt ='chat-detail/'.$data['informationId'].'/'.$data['toId'];$m_time = '1000';$title = '';
+					 $result = $this->jpush->push($receive,$content,$title,$m_type,$m_txt,$m_time);
+					 echo $result;
+				 }
 	    		echo "1";
 	    		//echo $url;
 	    	}else{
@@ -568,6 +577,12 @@ class API_honest extends CI_Controller
 			$user = $this->honestapi_model->Loginuser($data['fromId']);
 			$arr['fromId'] = $user['userId'];
 			if($this->honestapi_model->SendChat($arr)){
+				 $a = $this->honestapi_model->GetUserInfo($data['toId']);
+				 if($a['state'] != 1){
+					 $receive = array('alias'=>array($a["phoneNumber"]));$content = $data['Message'];$m_type = 'http';$m_txt ='chat-detail/'.$data['informationId'].'/'.$data['toId'];$m_time = '1000';$title = '';
+					 $result = $this->jpush->push($receive,$content,$title,$m_type,$m_txt,$m_time);
+					 echo $result;
+				 }
 				echo "$callback(1)";
 			}else{
 				echo "$callback(0)";
@@ -629,12 +644,6 @@ class API_honest extends CI_Controller
 		if($_GET){
 			$callback = $_GET['callback'];
 			$arr = json_decode($_GET['getClassData'],true);
-			// $size = $arr['pageSize'];
-			// if($arr['currentPage'] != 1){
-				// $page =$arr['currentPage']*$size-$size;
-			// }else{
-				// $page = $arr['currentPage'] -1;
-			// }
 			$id = $arr['cateId'];
 			$nub = $arr['numbers'];
 			if($id == '0'){
@@ -668,9 +677,6 @@ class API_honest extends CI_Controller
 			}
 		}
 	}
-
-
-
 	//搜索
 	public function search()
 	{
@@ -723,6 +729,15 @@ class API_honest extends CI_Controller
 		}
 	}
 
+	//返回用户在线状态
+	public function GetUserState(){
+		if($_GET){
+			$data = json_decode($_GET['GetUserStateData'],true);
+			$arr = array('state'=>$data['state']);
+			$user = $this->honestapi_model->Loginuser($data['phoneNumber']);
+			$this->honestapi_model->EditUser($user['userId'],$arr);
+		}
+	}
 
 }
 

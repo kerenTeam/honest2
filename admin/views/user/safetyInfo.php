@@ -15,17 +15,16 @@
 					</header>
 					<div class="am-panel-bd am-cf">
 						<div class="am-u-sm-6 am-u-md-4">
-							<img class="userimg2" src="assets/img/Home_01_02.png" alt="用户头像">
+							<img class="userimg2" src="<?='./'.$userinfo['headPicImg']?>" alt="用户头像">
 						</div>
 						<div class="am-u-sm-6 am-u-md-4">
-							<p>昵称：asdf</p>
-							<p>性别：男</p>
-							<p>手机号：13540824624</p>
+							<p>昵称：<?=$userinfo['userName'];?></p>
+							<p>性别：<?=$userinfo['gender'];?></p>
+							<p>手机号:<?=$userinfo['phoneNumber']?></p>
 						</div>
 						<div class="am-u-sm-6 am-u-md-4">
-							<p>所在地：成都</p>
-							<p>简介：vde</p>
-							<p>职业：局长</p>
+							<p>所在地：<?=$userinfo['address'];?></p>
+							<p>简介：<?=$userinfo['summary']?></p>
 						</div>
 						
 					</div>
@@ -36,9 +35,11 @@
 					</header>
 					<div class="am-panel-bd">
 						
+					<?php $tag = $userinfo['myTag']; $tags = explode(',', $tag); ?>
 					<p>
-						<span></span>
-					</p>
+					<?php foreach($tags as $v):?>
+						<span><?=get_tagName($v);?></span>
+					<?php endforeach;?></p>
 						<p></p>
 					</div>
 				</section>

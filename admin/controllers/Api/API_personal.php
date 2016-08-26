@@ -187,12 +187,7 @@ class API_personal extends CI_Controller
 	public function ReleasInformatione()
 	{
 		if($_POST){
-			$data =array('title'=>$_POST['title'],'content'=>$_POST['content'],'state'=>'2',);
-			$user = $this->honestapi_model->Loginuser($_POST['phoneNumber']);
-			$data['userId'] = $user['userId'];
-			if($user['groupId'] == 6){
-				$data['state'] = '3';
-			}
+			$data = array();
 			if (!empty($_FILES['ffile']['tmp_name'])) {
 				$config['upload_path'] = './upload/umeditor/';
 	        	$config['allowed_types'] = 'gif|jpg|png';
@@ -207,11 +202,31 @@ class API_personal extends CI_Controller
 	 	        }
     		}
 			$data['tag'] =str_replace('}','',str_replace('{','',$_POST['tag']));
-    		if($this->honestapi_model->InformationeReleas($data)){
-    			echo "1";
-    		}else{
-    			echo "0";
-    		} 
+			$user = $this->honestapi_model->Loginuser($_POST['phoneNumber']);
+			$data['userId'] = $user['userId'];
+			$cate = json_decode($_POST['informationClass'],true);
+			if($user['groupId'] == '5'){
+				$arr =array('title'=>$_POST['title'],'content'=>$_POST['content'],'state'=>'0','publishData'=>date('y-m-d H:i',time()),'cateId' =>$cate['cateId'], );
+				$insert = array_merge($data,$arr);
+				if($this->honestapi_model->InformationeReleas($insert)){
+					//返回最新咨询是id
+					$consult = $this->honestapi_model->GetConsuleId();
+	    			echo $consult['publishId'];
+	    		}else{
+	    			echo "0";
+	    		} 
+			}elseif($user['groupId'] == '6'){
+				$arr =  array('title'=>$_POST['title'],'content'=>$_POST['content'],'grade'=>$_POST['DocumentNumber'],'company'=>$_POST['Unit'],'author'=>$_POST['LiteraryPerson'],'publishData'=>date('y-m-d H:i',time()),'cateId'=>$cate['cateId']);
+				$insert = array_merge($data,$arr);
+				if($this->honestapi_model->GoveContent($insert)){
+					//返回政府最新id
+					$gover = $this->honestapi_model->GetGoverId();
+	    			echo $gover['id'];
+	    		}else{
+	    			echo "0";
+	    		} 
+
+			}
 		}
 
 	}
@@ -226,9 +241,12 @@ class API_personal extends CI_Controller
 			$user = $this->honestapi_model->Loginuser($phone['phoneNumber']);
 			$company = $this->honestapi_model->GetCompany($user['userId']);
 			$company['logo'] = IP.$company['logo'];
-			// $company['region'] = explode('|',$company['region']);
-			//var_dump($company);
-			
+			$region = explode('-',$company['region']);
+			$a['province'] = $region[0];
+			$a['city'] = $region[1];
+			$a['area'] = $region[2];
+			$company['region'] = $a;
+	
 			if(empty($company)){
 				echo "$callback(0)";
 			}else{

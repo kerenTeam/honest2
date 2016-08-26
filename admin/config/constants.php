@@ -85,7 +85,14 @@ defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 defined('randNms')             OR define('randNms', rand(100000,999999)); //长度为6位的随机数
-defined('IP')                  OR define('IP', 'http://211.149.195.183:8066/'); //长度为6位的随机数
+defined('IP')                  OR define('IP', 'http://chengshi.zlzmm.com/'); //ip
+defined('DOCS')                  OR define('DOCS', 'https://docs.google.com/gview?embedded=true&url='); //图片前缀
+
+//推送
+defined('APP_KEY') OR define('APP_KEY', '32b529c4348c1d1a7f16be6e');
+defined('MASTER_SECRET') OR define('MASTER_SECRET', 'a7b3b8d872780f538cf59874');
+
+
 
 
 /**********************************************

@@ -51,7 +51,7 @@
         </div>
       </div>
     </div>
-
+    
 
 
     <!-- 问题解答列表 -->
@@ -111,6 +111,19 @@
                         </div>
                       </div>
                     </div>
+                    <!-- 聊天弹出框 -->
+                    <div class="am-popup" id="lt<?=$val['questionId']?>">
+                        <div class="am-popup-inner">
+                          <div class="am-popup-hd">
+                            <h4 class="am-popup-title">聊天记录</h4>
+                            <span data-am-modal-close class="am-close">&times;</span>
+                          </div>
+                          <div class="am-popup-bd" style="height: 500px;">
+                            <iframe style="width: 100%;height: 100%;" src="http://chengshi.zlzmm.com/ACC/www/#/chat-detail/9/77"></iframe>
+                          </div>
+                        </div>
+                      </div>
+                    <a href="<?=site_url('problem/getLiaotian?id=').$val['questionId'];?>" class="am-btn am-btn-default am-btn-xs am-text-secondary am-hide-sm-only"></span>查看聊天记录</a>
                       <a href="<?=site_url('problem/delProblem?id=').$val['questionId'];?>" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</a>
                     </div>
                   </div>

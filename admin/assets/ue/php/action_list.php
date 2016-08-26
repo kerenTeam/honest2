@@ -81,7 +81,7 @@ function getfiles($path, $allowFiles, &$files = array())
             } else {
                 if (preg_match("/\.(".$allowFiles.")$/i", $file)) {
                     $files[] = array(
-                        'url'=> substr($path2, strlen($_SERVER['DOCUMENT_ROOT'])),
+                        'url'=> 'https://docs.google.com/gview?embedded=true&url=http://chengshi.zlzmm.com'.substr($path2, strlen($_SERVER['DOCUMENT_ROOT'])),
                         'mtime'=> filemtime($path2)
                     );
                 }

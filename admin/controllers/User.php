@@ -313,9 +313,12 @@ class User extends MY_Controller
 	// 安监局详情
 	public function safetyInfo()
 	{
-
-		$this->load->view('user/safetyInfo');
-		$this->load->view('footer');
+		if($_GET){
+			$id = $_GET['id'];
+			$data['userinfo'] = $this->user_model->WeixinUserInfo($id);
+			$this->load->view('user/safetyInfo',$data);
+			$this->load->view('footer');
+		}
 	}
 }
 

@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Chat_honest extends CI_Controller
@@ -12,18 +12,17 @@ class Chat_honest extends CI_Controller
 	}
 
 
-	//È¡³öÁÄÌì¼ÇÂ¼
+	//获取聊天记录
 	public function getMessage()
 	{
 	
-		
 		 if($_GET){
 		 	$callback = $_GET['callback'];
-		 	// ÓÃ»§id
+		 	// userId
 		 	$where = json_decode($_GET['problemData'],true);
 		 	$user = $this->honestapi_model->Loginuser($where['fromId']);
 		 	$userid = $user['userId'];
-		 	// ÎÊÌâid
+		 	// 问题id
 		 	$informationId = $where['informationId'];
 		 	$data = $this->honestapi_model->GetChat($informationId);
 		 	foreach($data as $k=>$val){
@@ -38,6 +37,7 @@ class Chat_honest extends CI_Controller
 		 	}
 		 }
 	}
+
 
 
 }

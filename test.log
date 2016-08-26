@@ -1,1 +1,149 @@
-svdsfsddfs
+array (
+)
+array (
+)
+array (
+)
+array (
+)
+array (
+)
+''
+array (
+)
+array (
+  'pic3' => '不反对不辜负的吧',
+)
+''
+array (
+  'pic1' => 
+  array (
+    'name' => 'API_honest.php',
+    'type' => 'text/php',
+    'tmp_name' => 'D:\\SOFT_PHP_PACKAGE\\phptmp\\php8922.tmp',
+    'error' => 0,
+    'size' => 19659,
+  ),
+  'pic2' => 
+  array (
+    'name' => 'cfab0e2507daf8a5dd236e3c591818290bfbcb9a1b270-MWZw6G_fw658.jpeg',
+    'type' => 'image/jpeg',
+    'tmp_name' => 'D:\\SOFT_PHP_PACKAGE\\phptmp\\php8923.tmp',
+    'error' => 0,
+    'size' => 66834,
+  ),
+  'pic3' => 
+  array (
+    'name' => '',
+    'type' => '',
+    'tmp_name' => '',
+    'error' => 4,
+    'size' => 0,
+  ),
+)
+array (
+  'pic3' => '不反对不辜负的吧',
+)
+''
+array (
+  'pic1' => 
+  array (
+    'name' => 'API_honest.php',
+    'type' => 'text/php',
+    'tmp_name' => 'D:\\SOFT_PHP_PACKAGE\\phptmp\\phpC687.tmp',
+    'error' => 0,
+    'size' => 19659,
+  ),
+  'pic2' => 
+  array (
+    'name' => 'cfab0e2507daf8a5dd236e3c591818290bfbcb9a1b270-MWZw6G_fw658.jpeg',
+    'type' => 'image/jpeg',
+    'tmp_name' => 'D:\\SOFT_PHP_PACKAGE\\phptmp\\phpC688.tmp',
+    'error' => 0,
+    'size' => 66834,
+  ),
+  'pic3' => 
+  array (
+    'name' => '',
+    'type' => '',
+    'tmp_name' => '',
+    'error' => 4,
+    'size' => 0,
+  ),
+)
+array (
+)
+''
+array (
+  'myfile' => 
+  array (
+    'name' => 
+    array (
+      0 => 'cfab0e2507daf8a5dd236e3c591818290bfbcb9a1b270-MWZw6G_fw658.jpeg',
+      1 => '',
+      2 => '',
+    ),
+    'type' => 
+    array (
+      0 => 'image/jpeg',
+      1 => '',
+      2 => '',
+    ),
+    'tmp_name' => 
+    array (
+      0 => 'D:\\SOFT_PHP_PACKAGE\\phptmp\\php80B8.tmp',
+      1 => '',
+      2 => '',
+    ),
+    'error' => 
+    array (
+      0 => 0,
+      1 => 4,
+      2 => 4,
+    ),
+    'size' => 
+    array (
+      0 => 66834,
+      1 => 0,
+      2 => 0,
+    ),
+  ),
+)
+array (
+)
+''
+array (
+  'myfile' => 
+  array (
+    'name' => 
+    array (
+      0 => '72adf54e34c6cd2e254a383b0853e33fc873e86167c64-sQp17U_fw658.jpeg',
+      1 => 'cfab0e2507daf8a5dd236e3c591818290bfbcb9a1b270-MWZw6G_fw658.jpeg',
+      2 => '',
+    ),
+    'type' => 
+    array (
+      0 => 'image/jpeg',
+      1 => 'image/jpeg',
+      2 => '',
+    ),
+    'tmp_name' => 
+    array (
+      0 => 'D:\\SOFT_PHP_PACKAGE\\phptmp\\php392E.tmp',
+      1 => 'D:\\SOFT_PHP_PACKAGE\\phptmp\\php393E.tmp',
+      2 => '',
+    ),
+    'error' => 
+    array (
+      0 => 0,
+      1 => 0,
+      2 => 4,
+    ),
+    'size' => 
+    array (
+      0 => 86788,
+      1 => 66834,
+      2 => 0,
+    ),
+  ),
+)

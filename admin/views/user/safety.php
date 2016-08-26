@@ -127,13 +127,11 @@
 							<td><?=$val['address'];?></td>
 							<td><?=$val['summary'];?></td>
 							<td>
-								<a href="<?=site_url('user/info?id=').$val['userId'];?>">查看个人信息</a>
+								<a href="<?=site_url('user/safetyInfo?id=').$val['userId'];?>">查看个人信息</a>
 							</td>
 							<td>
 								<div class="am-btn-toolbar">
 									<div class="am-btn-group am-btn-group-xs">
-										<!-- <a href="<?=site_url('safe/index');?>" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-fax"></span> 安全查询</a>
-										<a href="<?=site_url('consult/index');?>" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-file-text-o"></span> 咨询管理</a> -->
 										<a href="<?=site_url('user/cSafety?id=').$val['userId'];?>" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</a>
 										<a href="<?=site_url('user/deluser?id=').$val['userId'];?>" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</a>
 									</div>

@@ -40,8 +40,6 @@
           <span class="am-icon-users"></span> 管理员 <span class="am-icon-caret-down"></span>
         </a>
         <ul class="am-dropdown-content">
-          <li><a href="<?=site_url('system/user');?>"><span class="am-icon-user"></span> 资料</a></li>
-          <li><a href="<?=site_url('system/role');?>"><span class="am-icon-cog"></span> 设置</a></li>
           <li><a href="<?=site_url('login/loginOut');?>"><span class="am-icon-power-off"></span> 退出</a></li>
         </ul>
       </li>
@@ -56,7 +54,7 @@
     <div class="am-offcanvas-bar admin-offcanvas-bar">
 	<?php if($_SESSION['groupId'] == '6'):?>
 		<ul class="am-list admin-sidebar-list">
-			<li><a href="<?=site_url('interaction/iList');?>"><span class="am-icon-commenting-o"></span> 交流互动</a></li>
+			<li><a href="<?=site_url('government/index');?>"><span class="am-icon-commenting-o"></span> 信息管理</a></li>
      <li><a href="<?=site_url('login/loginOut');?>"><span class="am-icon-sign-out"></span> 注销</a></li>
 		</ul>
 	<?php else:?>
@@ -73,8 +71,10 @@
           <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-edit"></span> 信息审核 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
           <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-nav">
           
-           <!-- <li><a href="<?=site_url('auditing/weixin');?>"><span class="am-icon-weixin"></span> 微信提交</a></li>-->
-		    <li><a href="<?=site_url('user/Auditing');?>"><span class="am-icon-weixin"></span> 用户资料审核</a></li>
+            <li><a href="<?=site_url('auditing/weixin');?>"><span class="am-icon-weixin"></span> 微信申请</a></li>
+            <li><a href="<?=site_url('user/Auditing');?>"><span class="am-icon-weixin"></span> 用户资料审核</a></li>
+            <li><a href="<?=site_url('auditing/safety');?>"><span class="am-icon-gavel"></span> 安监局发布信息</a></li>
+		        <li><a href="<?=site_url('auditing/conulting');?>"><span class="am-icon-tablet"></span> 咨询师发布信息</a></li>
           </ul>
           
         </li>
@@ -100,14 +100,7 @@
             <li><a href="<?=site_url('user/safety');?>"><span class="am-icon-gavel"></span> 安监局</a></li>
           </ul>
         </li>
-        <!--<li class="admin-parent">
-          <a class="am-cf" data-am-collapse="{target: '#statistics1'}"><span class="am-icon-line-chart"></span> 统计管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
-          <ul class="am-list am-collapse admin-sidebar-sub" id="statistics1">
-            <li><a href="<?=site_url('statistics/visit');?>"><span class="am-icon-bar-chart"></span> 访问数据</a></li>
-            <li><a href="<?=site_url('statistics/action');?>"><span class="am-icon-pie-chart"></span> 用户行为</a></li>
-            <li><a href="<?=site_url('statistics/zixun');?>"><span class="am-icon-area-chart"></span> 资讯数据</a></li>
-          </ul>
-        </li>-->
+
         <li class="admin-parent">
           <a class="am-cf" data-am-collapse="{target: '#system'}"><span class="am-icon-cog"></span> 系统管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
           <ul class="am-list am-collapse admin-sidebar-sub" id="system">

@@ -164,3 +164,20 @@ ul {
     width: 100%;
     margin-left: 0;
 }
+.lineInput{
+    padding: 20px 15px;
+    border: 1px solid #ccc;
+}
+.lineInput input[type=text],.lineInput input[type=file]{
+    display: inline-block;
+}
+.lineInput .upList>div{
+    margin-bottom: 15px;
+}
+.lineInput .upList>div>span{
+    display: none;
+    border-radius: 50%;
+}
+.lineInput .upList>div:hover>span{
+    display: inline-block;
+}

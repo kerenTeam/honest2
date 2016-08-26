@@ -52,12 +52,13 @@ class WXIndex extends CI_Controller {
 			$res2 = json_decode(file_get_contents($url3),true);
 			$_SESSION['userInfo'] = $res2;
 			$user = $this->user_model->OpenidUser($openid);
+			var_dump($openid);
 			
-			if(empty($user)){
-				echo "<script>window.location.href='http://chengshi.zlzmm.com/ACC/www/#/register';</script>";exit;
-			}else{
-				echo "<script>window.location.href='http://chengshi.zlzmm.com/ACC/www/#/home?phoneNumber=".$user['phoneNumber']."&ABP=1';</script>";exit;
-			}
+			// if(empty($user)){
+			// 	echo "<script>window.location.href='http://chengshi.zlzmm.com/ACC/www/#/register';</script>";exit;
+			// }else{
+			// 	echo "<script>window.location.href='http://chengshi.zlzmm.com/ACC/www/#/home?phoneNumber=".$user['phoneNumber']."&ABP=1';</script>";exit;
+			// }
 		}else{
 			$callback = $_GET['callback'];
 			$data = json_decode($_GET['userOpenidData'],true);

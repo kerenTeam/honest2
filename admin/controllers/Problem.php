@@ -71,6 +71,17 @@ class Problem extends MY_Controller
 		}
 	}
 
+	//查询聊天记录
+	public function getLiaotian()
+	{
+		if($_GET){
+			$id = $_GET['id'];
+			$data['info'] = $this->problem_model->GetProblem($id);
+
+			$this->load->view('problem/liaotian',$data);
+
+		}
+	}
 
 }
 

@@ -50,7 +50,11 @@ class Interaction extends MY_Controller
 	// 新增交流互动
 	public function add()
 	{
+
 		if($_POST){
+					echo "<pre>";
+		var_dump($_FILES);
+		exit;
 			$data = array(
 				'title' => $_POST['title'],
 				'userId' => $_SESSION['users']['userId'],
@@ -76,7 +80,7 @@ class Interaction extends MY_Controller
                 $data['picImg']='';
             }
 			if($this->interaction_model->addinter($data)){
-				$arr = array('upData'=>'true');
+				$arr = array('upData'=>'1');
 				$this->interaction_model->SendCateData($_POST['cateId'],$arr);
 				echo "<script>alert('新增成功！');window.location.href='iList';</script>";exit;
 			}else{

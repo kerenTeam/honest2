@@ -11,8 +11,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     class IndexWxApi {
         const appId         = APPID;
         const appSecret     = APPSECRET;
-        const mchid         = MCHID; //商户号
-        const privatekey    = PRIVATEKEY; //私钥
+       // const mchid         = MCHID; //商户号
+       // const privatekey    = PRIVATEKEY; //私钥
         public $parameters  = array();
         public $jsApiTicket = NULL;
         public $jsApiTime   = NULL;

@@ -16,6 +16,7 @@ class consulting_model extends CI_Model
 	public function consulting()
 	{
 		$where['commend'] = '1';
+		$where['state'] ='2';
 		$query = $this->db->where($where)->order_by('publishData','desc')->get(self::TBL_MYPUB);
 		return $query->result_array();
 	}
@@ -72,7 +73,7 @@ class consulting_model extends CI_Model
 	//分类列表
 	public function listCate()
 	{
-		$query = $this->db->order_by('sole asc')->get(self::TBL_CATE);
+		$query = $this->db->order_by('sole','asc')->get(self::TBL_CATE);
 		return $query->result_array();
 	}
 
@@ -109,6 +110,24 @@ class consulting_model extends CI_Model
 		$where['cateId'] = $id;
 		return $this->db->where($where)->delete(self::TBL_MYPUB);
 	}
+
+	//返回咨询师发布信息
+	public function GetConsult()
+	{
+		$where['state'] = "0";
+		$query = $this->db->where($where)->or_where('state','3')->get(self::TBL_MYPUB);
+		return $query->result_array();
+	}
+
+	//返回最新消息id
+	public function GetNewPubId()
+	{
+		$sql = "SELECT publishId FROM honest_mypublish WHERE publishId = ( SELECT MAX( publishId ) FROM honest_mypublish )";
+		$query = $this->db->query($sql);
+		return $query->row_array();
+
+	}
+
 
 }
 

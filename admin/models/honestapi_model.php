@@ -28,6 +28,8 @@ class Honestapi_model extends CI_Model
 	const TBL_LINKAGE = "linkage";
 	// 分类
 	const TBL_CATE = "cate";
+	// 政府信息
+	const TBL_GOVE = "government";
 
 	// 返回banner 和网站 关键字
 	public function Banners()
@@ -69,13 +71,13 @@ class Honestapi_model extends CI_Model
 	// 微信用户问题解答
 	public function Problem($id)
 	{
-		$sql = "SELECT a.questionId, a.fromId, a.toId, a.exchangeTitle,a.exchangeTime, b.userId,b.userName, b.headPicImg FROM honest_myquestion as a, honest_member as b where a.fromId = b.userId and a.fromId = $id and state = 1 order by a.exchangeTime desc";
+		$sql = "SELECT a.questionId, a.fromId, a.toId, a.exchangeTitle,a.exchangeTime,a.state, b.userId,b.userName, b.headPicImg FROM honest_myquestion as a, honest_member as b where a.fromId = b.userId and a.fromId = $id and a.state = 1 order by a.exchangeTime desc";
 		$query = $this->db->query($sql);
 		return $query->result_array();
 	}
 	//咨询师问题解答
 	public function ConsultationWen($id){
-		$sql = "SELECT a.questionId, a.fromId, a.toId, a.exchangeTitle,a.exchangeTime, b.userId,b.userName, b.headPicImg FROM honest_myquestion as a, honest_member as b where a.fromId = b.userId and a.toId = $id and state = 1 order by a.exchangeTime desc";
+		$sql = "SELECT a.questionId, a.fromId, a.toId, a.exchangeTitle,a.exchangeTime,a.state, b.userId,b.userName, b.headPicImg FROM honest_myquestion as a, honest_member as b where a.toId = b.userId and a.toId = $id and a.state = 1 order by a.exchangeTime desc";
 		$query = $this->db->query($sql);
 		return $query->result_array();
 	
@@ -341,7 +343,43 @@ class Honestapi_model extends CI_Model
 		$query = $this->db->query($sql);
 		return $query->result_array();
 	}
+
+
+	//发布政府信息
+	public function GoveContent($data)
+	{
+		return $this->db->insert(self::TBL_GOVE,$data);
+	}
 	
+	//获取用户发布的问题
+	public function GetProblem($id)
+	{
+		$where['toId'] = $id;
+		$query = $this->db->where($where)->get(self::TBL_MYQYESTION);
+		return $query->result_array();
+	}
+	
+	//根据用户id 返回用户信息
+	public function GetUserInfo($id){
+		$where['userId'] = $id;
+		$query = $this->db->where($where)->get(self::TBL_MEMBER);
+		return $query->row_array();
+	}
+
+	//返回政府发布的最新消息id
+	public function GetGoverId()
+	{
+		$sql = "SELECT id FROM honest_government WHERE id = ( SELECT MAX( id ) FROM honest_government )";
+		$query = $this->db->query($sql);
+		return $query->row_array();
+	}
+	//返回咨询是发布最新id
+	public function GetConsuleId()
+	{
+		$sql = "SELECT publishId FROM honest_mypublish WHERE state='0' and publishId = ( SELECT MAX( publishId ) FROM honest_mypublish )";
+		$query = $this->db->query($sql);
+		return $query->row_array();
+	}
 	
 }	
 

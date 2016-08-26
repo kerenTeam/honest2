@@ -21,6 +21,7 @@ class Interaction_model extends CI_Model
 	public function listinter()
 	{
 		$where['commend'] ='0';
+		$where['state'] ='2';
 		$query = $this->db->where($where)->order_by('publishData','desc')->get(self::TBL_MYPUB);
 		return $query->result_array();
 	}

@@ -10,6 +10,11 @@ class problem_model extends CI_Model
 
 	// 问题表
 	const TBL_MYQUESTION = 'myquestion';
+	// 聊天记录
+	const TBL_CHAT= 'chatrecord';
+	// 安监局发布信息
+	const TBL_GOVR = 'government';
+
 
 	// 问题列表
 	public function problemlist()
@@ -37,7 +42,31 @@ class problem_model extends CI_Model
 		$query = $this->db->like('exchangeTitle', $sear, 'both')->order_by('exchangeTime','desc')->get(self::TBL_MYQUESTION);
 		return $query->result_array();
 	}
-	 
+	//聊天记录
+	public function GetProblem($id)
+	{
+		$where['informationId'] = $id;
+		$query = $this->db->where($where)->get(self::TBL_CHAT);
+		return $query->result_array();
+
+
+	}
+	
+
+	//安监局发布列表
+	public function goverList($userid)
+	{
+		$where['userId'] = $userid;
+		$query = $this->db->where($where)->order_by('publishData','desc')->get(self::TBL_GOVR);
+		return $query->result_array();
+	}
+
+
+	//新增安监局发布
+	public function ConsuleAdd($data)
+	{
+		return $this->db->insert(self::TBL_GOVR,$data);
+	}
 	
 }
 

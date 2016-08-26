@@ -15,7 +15,9 @@ class User_model extends CI_Model
 	// 用户资料审核表
 	const TBL_USERINFO = 'userinfo';
 	// 信息表
-	const TBL_MYPUB = 'mypublish';
+	const TBL_MYPUB = 'mypublish';	
+	// 安监局发布信息
+	const TBL_GOVR = 'government';
 
 	// 登陆操作
 	public function Login($data)
@@ -135,8 +137,30 @@ class User_model extends CI_Model
 	// 安监局发布信息
 	public function SafetyList()
 	{
-		$where['state'] = '3';
-		$query = $this->db->where($where)->get(self::TBL_MYPUB);
+		$query = $this->db->order_by('publishData','desc')->get(self::TBL_GOVR);
+		return $query->result_array();
+	}
+
+
+	//更改信息状态
+	public function SafetyEdit($id,$data)
+	{
+		$where['id'] = $id;
+		return $this->db->where($where)->update(self::TBL_GOVR,$data);
+	}
+
+	//信息详情
+	public function setSafety($id)
+	{
+		$where['id'] = $id;
+		$query = $this->db->where($where)->get(self::TBL_GOVR);
+		return $query->row_array();
+	}
+
+	//安监局发布搜索
+	public function SafeSearch($data)
+	{
+		$query = $this->db->like('title',$data,'both')->order_by('publishData','desc')->get(self::TBL_GOVR);
 		return $query->result_array();
 	}
 

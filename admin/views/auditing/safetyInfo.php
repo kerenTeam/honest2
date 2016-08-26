@@ -1,7 +1,7 @@
 <!-- content start -->
 <div class="admin-content">
 	<div class="am-cf am-padding">
-		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">安监局用户管理</strong> / <small>用户详情</small></div>
+		<div class=" am-cf"><strong class="am-text-primary am-text-lg">信息审核</strong> / <small>信息详情</small></div>
 	</div>
 	<hr>
 
@@ -11,33 +11,33 @@
 			<div class="am-intro-right am-u-sm-12">
 				<section class="am-panel am-panel-default">
 					<header class="am-panel-hd">
-						<h3 class="am-panel-title">个人资料</h3>
+						<h3 class="am-panel-title">文章详情</h3>
 					</header>
 					<div class="am-panel-bd am-cf">
 						<div class="am-u-sm-6 am-u-md-4">
-							<img class="userimg2" src="assets/img/Home_01_02.png" alt="用户头像">
+							<img class="userimg2" src="../<?=$safe['picImg'];?>" alt="列表图片">
 						</div>
 						<div class="am-u-sm-6 am-u-md-4">
-							<p>昵称：asdf</p>
-							<p>性别：男</p>
-							<p>手机号：13540824624</p>
+							<p>文章标题：<?=$safe['title'];?></p>
+							<p>文号：<?=$safe['grade']?></p>
+							<p>发布人：<?=get_username($safe['userId']);?></p>
 						</div>
 						<div class="am-u-sm-6 am-u-md-4">
-							<p>所在地：成都</p>
-							<p>简介：vde</p>
-							<p>职业：局长</p>
+							<p>文章标签：<?php $tags = explode(',', $safe['tag']); ?><?php foreach($tags as $v):?><?=get_tagName($v);?>&nbsp; <?php endforeach;?></p>
+							<p>发文单位：<?=$safe['company']?></p>
+							<p>附件：<?=$safe['file']?></p>
 						</div>
 						
 					</div>
 				</section>
 				<section class="am-panel am-panel-default">
 					<header class="am-panel-hd">
-						<h3 class="am-panel-title">详情</h3>
+						<h3 class="am-panel-title">发布内容</h3>
 					</header>
 					<div class="am-panel-bd">
 						
 					<p>
-						<span></span>
+						<?=$safe['content'];?>
 					</p>
 						<p></p>
 					</div>

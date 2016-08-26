@@ -21,7 +21,7 @@ class Information extends MY_Controller
 		// 咨询
 		$data['consulting'] = $this->consulting_model->consulting();
 		// 频道
-			$data['tags'] = $this->consulting_model->tags();
+		$data['tags'] = $this->consulting_model->tags();
 		// var_dump($data);
 		$this->load->view('information/list',$data);
 		$this->load->view('footer');
@@ -54,7 +54,7 @@ class Information extends MY_Controller
                 $data['picImg']='';
             }
 			if($this->consulting_model->addconsulting($data)){
-				$arr = array('upData'=>'true');
+				$arr = array('upData'=>'1');
 				$this->consulting_model->SendCateData($_POST['cateId'],$arr);
 				echo "<script>alert('新增成功！');window.location.href='lists';</script>";exit;
 			}else{
@@ -79,7 +79,7 @@ class Information extends MY_Controller
 			$data['cons'] = $this->consulting_model->setconsult($id);
 			// 频道
 			$data['tags'] = $this->consulting_model->tags();
-				//分类
+			//分类
 			$data['cates'] = $this->consulting_model->listCate();
 			$this->load->view('information/compileInformation',$data);
 			$this->load->view('footer');
@@ -246,7 +246,7 @@ class Information extends MY_Controller
 	//定时刷新分类更新
 	public function UpCateData()
 	{
-		$data['upData'] = 'false';
+		$data['upData'] = '';
 		$this->consulting_model->UpdataCate($data);
 	}
 

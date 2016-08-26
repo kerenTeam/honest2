@@ -1,15 +1,15 @@
   <!-- content start -->
   <div class="admin-content">
   	<div class="am-cf am-padding">
-      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">用户管理</strong> / <small>安监局</small></div>
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">信息管理</strong> / <small>安监局发布</small></div>
     </div>
 
 	<div class="am-g am-padding-bottom-lg">
 		<div class="am-u-sm-3 am-u-md-3" style="min-width: 300px;">
-			<form action="" method="">
+			<form action="<?=site_url('auditing/safeSearch');?>" method="post">
 				
 				<div class="am-input-group am-input-group-sm">
-					<input type="text" class="am-form-field">
+					<input type="text" class="am-form-field" name="search">
 					<span class="am-input-group-btn">
 						<button class="am-btn am-btn-default" type="button"><span class="am-icon-search"></span>搜索</button>
 					</span>
@@ -29,32 +29,41 @@
               </tr>
          	 </thead>
 					<tbody id="movies">
+					<?php if(!empty($safe)): ?>
 					<?php foreach($safe as $val):?>
 						<tr>
-							<td><?=$val['publishId']?></td>
+							<td><?=$val['id']?></td>
 							<td><img class="imgSquare" src="../<?=$val['picImg'];?>"></td>
 							<td><?=$val['title'];?></td>
 							<td><?=mb_substr($val['content'],0,20);?>...</td>
 							<td><?=get_username($val['userId']);?></td>
 							<td><?=$val['publishData']?></td>
 							<td>
-								<a href="<?=site_url('auditing/safetyInfo');?>">查看详情</a>
+								<a href="<?=site_url('auditing/safetyInfo?id='.$val['id']);?>">查看详情</a>
 							</td>
 							<td>
 								<div class="am-btn-toolbar">
 									<div class="am-btn-group am-btn-group-xs">
-									
-										<a href="<?=site_url('');?>" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-check"></span> 通过</a>
-										<a href="javascript:;" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-close"></span> 不通过</a>
+										<?php if($val['state'] == 0):?>
+										<a href="<?=site_url('auditing/safetyadopt?id='.$val['id'].'&state=1');?>" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-check"></span> 通过</a>
+										<a href="<?=site_url('auditing/safetyadopt?id='.$val['id'].'&state=2');?>" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-close"></span> 不通过</a>
+										<?php elseif($val['state'] == 1):?>
+											<a href="javascript:;" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-check"></span> 已通过</a>
+										<?php elseif($val['state'] == 2):?>
+											<a href="javascript:;" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-check"></span> 已拒绝</a>
+										<?php endif;?>
 									</div>
 								</div>
 							</td>
 						</tr>
 					<?php endforeach;?>
+				<?php else:?>
+					<th colspan="8" >暂无内容！</th>
+				<?php endif;?>
 					</tbody>
 				</table>
         <div class="am-cf">
-            共 1 条记录
+            共 <?=count($safe);?> 条记录
             <div class="am-fr">
               <div class="holder"><a class="jp-previous jp-disabled">上一页</a><a class="jp-current">1</a><span class="jp-hidden">...</span><a href="#" class="">2</a><a href="#" class="">3</a><a href="#" class="">4</a><a href="#" class="">5</a><a href="#" class="jp-hidden">6</a><span>...</span><a>7</a><a class="jp-next">下一页</a></div>
             </div>
