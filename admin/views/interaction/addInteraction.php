@@ -44,7 +44,7 @@
 				缩略图
 			</div>
 			<div class="am-u-sm-8 am-u-md-4 am-u-end">
-				<input type="file" id="imgUpload" name="picImg" onchange="previewImage(this)" class="upload-add">
+				<input type="file" name="picImg" onchange="preview(this)" class="upload-add">
 	            <br>
 	            <div id="preview"><img class="minImg" src=""> </div>
 			</div>
@@ -120,6 +120,83 @@
   $('.adddate').on('click',function(){
   	var index = $('.update').length + 1;
   	$('.upList').append('<div><input style="width: 40%;" type="file" class="am-input-sm update" name="file'+index+'" onchange="update(this)"> <input style="width: 50%;" type="text" class="am-input-sm" name=""> <span class="am-icon-close" onclick="delDate(this)"></span></div>')
-  })
+  });
+ //上传图片
+function preview(file) {
+         var prevDiv = document.getElementById('preview');
+         if (file.files && file.files[0]) {
+             var reader = new FileReader();
+             reader.onload = function (evt) {
+                 prevDiv.innerHTML = '<img src="' + evt.target.result + '" />';
+             }
+             reader.readAsDataURL(file.files[0]);
+             var file1 = file.files[0];
+             //判断类型是不是图片
+             if (!/image\/\w+/.test(file1.type)) {
+                 alert("请确保文件为图像类型");
+                 return false;
+             }
+             var reader = new FileReader();
+             reader.readAsDataURL(file1);
+             reader.onload = function (e) {
+                 var resu = "";
+                 var resu1 = this.result;//就是base64
+                 if (file1.type == "image/png") {
+                     resu = resu1.substring(22, resu1.length);//去掉前面前缀
+                 }
+                 else if (file1.type == "image/jpeg") {
+                     resu = resu1.substring(23, resu1.length);//去掉前面前缀
+                 }
+                 else if (file1.type == "image/gif") {
+                     resu = resu1.substring(22, resu1.length);//去掉前面前缀
+                 }
+                 else {
+                     alert("此格式暂时不支持")
+                     return false;
+                 }
+                 
+				// $.ajax({
+				// 	 type: "post",
+		  //            url: "test.json",
+		  //            data: {"img":resu},
+		  //            dataType: "json",
+		  //            success: function(data){
+		  //            	alert(data);
+		  //            }
+				// });
+
+				// 'http://www.krfer.com/API/API_User',{
+				// 	//修改资料
+				// 		data:{"dis":"updateIng","img":resu1,"phone":users[0].account},
+				// 		dataType:'json',//服务器返回json格式数据
+				// 		type:'post',//HTTP请求类型
+				// 		timeout:10000,//超时时间设置为10秒；
+				// 		success:function(data){
+				// 				if(data == -3) {
+				// 					mui.toast("程序出错！");
+				// 				}
+				// 				if(data == 0) {
+				// 					 mui.toast("修改失败！");
+				// 				} 
+				// 				if(data == -2) {
+				// 					mui.toast("验证错误！");
+				// 				} else {
+				// 					window.location.reload();
+				// 				}
+							
+				// 		},
+				// 		error:function(xhr,type,errorThrown){
+				// 			//异常处理；
+				// 			console.log(type);
+				// 		}
+				// }
+
+
+             }
+         }
+         else {
+             prevDiv.innerHTML = '<div class="img" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>';
+         }
+    }
 
   </script>
