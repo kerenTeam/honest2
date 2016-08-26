@@ -98,6 +98,31 @@ class Other extends CI_Controller
 	}
 
 
+	//上传图片
+	public function UploadImg()
+	{
+		$base64_img = trim($_POST['img']);
+	    $up_dir = 'upload/images/';
+	 
+	    if(!file_exists($up_dir)){
+	        mkdir($up_dir,0777);
+	    }
+	    $base64_body = substr(strstr($base64_img,','),1);
+	    $data= base64_decode($base64_img);
+	 
+	  
+
+	            $new_file = $up_dir.date('YmdHis_').'.jpg';
+	            if(file_put_contents($new_file,$data)){
+	                $img_path =  $new_file;
+	                echo  $img_path;
+	            }else{
+	            	echo "2345678";
+	            }
+	    
+   	}
+
+
 }
 
 

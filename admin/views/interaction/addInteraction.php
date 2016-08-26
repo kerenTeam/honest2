@@ -124,10 +124,11 @@
  //上传图片
 function preview(file) {
          var prevDiv = document.getElementById('preview');
+         prevDiv.innerHTML = '<i class="am-icon-spinner am-icon-spin"></i>';
          if (file.files && file.files[0]) {
              var reader = new FileReader();
              reader.onload = function (evt) {
-                 prevDiv.innerHTML = '<img src="' + evt.target.result + '" />';
+                 // prevDiv.innerHTML = '<img src="' + evt.target.result + '" />';
              }
              reader.readAsDataURL(file.files[0]);
              var file1 = file.files[0];
@@ -154,16 +155,22 @@ function preview(file) {
                      alert("此格式暂时不支持")
                      return false;
                  }
-                 
-				// $.ajax({
-				// 	 type: "post",
-		  //            url: "test.json",
-		  //            data: {"img":resu},
-		  //            dataType: "json",
-		  //            success: function(data){
-		  //            	alert(data);
-		  //            }
-				// });
+               //  console.log(resu);
+				$.ajax({
+					 type: "POST",
+		             url: "<?=site_url('Other/UploadImg');?>",
+		             data: "img="+resu,
+		        //     dataType: "json",
+		             success: function(data){
+		             	if(data == 1){
+		             		prevDiv.innerHTML = '上传失败';
+		             	}else{
+		             		//var data = eval(data);
+		             		console.log(data);
+		             		prevDiv.innerHTML = '<img class="minImg" src="../' + data + '" />'
+		             	}
+		             }
+				});
 
 				// 'http://www.krfer.com/API/API_User',{
 				// 	//修改资料
@@ -195,7 +202,7 @@ function preview(file) {
              }
          }
          else {
-             prevDiv.innerHTML = '<div class="img" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>';
+             prevDiv.innerHTML = '<div class="minImg" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>';
          }
     }
 
